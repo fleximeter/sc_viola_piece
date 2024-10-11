@@ -68,12 +68,12 @@
 
     // Audio bus arrays. Audio signals are 8-channel.
     ~audiobus = [
-        Array.fill(5, {Bus.audio(s, 8)}),
-        Array.fill(5, {Bus.audio(s, 8)}),
-        Array.fill(5, {Bus.audio(s, 8)}),
-        Array.fill(5, {Bus.audio(s, 8)}),
-        Array.fill(5, {Bus.audio(s, 8)}),
-        Array.fill(5, {Bus.audio(s, 8)}),
+        Array.fill(10, {Bus.audio(s, 8)}),
+        Array.fill(10, {Bus.audio(s, 8)}),
+        Array.fill(10, {Bus.audio(s, 8)}),
+        Array.fill(10, {Bus.audio(s, 8)}),
+        Array.fill(10, {Bus.audio(s, 8)}),
+        Array.fill(10, {Bus.audio(s, 8)}),
     ];
 };
 

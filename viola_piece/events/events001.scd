@@ -2,6 +2,17 @@
 // This file contains individual events starting at measure 1.
 
 
+// FADER 0: NOT USED
+// FADER 1: NOT USED
+// FADER 2: MIC GAIN
+// FADER 3: OUTPUT GAIN
+// KNOB 0: WET/DRY BALANCE
+// FADER 4: FEEDBACK PERCENT
+// FADER 5: 
+// FADER 6: 
+// FADER 7: 
+// FADER 8: BANDPASS CENTER
+
 // Event 1: add FFT freeze, resonant filtering, and reverb
 (
 // This event runs the microphone, reverbs, and gain.
@@ -19,7 +30,7 @@ e.put("main", Routine({
     synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[2], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["chamber"]], ~grp[9], \addToTail));
     synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[3], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["toilet"]], ~grp[9], \addToTail));*/
 
-    // control the gain with knob 2
+    // control the gain with fader 3
 	synths.add(Synth(\gain8mul, [\in, ~gainbus, \out, ~postprocessingbus[0], \mul, 1, \mul_sig, ~faderbus[3], \limit, -6.dbamp], ~grp[9], \addToTail));
 
 	// the pan mapping (stereo or 8-channel)
@@ -258,8 +269,12 @@ e.put("e4", Routine({
 	control.do({|item| item.free});
 }));
 
-e.put("e5", Routine({
-	var control, control_specs,	synth_sound, synth_freeze, synth_reverb, synths;
+
+// EVENT 9
+e.put("e9", Routine({
+	var control, control_specs,	synths_freeze, synths;
+    var freeze_release_time;
+    freeze_release_time = 2;
 
 	// CONTROLS ///////////////////////////////////////////////////////////////
 	control_specs = [
@@ -282,45 +297,80 @@ e.put("e5", Routine({
 
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-	synth_sound = Synth(\mic1pan, [\in, ~mic_zero, \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1], \mul, 3.0], ~grp[1], \addToTail);
-	// synth_sound = Synth(\sampler_pan, [\buf, ~samples["test"]["1"], \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail);
-	synths.add(Synth(\fft_magsmear, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \below, ~controlbus[2], \mul_sig, ~controlbus[3]], ~grp[2], \addToTail));
-	synths.add(Synth(\fft_magbelow, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \below, ~controlbus[2], \mul_sig, ~controlbus[3]], ~grp[2], \addToTail));
-	synths.add(Synth(\pitchshift2_et, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \semitones1, ~controlbus[4], \semitones2, ~controlbus[5]], ~grp[2], \addToTail));
-	synths.add(Synth(\passthrough8, [\in, ~audiobus[1][0], \out, ~audiobus[2][0]], ~grp[2], \addToTail));
-    synths.add(Synth(\resonz8, [\in, ~audiobus[2][0], \out, ~audiobus[3][0], \freq, ~controlbus[6], \bwr, ~controlbus[7]], ~grp[2], \addToTail));
-	synths.add(Synth(\lpf8, [\in, ~audiobus[3][0], \out, ~audiobus[4][0], \freq, ~controlbus[8]], ~grp[2], \addToTail));
-	synth_reverb = Synth(\partconv8, [\fft_size, ~partconv_size, \in, ~audiobus[4][0], \out, ~audiobus[5][0], \irbuf, ~convolution_buffers["toilet_bowl"], \mul, 1, \wetdry, 0.1], ~grp[3], \addToTail);
-    synths.add(Synth(\gain8, [\in, ~audiobus[5][0], \out, ~audiobus[6][0], \level, ~controlbus[9], \limiter, 1], ~grp[4], \addToTail));
-	synths.add(Synth(\from8to8, [\in, ~audiobus[6][0], \out, 0], ~grp[5], \addToTail));
+    synths_freeze = List();
 
-	// UPDATE ///////////////////////////////////////////////////////////////
-    0.5.wait;
-    synth_freeze.set(\freeze, 1.0);
+    // 1 freeze
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]]))
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    "9 UPDATE 9.0: Event 9 running and ready for freeze 1 (D5).".yield;
+    synths_freeze[0].set(\freeze, 1.0);
+    "9 UPDATE 9.1: Event 9 freeze 1 (D5).".yield;
+    
+    // 2 freeze
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][1], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["g"]["55"]["buffer"]]))
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][1], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    "9 UPDATE 9.2: Event 9 ready for freeze 2 (G3).".yield;
+    synths_freeze[1].set(\freeze, 1.0);
+    "9 UPDATE 9.3: Event 9 freeze 2 (G3).\nReady for release 1.".yield;
+    synths_freeze[0].set(\gate, 0);
+    "9 UPDATE 9.4: Event 9 release 1 (D5).".yield;
+    
+    // 3 freeze
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][2], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["73"]["buffer"]]))
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][2], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    "9 UPDATE 9.5: Event 9 ready for freeze 3 (C+5).".yield;
+    synths_freeze[2].set(\freeze, 1.0);
+    "9 UPDATE 9.6: Event 9 freeze 3 (C+5).".yield;
 
+    // 4 freeze
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][3], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["d"]["62"]["buffer"]]))
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][3], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    "9 UPDATE 9.7: Event 9 ready for freeze 4 (D4).".yield;
+    synths_freeze[3].set(\freeze, 1.0);
+    "9 UPDATE 9.8: Event 9 freeze 4 (D4).\nReady for release 2.".yield;
+    synths_freeze[1].set(\gate, 0);
+    "9 UPDATE 9.9: Event 9 release 2 (G3).".yield;
+    
+    // 5 freeze
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][4], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["71"]["buffer"]]))
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][4], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    "9 UPDATE 9.10: Event 9 ready for freeze 5 (B4).".yield;
+    synths_freeze[4].set(\freeze, 1.0);
+    "9 UPDATE 9.11: Event 9 freeze 5 (B4).\nReady for release 3.".yield;
+    synths_freeze[2].set(\gate, 0);
+    "9 UPDATE 9.12: Event 9 release 3 (C+5).".yield;
+    
+    // 6 freeze
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][5], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["d"]["63"]["buffer"]]))
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][5], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    "9 UPDATE 9.13: Event 9 ready for freeze 6 (D+4).".yield;
+    synths_freeze[5].set(\freeze, 1.0);
+    "9 UPDATE 9.14: Event 9 freeze 6 (D+4).\nReady for release 4.".yield;
+    synths_freeze[3].set(\gate, 0);
+    "9 UPDATE 9.15: Event 9 release 4 (D4).".yield;
+    
+    // 7 freeze
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][6], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"]]))
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][6], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    "9 UPDATE 9.16: Event 9 ready for freeze 7 (F4).".yield;
+    synths_freeze[6].set(\freeze, 1.0);
+    "9 UPDATE 9.17: Event 9 freeze 7 (F4).\nReady for final realeases.".yield;
+    synths_freeze[4].set(\gate, 0);
+    synths_freeze[5].set(\gate, 0);
+    synths_freeze[6].set(\gate, 0);
+    "9 UPDATE 9.18: Event 9 final realease".yield;
+    
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
-    // free mic
-    5.wait;
-    synth_sound.set(\gate, 0);
-    synth_freeze.set(\gate, 0);
-
-    // wait for reverb to die down
-    4.wait;
-	synth_sound.free;
-	synth_freeze.free;
-    synth_reverb.set(\gate, 0);
-
-	// free everything else
-    1.wait;
-	synth_reverb.free;
-	synths.do({|item| item.free});
+    synths.do({|item| item.free});
+	synths_freeze.do({|item| item.free});
 	control.do({|item| item.free});
+    "9 UPDATE 9.19: Event 9 kill stage complete. Event finished.".postln;
 }));
 
-// fft freeze and slow pitch shift
-// NOTE: UPDATE PITCH SHIFT AND GAIN TIMES BY TIMING THE PERFORMER
-e.put("e6", Routine({
-	var control, control_specs,	synth_sound, synth_freeze, synth_reverb, synths;
+// EVENT 14
+// PS DOWN
+e.put("e14", Routine({
+	var control, control_specs,	synths;
 
 	// CONTROLS ///////////////////////////////////////////////////////////////
 	control_specs = [
