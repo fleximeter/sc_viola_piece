@@ -8,9 +8,9 @@
 // FADER 3: OUTPUT GAIN
 // KNOB 0: WET/DRY BALANCE
 // FADER 4: FEEDBACK PERCENT
-// FADER 5: 
-// FADER 6: 
-// FADER 7: 
+// FADER 5:
+// FADER 6:
+// FADER 7:
 // FADER 8: BANDPASS CENTER
 
 // Event 1: add FFT freeze, resonant filtering, and reverb
@@ -298,60 +298,61 @@ e.put("e9", Routine({
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
     synths_freeze = List();
+	synths.add(Synth(\passthrough8, [\in, ~audiobus[1][0], \out, ~gainbus], ~grp[5], \addToTail));
 
     // 1 freeze
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]]))
-    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]]));
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \below, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
     "9 UPDATE 9.0: Event 9 running and ready for freeze 1 (D5).".yield;
     synths_freeze[0].set(\freeze, 1.0);
     "9 UPDATE 9.1: Event 9 freeze 1 (D5).".yield;
-    
+
     // 2 freeze
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][1], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["g"]["55"]["buffer"]]))
-    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][1], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][1], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["g"]["55"]["buffer"]]));
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][1], \out, ~audiobus[1][0], \below, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
     "9 UPDATE 9.2: Event 9 ready for freeze 2 (G3).".yield;
     synths_freeze[1].set(\freeze, 1.0);
     "9 UPDATE 9.3: Event 9 freeze 2 (G3).\nReady for release 1.".yield;
     synths_freeze[0].set(\gate, 0);
     "9 UPDATE 9.4: Event 9 release 1 (D5).".yield;
-    
+
     // 3 freeze
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][2], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["73"]["buffer"]]))
-    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][2], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][2], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["73"]["buffer"]]));
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][2], \out, ~audiobus[1][0], \below, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
     "9 UPDATE 9.5: Event 9 ready for freeze 3 (C+5).".yield;
     synths_freeze[2].set(\freeze, 1.0);
     "9 UPDATE 9.6: Event 9 freeze 3 (C+5).".yield;
 
     // 4 freeze
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][3], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["d"]["62"]["buffer"]]))
-    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][3], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][3], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["d"]["62"]["buffer"]]));
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][3], \out, ~audiobus[1][0], \below, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
     "9 UPDATE 9.7: Event 9 ready for freeze 4 (D4).".yield;
     synths_freeze[3].set(\freeze, 1.0);
     "9 UPDATE 9.8: Event 9 freeze 4 (D4).\nReady for release 2.".yield;
     synths_freeze[1].set(\gate, 0);
     "9 UPDATE 9.9: Event 9 release 2 (G3).".yield;
-    
+
     // 5 freeze
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][4], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["71"]["buffer"]]))
-    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][4], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][4], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["71"]["buffer"]]));
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][4], \out, ~audiobus[1][0], \below, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
     "9 UPDATE 9.10: Event 9 ready for freeze 5 (B4).".yield;
     synths_freeze[4].set(\freeze, 1.0);
     "9 UPDATE 9.11: Event 9 freeze 5 (B4).\nReady for release 3.".yield;
     synths_freeze[2].set(\gate, 0);
     "9 UPDATE 9.12: Event 9 release 3 (C+5).".yield;
-    
+
     // 6 freeze
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][5], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["d"]["63"]["buffer"]]))
-    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][5], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][5], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["d"]["63"]["buffer"]]));
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][5], \out, ~audiobus[1][0], \below, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
     "9 UPDATE 9.13: Event 9 ready for freeze 6 (D+4).".yield;
     synths_freeze[5].set(\freeze, 1.0);
     "9 UPDATE 9.14: Event 9 freeze 6 (D+4).\nReady for release 4.".yield;
     synths_freeze[3].set(\gate, 0);
     "9 UPDATE 9.15: Event 9 release 4 (D4).".yield;
-    
+
     // 7 freeze
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][6], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"]]))
-    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][6], \out, ~audiobus[1][0], \below, 0.15, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][6], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"]]));
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[0][6], \out, ~audiobus[1][0], \below, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
     "9 UPDATE 9.16: Event 9 ready for freeze 7 (F4).".yield;
     synths_freeze[6].set(\freeze, 1.0);
     "9 UPDATE 9.17: Event 9 freeze 7 (F4).\nReady for final realeases.".yield;
@@ -359,7 +360,7 @@ e.put("e9", Routine({
     synths_freeze[5].set(\gate, 0);
     synths_freeze[6].set(\gate, 0);
     "9 UPDATE 9.18: Event 9 final realease".yield;
-    
+
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
     synths.do({|item| item.free});
 	synths_freeze.do({|item| item.free});
@@ -376,11 +377,6 @@ e.put("e14", Routine({
 	control_specs = [
 		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
 		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_below", "levels" -> #[30.0, 0.1, 0.1], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_below_mul", "levels" -> #[1.0, 5.0, 5.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift1", "levels" -> #[0.0, 0.0, 2.5], "times" -> #[6, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0.0, -1.0, -1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 2.0, 2.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
 	];
 
 	control = Array.fill(control_specs.size, {
@@ -390,585 +386,19 @@ e.put("e14", Routine({
 
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-	synth_sound = Synth(\mic1pan, [\in, ~mic_zero, \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1], \mul, 5.0], ~grp[1], \addToTail);
-	// synth_sound = Synth(\sampler_pan, [\buf, ~samples["test"]["1"], \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail);
-	synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][0], \out, ~audiobus[1][0]], ~grp[1], \addToTail);
-	synths.add(Synth(\fft_magbelow, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \below, ~controlbus[2], \mul_sig, ~controlbus[3]], ~grp[2], \addToTail));
-	synths.add(Synth(\pitchshift2_et, [\in, ~audiobus[2][0], \out, ~audiobus[3][0], \semitones1, ~controlbus[4], \semitones2, ~controlbus[5]], ~grp[2], \addToTail));
-	synth_reverb = Synth(\partconv8, [\fft_size, ~partconv_size, \in, ~audiobus[3][0], \out, ~audiobus[4][0], \irbuf, ~convolution_buffers["toilet_bowl"], \mul, 1, \wetdry, 0.1], ~grp[3], \addToTail);
-    synths.add(Synth(\gain8, [\in, ~audiobus[4][0], \out, ~audiobus[5][0], \level, ~controlbus[6], \limiter, 1], ~grp[4], \addToTail));
-	synths.add(Synth(\from8to8, [\in, ~audiobus[5][0], \out, 0], ~grp[5], \addToTail));
+	synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail));
+	synths.add(Synth(\pitchshift, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \ratio, 2/3], ~grp[2], \addToTail));
+	synths.add(Synth(\from8to8, [\in, ~audiobus[1][0], \out, ~gainbus], ~grp[5], \addToTail));
+	"14 UPDATE 14.0: Pitch shift in effect.".yield;
 
-	// UPDATE ///////////////////////////////////////////////////////////////
-    0.5.wait;
-    synth_freeze.set(\freeze, 1.0);
+	synths[2].set(\gate, 0);
+	"14 UPDATE 14.1: Gate closed.".yield;
 
-	// SHUTDOWN ///////////////////////////////////////////////////////////////
-    // free mic and freeze
-    5.wait;
-    synth_sound.set(\gate, 0);
-	1.wait;
-	synth_sound.free;
-    synth_freeze.set(\gate, 0);
-
-    // wait for reverb to die down
-    4.wait;
-	synth_freeze.free;
-    synth_reverb.set(\gate, 0);
-
-	// free everything else
-    1.wait;
-	synth_reverb.free;
 	synths.do({|item| item.free});
 	control.do({|item| item.free});
+	"14 UPDATE 14.2: Event 14 kill stage complete. Event finished.".postln;
 }));
 
 
 
-// BEGIN RUBATO!!
-
-
-
-// fft freeze and slow pitch shift
-// NOTE: UPDATE PITCH SHIFT AND GAIN TIMES BY TIMING THE PERFORMER
-e.put("e7", Routine({
-	var control, control_specs,	synth_sound, synth_freeze, synth_reverb, synths;
-
-	// CONTROLS ///////////////////////////////////////////////////////////////
-	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_below", "levels" -> #[30.0, 0.1, 0.1], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_below_mul", "levels" -> #[1.0, 5.0, 5.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift1", "levels" -> #[0.0, 0.0, 2.5], "times" -> #[6, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0.0, -1.0, -1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 2.0, 2.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-	];
-
-	control = Array.fill(control_specs.size, {
-		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
-	});
-
-	// SYNTHS ///////////////////////////////////////////////////////////////
-	synths = List();
-	synth_sound = Synth(\mic1pan, [\in, ~mic_zero, \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1], \mul, 5.0], ~grp[1], \addToTail);
-	// synth_sound = Synth(\sampler_pan, [\buf, ~samples["test"]["1"], \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail);
-	synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \release_time, 1.0], ~grp[1], \addToTail);
-	synth_reverb = Synth(\partconv8, [\fft_size, ~partconv_size, \in, ~audiobus[1][0], \out, ~audiobus[4][0], \irbuf, ~convolution_buffers["toilet_bowl"], \mul, 1, \wetdry, 0.1], ~grp[3], \addToTail);
-    synths.add(Synth(\gain8, [\in, ~audiobus[4][0], \out, ~audiobus[5][0], \level, ~controlbus[6], \limiter, 1], ~grp[4], \addToTail));
-	synths.add(Synth(\from8to8, [\in, ~audiobus[5][0], \out, 0], ~grp[5], \addToTail));
-
-	// FREEZE ///////////////////////////////////////////////////////////////
-    0.5.yield;
-	synth_freeze.set(\freeze, 1.0);
-	synth_sound.set(\gate, 0);
-
-	// SHUTDOWN ///////////////////////////////////////////////////////////////
-    // free mic and freeze
-	5.yield;
-	synth_freeze.set(\gate, 0);
-	synth_sound.free;
-
-	// wait for reverb to die down
-    4.yield;
-	synth_freeze.free;
-    synth_reverb.set(\gate, 0);
-
-	// free everything else
-    1.yield;
-	synth_reverb.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-}));
-
-// fft freeze and slow pitch shift
-// NOTE: UPDATE PITCH SHIFT AND GAIN TIMES BY TIMING THE PERFORMER
-e.put("e8", Routine({
-	var control, control_specs,	synth_sound, synth_freeze, synth_reverb, synths;
-
-	// CONTROLS ///////////////////////////////////////////////////////////////
-	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_below", "levels" -> #[30.0, 0.1, 0.1], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_below_mul", "levels" -> #[1.0, 5.0, 5.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift1", "levels" -> #[0.0, 0.0, 2.5], "times" -> #[6, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0.0, -1.0, -1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 2.0, 2.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-	];
-
-	control = Array.fill(control_specs.size, {
-		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
-	});
-
-	// SYNTHS ///////////////////////////////////////////////////////////////
-	synths = List();
-	synth_sound = Synth(\mic1pan, [\in, ~mic_zero, \out, ~audiobus[0][1], \pos, ~controlbus[0], \width, ~controlbus[1], \mul, 5.0], ~grp[1], \addToTail);
-	// synth_sound = Synth(\sampler_pan, [\buf, ~samples["test"]["1"], \out, ~audiobus[0][1], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail);
-	synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][1], \out, ~audiobus[1][1], \release_time, 1.0], ~grp[1], \addToTail);
-	synth_reverb = Synth(\partconv8, [\fft_size, ~partconv_size, \in, ~audiobus[1][1], \out, ~audiobus[4][1], \irbuf, ~convolution_buffers["toilet_bowl"], \mul, 1, \wetdry, 0.1], ~grp[3], \addToTail);
-    synths.add(Synth(\gain8, [\in, ~audiobus[4][1], \out, ~audiobus[5][1], \level, ~controlbus[6], \limiter, 1], ~grp[4], \addToTail));
-	synths.add(Synth(\from8to8, [\in, ~audiobus[5][1], \out, 0], ~grp[5], \addToTail));
-
-	// FREEZE 1 ///////////////////////////////////////////////////////////////
-    0.5.yield;
-	synth_freeze.set(\freeze, 1.0);
-	synth_sound.set(\gate, 0);
-
-	// SHUTDOWN ///////////////////////////////////////////////////////////////
-    // free mic and freeze
-	5.yield;
-	synth_freeze.set(\gate, 0);
-	synth_sound.free;
-
-	// wait for reverb to die down
-    4.yield;
-	synth_freeze.free;
-    synth_reverb.set(\gate, 0);
-
-	// free everything else
-    1.yield;
-	synth_reverb.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-}));
-
-// fft freeze and slow pitch shift
-// NOTE: UPDATE PITCH SHIFT AND GAIN TIMES BY TIMING THE PERFORMER
-e.put("e9", Routine({
-	var control, control_specs,	synth_sound, synth_freeze, synth_reverb, synths;
-
-	// CONTROLS ///////////////////////////////////////////////////////////////
-	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_below", "levels" -> #[30.0, 0.1, 0.1], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_below_mul", "levels" -> #[1.0, 5.0, 5.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift1", "levels" -> #[0.0, 0.0, 2.5], "times" -> #[6, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0.0, -1.0, -1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 2.0, 2.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-	];
-
-	control = Array.fill(control_specs.size, {
-		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
-	});
-
-	// SYNTHS ///////////////////////////////////////////////////////////////
-	synths = List();
-	synth_sound = Synth(\mic1pan, [\in, ~mic_zero, \out, ~audiobus[0][2], \pos, ~controlbus[0], \width, ~controlbus[1], \mul, 5.0], ~grp[1], \addToTail);
-	// synth_sound = Synth(\sampler_pan, [\buf, ~samples["test"]["1"], \out, ~audiobus[0][1], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail);
-	synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][2], \out, ~audiobus[1][2], \release_time, 1.0], ~grp[1], \addToTail);
-	synth_reverb = Synth(\partconv8, [\fft_size, ~partconv_size, \in, ~audiobus[1][2], \out, ~audiobus[4][2], \irbuf, ~convolution_buffers["toilet_bowl"], \mul, 1, \wetdry, 0.1], ~grp[3], \addToTail);
-    synths.add(Synth(\gain8, [\in, ~audiobus[4][2], \out, ~audiobus[5][2], \level, ~controlbus[6], \limiter, 1], ~grp[4], \addToTail));
-	synths.add(Synth(\from8to8, [\in, ~audiobus[5][2], \out, 0], ~grp[5], \addToTail));
-
-	// FREEZE 1 ///////////////////////////////////////////////////////////////
-    0.5.yield;
-	synth_freeze.set(\freeze, 1.0);
-	synth_sound.set(\gate, 0);
-
-	// SHUTDOWN ///////////////////////////////////////////////////////////////
-    // free mic and freeze
-	5.yield;
-	synth_freeze.set(\gate, 0);
-	synth_sound.free;
-
-	// wait for reverb to die down
-    4.yield;
-	synth_freeze.free;
-    synth_reverb.set(\gate, 0);
-
-	// free everything else
-    1.yield;
-	synth_reverb.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-}));
-
-// fft freeze and slow pitch shift
-// NOTE: UPDATE PITCH SHIFT AND GAIN TIMES BY TIMING THE PERFORMER
-e.put("e10", Routine({
-	var control, control_specs,	synth_sound, synth_freeze, synth_reverb, synths;
-
-	// CONTROLS ///////////////////////////////////////////////////////////////
-	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_below", "levels" -> #[30.0, 0.1, 0.1], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_below_mul", "levels" -> #[1.0, 5.0, 5.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift1", "levels" -> #[0.0, 0.0, 2.5], "times" -> #[6, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0.0, -1.0, -1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 2.0, 2.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-	];
-
-	control = Array.fill(control_specs.size, {
-		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
-	});
-
-	// SYNTHS ///////////////////////////////////////////////////////////////
-	synths = List();
-	synth_sound = Synth(\mic1pan, [\in, ~mic_zero, \out, ~audiobus[0][3], \pos, ~controlbus[0], \width, ~controlbus[1], \mul, 5.0], ~grp[1], \addToTail);
-	// synth_sound = Synth(\sampler_pan, [\buf, ~samples["test"]["1"], \out, ~audiobus[0][1], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail);
-	synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][3], \out, ~audiobus[1][3], \release_time, 1.0], ~grp[1], \addToTail);
-	synth_reverb = Synth(\partconv8, [\fft_size, ~partconv_size, \in, ~audiobus[1][3], \out, ~audiobus[4][3], \irbuf, ~convolution_buffers["toilet_bowl"], \mul, 1, \wetdry, 0.1], ~grp[3], \addToTail);
-    synths.add(Synth(\gain8, [\in, ~audiobus[4][1], \out, ~audiobus[5][3], \level, ~controlbus[6], \limiter, 1], ~grp[4], \addToTail));
-	synths.add(Synth(\from8to8, [\in, ~audiobus[5][3], \out, 0], ~grp[5], \addToTail));
-
-	// FREEZE 1 ///////////////////////////////////////////////////////////////
-    0.5.yield;
-	synth_freeze.set(\freeze, 1.0);
-	synth_sound.set(\gate, 0);
-
-	// SHUTDOWN ///////////////////////////////////////////////////////////////
-    // free mic and freeze
-	5.yield;
-	synth_freeze.set(\gate, 0);
-	synth_sound.free;
-
-	// wait for reverb to die down
-    4.yield;
-	synth_freeze.free;
-    synth_reverb.set(\gate, 0);
-
-	// free everything else
-    1.yield;
-	synth_reverb.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-}));
-
-// fft freeze and slow pitch shift
-// NOTE: UPDATE PITCH SHIFT AND GAIN TIMES BY TIMING THE PERFORMER
-e.put("e11", Routine({
-	var control, control_specs,	synth_sound, synth_freeze, synth_reverb, synths;
-
-	// CONTROLS ///////////////////////////////////////////////////////////////
-	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_below", "levels" -> #[30.0, 0.1, 0.1], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_below_mul", "levels" -> #[1.0, 5.0, 5.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift1", "levels" -> #[0.0, 0.0, 2.5], "times" -> #[6, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0.0, -1.0, -1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 2.0, 2.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-	];
-
-	control = Array.fill(control_specs.size, {
-		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
-	});
-
-	// SYNTHS ///////////////////////////////////////////////////////////////
-	synths = List();
-	synth_sound = Synth(\mic1pan, [\in, ~mic_zero, \out, ~audiobus[0][4], \pos, ~controlbus[0], \width, ~controlbus[1], \mul, 5.0], ~grp[1], \addToTail);
-	// synth_sound = Synth(\sampler_pan, [\buf, ~samples["test"]["1"], \out, ~audiobus[0][1], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail);
-	synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][4], \out, ~audiobus[1][4], \release_time, 1.0], ~grp[1], \addToTail);
-	synth_reverb = Synth(\partconv8, [\fft_size, ~partconv_size, \in, ~audiobus[1][4], \out, ~audiobus[4][4], \irbuf, ~convolution_buffers["toilet_bowl"], \mul, 1, \wetdry, 0.1], ~grp[3], \addToTail);
-    synths.add(Synth(\gain8, [\in, ~audiobus[4][4], \out, ~audiobus[5][4], \level, ~controlbus[6], \limiter, 1], ~grp[4], \addToTail));
-	synths.add(Synth(\from8to8, [\in, ~audiobus[5][4], \out, 0], ~grp[5], \addToTail));
-
-	// FREEZE 1 ///////////////////////////////////////////////////////////////
-    0.5.yield;
-	synth_freeze.set(\freeze, 1.0);
-	synth_sound.set(\gate, 0);
-
-	// SHUTDOWN ///////////////////////////////////////////////////////////////
-    // free mic and freeze
-	5.yield;
-	synth_freeze.set(\gate, 0);
-	synth_sound.free;
-
-	// wait for reverb to die down
-    4.yield;
-	synth_freeze.free;
-    synth_reverb.set(\gate, 0);
-
-	// free everything else
-    1.yield;
-	synth_reverb.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-}));
-
-// fft freeze and slow pitch shift
-// NOTE: UPDATE PITCH SHIFT AND GAIN TIMES BY TIMING THE PERFORMER
-e.put("e12", Routine({
-	var control, control_specs,	synth_sound, synth_freeze, synth_reverb, synths;
-
-	// CONTROLS ///////////////////////////////////////////////////////////////
-	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_below", "levels" -> #[30.0, 0.1, 0.1], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_below_mul", "levels" -> #[1.0, 5.0, 5.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift1", "levels" -> #[0.0, 0.0, 2.5], "times" -> #[6, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0.0, -1.0, -1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 2.0, 2.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-	];
-
-	control = Array.fill(control_specs.size, {
-		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
-	});
-
-	// SYNTHS ///////////////////////////////////////////////////////////////
-	synths = List();
-	synth_sound = Synth(\mic1pan, [\in, ~mic_zero, \out, ~audiobus[0][5], \pos, ~controlbus[0], \width, ~controlbus[1], \mul, 5.0], ~grp[1], \addToTail);
-	// synth_sound = Synth(\sampler_pan, [\buf, ~samples["test"]["1"], \out, ~audiobus[0][1], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail);
-	synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][5], \out, ~audiobus[1][5], \release_time, 1.0], ~grp[1], \addToTail);
-	synth_reverb = Synth(\partconv8, [\fft_size, ~partconv_size, \in, ~audiobus[1][5], \out, ~audiobus[4][5], \irbuf, ~convolution_buffers["toilet_bowl"], \mul, 1, \wetdry, 0.1], ~grp[3], \addToTail);
-    synths.add(Synth(\gain8, [\in, ~audiobus[4][5], \out, ~audiobus[5][5], \level, ~controlbus[6], \limiter, 1], ~grp[4], \addToTail));
-	synths.add(Synth(\from8to8, [\in, ~audiobus[5][5], \out, 0], ~grp[5], \addToTail));
-
-	// FREEZE 1 ///////////////////////////////////////////////////////////////
-    0.5.yield;
-	synth_freeze.set(\freeze, 1.0);
-	synth_sound.set(\gate, 0);
-
-	// SHUTDOWN ///////////////////////////////////////////////////////////////
-    // free mic and freeze
-	5.yield;
-	synth_freeze.set(\gate, 0);
-	synth_sound.free;
-
-	// wait for reverb to die down
-    4.yield;
-	synth_freeze.free;
-    synth_reverb.set(\gate, 0);
-
-	// free everything else
-    1.yield;
-	synth_reverb.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-}));
-
-// fft freeze and slow pitch shift
-// NOTE: UPDATE PITCH SHIFT AND GAIN TIMES BY TIMING THE PERFORMER
-e.put("e13", Routine({
-	var control, control_specs,	synth_sound, synth_freeze, synth_reverb, synths;
-
-	// CONTROLS ///////////////////////////////////////////////////////////////
-	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_below", "levels" -> #[30.0, 0.1, 0.1], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_below_mul", "levels" -> #[1.0, 5.0, 5.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift1", "levels" -> #[0.0, 0.0, 2.5], "times" -> #[6, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0.0, -1.0, -1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 2.0, 2.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-	];
-
-	control = Array.fill(control_specs.size, {
-		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
-	});
-
-	// SYNTHS ///////////////////////////////////////////////////////////////
-	synths = List();
-	synth_sound = Synth(\mic1pan, [\in, ~mic_zero, \out, ~audiobus[0][6], \pos, ~controlbus[0], \width, ~controlbus[1], \mul, 5.0], ~grp[1], \addToTail);
-	// synth_sound = Synth(\sampler_pan, [\buf, ~samples["test"]["1"], \out, ~audiobus[0][1], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail);
-	synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][6], \out, ~audiobus[1][6], \release_time, 1.0], ~grp[1], \addToTail);
-	synth_reverb = Synth(\partconv8, [\fft_size, ~partconv_size, \in, ~audiobus[1][6], \out, ~audiobus[4][6], \irbuf, ~convolution_buffers["toilet_bowl"], \mul, 1, \wetdry, 0.1], ~grp[3], \addToTail);
-    synths.add(Synth(\gain8, [\in, ~audiobus[4][1], \out, ~audiobus[5][6], \level, ~controlbus[6], \limiter, 1], ~grp[4], \addToTail));
-	synths.add(Synth(\from8to8, [\in, ~audiobus[5][6], \out, 0], ~grp[5], \addToTail));
-
-	// FREEZE 1 ///////////////////////////////////////////////////////////////
-    0.5.yield;
-	synth_freeze.set(\freeze, 1.0);
-	synth_sound.set(\gate, 0);
-
-	// Hide the freeze, then bring it back later
-	5.yield;
-	synth_sound.free;
-	synth_freeze.set(\gate, 0);
-	synth_freeze.set(\attack_time, 0.5);
-
-	// Bring the freeze back
-	5.yield;
-	synth_freeze.set(\gate, 1);
-
-	// SHUTDOWN ///////////////////////////////////////////////////////////////
-    // free mic and freeze
-	5.yield;
-	synth_freeze.set(\gate, 0);
-
-	// wait for reverb to die down
-    4.wait;
-	synth_freeze.free;
-    synth_reverb.set(\gate, 0);
-
-	// free everything else
-    1.wait;
-	synth_reverb.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-}));
-
-// accompaniment in lower fifths
-e.put("e14", Routine({
-	var control, control_specs,	synth_sound, synth_reverb, synths;
-
-	// CONTROLS ///////////////////////////////////////////////////////////////
-	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_shift_ratio", "levels" -> #[0.66666666667, 0.66666666667], "times" -> #[100], "curves" -> #[0]],
-		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 2.0, 2.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-	];
-
-	control = Array.fill(control_specs.size, {
-		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
-	});
-
-	// SYNTHS ///////////////////////////////////////////////////////////////
-	synths = List();
-	synth_sound = Synth(\mic1pan, [\in, ~mic_zero, \out, ~audiobus[0][7], \pos, ~controlbus[0], \width, ~controlbus[1], \mul, 5.0], ~grp[1], \addToTail);
-	// synth_sound = Synth(\sampler_pan, [\buf, ~samples["test"]["1"], \out, ~audiobus[0][1], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail);
-	synths.add(Synth(\pitchshift1env, [\in, ~audiobus[0][8], \out, ~audiobus[1][8], \ratio1, ~controlbus[2], \attack_time, 1.0, \release_time, 1.0], ~grp[2], \addToTail));
-	synth_reverb = Synth(\partconv8, [\fft_size, ~partconv_size, \in, ~audiobus[1][8], \out, ~audiobus[4][8], \irbuf, ~convolution_buffers["toilet_bowl"], \mul, 1, \wetdry, 0.1], ~grp[3], \addToTail);
-    synths.add(Synth(\gain8, [\in, ~audiobus[4][8], \out, ~audiobus[5][8], \level, ~controlbus[3], \limiter, 1], ~grp[4], \addToTail));
-	synths.add(Synth(\from8to8, [\in, ~audiobus[5][8], \out, 0], ~grp[5], \addToTail));
-
-
-	// SHUTDOWN ///////////////////////////////////////////////////////////////
-    // free mic
-	5.yield;
-	synth_sound.set(\gate, 0);
-
-	// free reverb
-	1.yield;
-    synth_reverb.set(\gate, 0);
-	synth_sound.free;
-
-	// free everything else
-    1.yield;
-	synth_reverb.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-}));
-
-
-
-// Event 19: pattern accompaniment
-e.put("e19", Routine({
-	var control, control_specs,	synth_sound, synth_reverb, synths;
-
-	// CONTROLS ///////////////////////////////////////////////////////////////
-	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_gain", "levels" -> #[0.5, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-	];
-
-	control = Array.fill(control_specs.size, {
-		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
-	});
-
-	synths = List();
-
-	synth_sound = Synth(\mic1pan, [\in, ~mic_zero, \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1], \mul, 5], ~grp[1], \addToTail);
-	//synths.add(Synth(\passthrough8, [\in, ~audiobus[0][0], \out, ~audiobus[1][0]], ~grp[2], \addToTail));
-	synths.add(Synth(\psdelay1_et, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \delayint, 2.857142857142857, \semitones, 0, \mul, 1], ~grp[2], \addToTail));
-	synths.add(Synth(\psdelay1_et, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \delayint, 5.714285714285714, \semitones, 0, \mul, 1], ~grp[2], \addToTail));
-	//synth_fft = Synth(\fft_magbelow2, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \threshold, 0.2, \rmfreq, 200, \rmmul, 0.5, \lpf, 4000, \mul, 10], ~grp[2], \addToTail);
-    //synth_filter = Synth(\bpf8, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \freq, ~controlbus[0], \mul, ~controlbus[1]], ~grp[2], \addToTail);
-	synth_reverb = Synth(\partconv8, [\fft_size, ~partconv_size, \in, ~audiobus[1][0], \out, ~audiobus[2][0], \irbuf, ~convolution_buffers["toilet_bowl"], \mul, 1, \wetdry, 0.1], ~grp[4], \addToTail);
-	synths.add(Synth(\gain8, [\in, ~audiobus[2][0], \out, ~audiobus[3][0], \level, ~controlbus[2], \limiter, 1], ~grp[6], \addToTail)); // the gain stage comes last
-	synths.add(Synth(\from8to8, [\in, ~audiobus[3][0], \out, 0], ~grp[7], \addToTail));
-
-
-	15.wait;
-    synth_sound.set(\gate, 0);
-
-    // wait for reverb to die down
-    10.wait;
-	synth_sound.free;
-    synth_reverb.set(\gate, 0);
-    1.wait;
-	synth_reverb.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-}));
-
-
-
-// Event 3: pattern accompaniment
-e.put("ex", Routine({
-	var control, control_specs,	synth_sound, synth_reverb, synths;
-
-	// CONTROLS ///////////////////////////////////////////////////////////////
-	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_gain", "levels" -> #[0.5, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-	];
-
-	control = Array.fill(control_specs.size, {
-		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
-	});
-
-	synths = List();
-
-	//synth_mic = Synth(\mic1pan, [\in, ~mic_zero, \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail);
-	p = Pbind(\instrument, \sampler_adsr,
-		\buf, Pseq([
-			~samples["viola.pizz"]["ff"]["c"]["53"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["55"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["57"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["52"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["52"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["52"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["52"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["48"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["50"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["52"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["53"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["57"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["53"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["55"]["buffer"],
-			~samples["viola.pizz"]["ff"]["c"]["55"]["buffer"]
-		], 4),
-		\pan_mode, 1,
-		\pos, Pwhite(0.0, 2.0, inf),
-		\out, ~audiobus[0][0],
-		\mul, 0.25,
-		\dur, Pseq([0.15, 0.15, 0.15, 0.15], inf),
-		\group, ~grp[1],
-		\addAction, \addToTail,
-	);
-
-	synths.add(Synth(\passthrough8, [\in, ~audiobus[0][0], \out, ~audiobus[1][0]], ~grp[2], \addToTail));
-	synths.add(Synth(\psdelay1_et, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \delayint, 0.12, \semitones, -2, \mul, 1], ~grp[2], \addToTail));
-	synths.add(Synth(\psdelay1_et, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \delayint, 0.24, \semitones, 0, \mul, 1], ~grp[2], \addToTail));
-	synths.add(Synth(\psdelay1_et, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \delayint, 0.225, \semitones, -5, \mul, 1], ~grp[2], \addToTail));
-	synths.add(Synth(\psdelay1_et, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \delayint, 0.45, \semitones, -7, \mul, 1], ~grp[2], \addToTail));
-	//synth_fft = Synth(\fft_magbelow2, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \threshold, 0.2, \rmfreq, 200, \rmmul, 0.5, \lpf, 4000, \mul, 10], ~grp[2], \addToTail);
-    //synth_filter = Synth(\bpf8, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \freq, ~controlbus[0], \mul, ~controlbus[1]], ~grp[2], \addToTail);
-	synth_reverb = Synth(\partconv8, [\fft_size, ~partconv_size, \in, ~audiobus[1][0], \out, ~audiobus[2][0], \irbuf, ~convolution_buffers[2], \mul, 1, \wetdry, 0.1], ~grp[4], \addToTail);
-	synths.add(Synth(\gain8, [\in, ~audiobus[2][0], \out, ~audiobus[3][0], \level, ~controlbus[2], \limiter, 1], ~grp[6], \addToTail)); // the gain stage comes last
-	synths.add(Synth(\from8to8, [\in, ~audiobus[3][0], \out, 0], ~grp[7], \addToTail));
-
-
-	t = TempoClock(1);
-	p.play(t);
-    15.wait;
-    //synth_mic.set(\gate, 0);
-
-    // wait for reverb to die down
-    10.wait;
-    synth_reverb.set(\gate, 0);
-    1.wait;
-	synth_reverb.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-}));
 )
