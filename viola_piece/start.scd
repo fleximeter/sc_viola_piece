@@ -8,9 +8,9 @@
 ~file_loader = {
     // It is necessary to set the root directory because we might be loading samples
     // from a different location depending on the computer
-    //~root_sample_dir = "D:/";  // for desktop at home
+    ~root_sample_dir = "D:/";  // for desktop at home
     //~root_sample_dir = "C:/Users/jeffr/";  // for laptop
-    ~root_sample_dir = "/Users/jmartin50/";  // for studio Mac
+    //~root_sample_dir = "/Users/jmartin50/";  // for studio Mac
 
     // Basic useful constants
     ~partconv_size = 512;  // project-wide STFT window size for convolution
@@ -40,7 +40,7 @@
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "synthdefs/synthdefs_reverb.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "synthdefs/synthdefs_sampler.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "sample_defs/samples.scd").load;
-    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "midi_controller.scd").load;
+    //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "midi_controller.scd").load;
     //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events001.scd").load;
     //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events049.scd").load;
     //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events075.scd").load;

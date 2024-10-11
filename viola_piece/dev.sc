@@ -7,7 +7,7 @@
 
 // free all buffers
 Buffer.freeAll;
-~mic_zero = 8;
+~mic_zero = 0;
 
 e["main"].next;
 e["e1"].next;  // x5
@@ -35,10 +35,11 @@ SynthDef(\delay, {
 	var sig;
 	sig = In.ar(~micbus);
 	sig = DelayL.ar(sig, 1, 0.5);
-	Out.ar(0, sig);
+	Out.ar(\out.kr(0), sig);
 }).add;
 
-x = Synth(\delay, target: ~grp[3]);
+z = Synth(\mic1, [\in, ~mic_zero, \out, ~micbus], addAction: \addToTail);
+x = Synth(\delay, [\out, ~gainbus], ~grp[3], \addToTail);
 x.free;
 
 ~convolution_buffers["cathedral"]

@@ -14,17 +14,17 @@ e.put("main", Routine({
     // control mic gain with knob 1
 	synth_mic = Synth(\mic1mul, [\in, ~mic_zero, \out, ~micbus, \mul_sig, ~faderbus[2]], ~grp[1], \addToTail);
 
-    synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[0], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["cathedral"]], ~grp[9], \addToTail));
+    synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[0], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["cathedral"]], ~grp[9], \addToTail));/*
     synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[1], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["wine_tank"]], ~grp[9], \addToTail));
     synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[2], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["chamber"]], ~grp[9], \addToTail));
-    synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[3], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["toilet"]], ~grp[9], \addToTail));
+    synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[3], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["toilet"]], ~grp[9], \addToTail));*/
 
     // control the gain with knob 2
 	synths.add(Synth(\gain8mul, [\in, ~gainbus, \out, ~postprocessingbus[0], \mul, 1, \mul_sig, ~faderbus[3], \limit, -6.dbamp], ~grp[9], \addToTail));
 
 	// the pan mapping (stereo or 8-channel)
-	//synths.add(Synth(\from8to2, [\in, ~postprocessingbus[0], \out, 0], ~grp[9], \addToTail));
-	synths.add(Synth(\from8to8, [\in, ~postprocessingbus[0], \out, 0], ~grp[9], \addToTail));
+	synths.add(Synth(\from8to2, [\in, ~postprocessingbus[0], \out, 0], ~grp[9], \addToTail));
+	//synths.add(Synth(\from8to8, [\in, ~postprocessingbus[0], \out, 0], ~grp[9], \addToTail));
     "0 UPDATE 0.0: Main event running.".yield;
 
 	synth_mic.set(\gate, 0);
