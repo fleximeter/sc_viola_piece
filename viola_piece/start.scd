@@ -41,7 +41,7 @@
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "synthdefs/synthdefs_sampler.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "sample_defs/samples.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "midi_controller.scd").load;
-    //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events001.scd").load;
+    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/event_main.scd").load;
     //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events049.scd").load;
     //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events075.scd").load;
     //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events091.scd").load;

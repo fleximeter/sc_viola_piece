@@ -15,6 +15,17 @@ SynthDef(\passthrough8, {
 	Out.ar(\out.kr(0), sig);
 }).add;
 
+// 8 channel patch cable
+SynthDef(\passthrough8mul, {
+	var sig, env, ctrl_mul;
+	sig = In.ar(\in.kr(0), 8);
+    ctrl_mul = In.kr(\mul_sig.kr(0), 1);
+    env = EnvGen.ar(Env.asr(\attack_time.ir(0.01), 1, \decay_time.ir(0.1)), \gate.kr(1.0));
+	sig = sig * env * ctrl_mul;
+	sig = sig.madd(\mul.kr(1.0), 0);
+	Out.ar(\out.kr(0), sig);
+}).add;
+
 // stereo mapper
 SynthDef(\from8to2, {
     var sig;
@@ -37,7 +48,7 @@ SynthDef(\from8to8, {
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 // 8-channel panner from 8 channel signal
-SynthDef(\pan8, {
+SynthDef(\pan8to8, {
     var sig;
     sig = In.ar(\in.kr(0), 8);
 	sig = Mix(sig);
@@ -46,13 +57,13 @@ SynthDef(\pan8, {
 }).add;
 
 // 8-channel panner with 2 control signals from 8 channel signal
-SynthDef(\pan8to8, {
-    var sig, pos, width;
+SynthDef(\pan8to8ctrl, {
+    var sig, ctrl_pos, ctrl_width;
     sig = In.ar(\in.kr(0), 8);
-    pos = In.kr(\pos.kr(0), 1);
-    width = In.kr(\width.kr(0), 1);
+    ctrl_pos = In.kr(\pos.kr(0), 1);
+    ctrl_width = In.kr(\width.kr(0), 1);
 	sig = Mix(sig);
-	sig = PanAz.ar(8, sig, pos, 1.0, width, 0.5);
+	sig = PanAz.ar(8, sig, ctrl_pos, 1.0, ctrl_width, 0.5);
 	Out.ar(\out.kr(0), sig);
 }).add;
 

@@ -31,14 +31,13 @@ SynthDef(\fft_magsmear, {
 
 // get lowest magnitude bins and scale them
 SynthDef(\fft_magbelow, {
-	var sig, chain, below, mul_sig;
+	var sig, chain, ctrl_below;
     sig = In.ar(\in.kr(0), 8);
-	below = In.kr(\below.kr(0), 1);
-	mul_sig = In.kr(\mul_sig.kr(0), 1);
+	ctrl_below = In.kr(\below.kr(0), 1);
 	chain = FFT({LocalBuf(~fft_size)}!8, sig);
-    chain = PV_MagBelow(chain, below);
+    chain = PV_MagBelow(chain, ctrl_below);
 	sig = IFFT(chain, 1);
-	sig = sig.madd(\mul.kr(1.0) * mul_sig, 0);
+	sig = sig.madd(\mul.kr(1.0), 0);
 	Out.ar(\out.kr(0), sig);
 }).add;
 
