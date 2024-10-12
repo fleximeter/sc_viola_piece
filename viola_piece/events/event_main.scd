@@ -32,8 +32,8 @@ e.put("main", Routine({
 	synths.add(Synth(\gain8mul, [\in, ~gainbus, \out, ~postprocessingbus[0], \mul, 1, \mul_sig, ~faderbus[3], \limit, -6.dbamp], ~grp[9], \addToTail));
 
 	// the pan mapping (stereo or 8-channel)
-	synths.add(Synth(\from8to2, [\in, ~postprocessingbus[0], \out, 0], ~grp[9], \addToTail));
-	//synths.add(Synth(\from8to8, [\in, ~postprocessingbus[0], \out, 0], ~grp[9], \addToTail));
+	//synths.add(Synth(\from8to2, [\in, ~postprocessingbus[0], \out, 0], ~grp[9], \addToTail));
+	synths.add(Synth(\from8to8, [\in, ~postprocessingbus[0], \out, 0], ~grp[9], \addToTail));
     "0 UPDATE 0.0: Main event running.".yield;
 
 	synth_mic.set(\gate, 0);
