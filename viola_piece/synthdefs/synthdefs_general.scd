@@ -155,13 +155,17 @@ SynthDef(\ctrl_env, {
 }).add;
 
 SynthDef(\ctrl_sin, {
-    var sig;
-	sig = SinOsc.kr(\freq.kr(1), \phase.kr(0.0), \mul.kr(1.0), \add.kr(0.0));
+    var sig, mul, add;
+    mul = \high.ir(2.0) - \low.ir(1.0);
+    add = \high.ir(2.0) - mul;
+	sig = SinOsc.kr(\freq.kr(1), \phase.kr(0.0), mul, add);
     Out.kr(\out.kr(0), sig);
 }).add;
 
 SynthDef(\ctrl_tri, {
-    var sig;
-	sig = LFTri.kr(\freq.kr(1), \phase.kr(0.0), \mul.kr(1.0), \add.kr(0.0));
+    var sig, mul, add;
+    mul = \high.ir(2.0) - \low.ir(1.0);
+    add = \high.ir(2.0) - mul;
+	sig = LFTri.kr(\freq.kr(1), \phase.kr(0.0), mul, add);
     Out.kr(\out.kr(0), sig);
 }).add;
