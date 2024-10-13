@@ -338,7 +338,7 @@ e.put("e3alt", Routine({
 
     // lpf oscillator control
     control_osc = [
-        Synth(\ctrl_tri, [\out, ~controlbus[11], \freq, 1.5, \low, 440, \high, 10000], ~grp[0])
+        Synth(\ctrl_tri, [\out, ~controlbus[11], \freq, 0.5, \high, 10000, \low, 440], ~grp[0])
     ];
 
 	// SYNTHS ///////////////////////////////////////////////////////////////
@@ -373,6 +373,7 @@ e.put("e3alt", Routine({
 	synth_freeze.free;
 	synths.do({|item| item.free});
 	control.do({|item| item.free});
+	control_osc.do({|item| item.free});
     "3 UPDATE 3.3: Event 3 kill stage complete. Event finished.".postln;
 }));
 
@@ -384,7 +385,7 @@ e.put("e4", Routine({
 	control_specs = [
 		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
 		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 1.0], "times" -> #[10], "curves" -> #[0]],
+		Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5], "times" -> #[10], "curves" -> #[0]],
 		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5], "times" -> #[10], "curves" -> #[0]],
 	];
 
@@ -404,8 +405,8 @@ e.put("e4", Routine({
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
 	synths_out = List();
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[4][0], \out, ~gainbus, \mul_sig, ~controlbus[9], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-	//synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[4][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[10], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][0], \out, ~gainbus, \mul_sig, ~controlbus[9], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	//synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[10], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
     "4 UPDATE 4.0: Event 4 running.".yield;
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
@@ -441,7 +442,7 @@ e.put("e5", Routine({
 	synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail));
 	synths.add(Synth(\pitchshift, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \ratio, 0.5], ~grp[2], \addToTail));
     synths.add(Synth(\passthrough8, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \attack_time, 0.1, \release_time, 1], ~grp[2], \addToTail));
-    
+
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[2][0], \out, ~gainbus, \mul_sig, ~controlbus[2], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[2][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[3], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
     "5 UPDATE 5.0: Pitch shift in effect.".yield;
@@ -470,7 +471,7 @@ e.put("e6", Routine({
 	control_specs = [
 		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
 		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 1.0], "times" -> #[10], "curves" -> #[0]],
+		Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5], "times" -> #[10], "curves" -> #[0]],
 		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5], "times" -> #[10], "curves" -> #[0]],
 	];
 
@@ -490,17 +491,17 @@ e.put("e6", Routine({
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
 	synths_out = List();
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[4][0], \out, ~gainbus, \mul_sig, ~controlbus[9], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-	//synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[4][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[10], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-    "4 UPDATE 4.0: Event 4 running.".yield;
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][0], \out, ~gainbus, \mul_sig, ~controlbus[9], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	//synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[10], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+    "6 UPDATE 6.0: Event 4 running.".yield;
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
    	synths_out.do({|item| item.set(\gate, 0)});
-    "4 UPDATE 4.1: Event 4 fading out.".yield;
+    "6 UPDATE 6.1: Event 6 fading out.".yield;
 	synths_out.do({|item| item.free});
 	synths.do({|item| item.free});
 	control.do({|item| item.free});
-    "4 UPDATE 4.2: Event 4 kill stage complete. Event finished.".postln;
+    "6 UPDATE 6.2: Event 6 kill stage complete. Event finished.".postln;
 }));
 
 )

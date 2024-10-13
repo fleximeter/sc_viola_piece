@@ -13,7 +13,9 @@ e["main"].next;
 e["e1"].next;  // x5
 e["e1alt"].next;  // x5
 e["e2"].next;
+e["e2alt"].next;  // x5
 e["e3"].next;  // x5
+e["e3alt"].next;  // x5
 e["e4"].next;
 e["e5"].next;
 e["e6"].next;
@@ -31,7 +33,7 @@ e["feedback"].next;
 
 ~grp = Array.fill(10, {Group.new(s, \addToTail)});
 e.keysValuesDo({|key, val| val.reset});  // reset all events
-e["e1alt"].reset;
+e["e3alt"].reset;
 {PanAz.ar(8, SinOsc.ar(440, 0, 0.1, 0), 0.5, 1, 2.0)}.play;  // to check sound
 
 SynthDef(\delay, {

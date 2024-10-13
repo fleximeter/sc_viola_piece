@@ -156,7 +156,7 @@ SynthDef(\ctrl_env, {
 
 SynthDef(\ctrl_sin, {
     var sig, mul, add;
-    mul = \high.ir(2.0) - \low.ir(1.0);
+	mul = (\high.ir(2.0) - \low.ir(1.0)) / 2;
     add = \high.ir(2.0) - mul;
 	sig = SinOsc.kr(\freq.kr(1), \phase.kr(0.0), mul, add);
     Out.kr(\out.kr(0), sig);
@@ -164,8 +164,14 @@ SynthDef(\ctrl_sin, {
 
 SynthDef(\ctrl_tri, {
     var sig, mul, add;
-    mul = \high.ir(2.0) - \low.ir(1.0);
+	mul = (\high.ir(2.0) - \low.ir(1.0)) / 2;
     add = \high.ir(2.0) - mul;
 	sig = LFTri.kr(\freq.kr(1), \phase.kr(0.0), mul, add);
+    Out.kr(\out.kr(0), sig);
+}).add;
+
+SynthDef(\ctrl_tri2, {
+    var sig;
+	sig = LFTri.kr(\freq.kr(1), \phase.kr(0.0), \mul.kr(1.0), \add.kr(0.0));
     Out.kr(\out.kr(0), sig);
 }).add;
