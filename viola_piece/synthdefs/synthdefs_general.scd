@@ -69,12 +69,12 @@ SynthDef(\pan8to8ctrl, {
 
 // 8-channel panner with 2 control signals from 1 channel signal
 SynthDef(\pan1to8, {
-    var sig, pos, width;
-    sig = In.ar(\in.kr(0), 8);
+    var sig, env, pos, width;
+    sig = In.ar(\in.kr(0), 1);
     pos = In.kr(\pos.kr(0), 1);
     // map the fader 0-1 to 2-8 for pan width
     width = In.kr(\width.kr(0), 1);
-	sig = Mix(sig);
+    env = EnvGen.ar(Env.asr(\attack_time.kr(0.01), 1, \decay_time.kr(0.5)), \gate.kr(1.0));
 	sig = PanAz.ar(8, sig, pos, 1.0, width, 0.5);
 	Out.ar(\out.kr(0), sig);
 }).add;
