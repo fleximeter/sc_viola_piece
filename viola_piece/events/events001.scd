@@ -514,12 +514,13 @@ e.put("e7alt", Routine({
 		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_above", "levels" -> #[0.1, 20, 20], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift1", "levels" -> #[4/3, 5/4, 5/4], "times" -> #[15, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_pitch_shift1", "levels" -> #[1.33333333333333, 1.25, 1.25], "times" -> #[15, 100], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0.0, -0.5, -0.5], "times" -> #[15, 100], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_pan_pos1", "levels" -> #[2.0, 1.5, 1.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_pan_pos2", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_delay", "levels" -> #[0.2, 0.3, 0.2, 0.2], "times" -> #[3, 3, 100], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
 	];
@@ -531,7 +532,7 @@ e.put("e7alt", Routine({
 
     // lpf oscillator control
     control_osc = [
-        Synth(\ctrl_tri, [\out, ~controlbus[11], \freq, 0.5, \high, 10000, \low, 440], ~grp[0])
+        Synth(\ctrl_tri, [\out, ~controlbus[12], \freq, 0.5, \high, 10000, \low, 440], ~grp[0])
     ];
 
 	// SYNTHS ///////////////////////////////////////////////////////////////
@@ -549,30 +550,30 @@ e.put("e7alt", Routine({
     synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus[3][0], \out, ~audiobus[4][0], \pos, ~controlbus[5], \width, ~controlbus[6]], ~grp[4], \addToTail));
     synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus[3][1], \out, ~audiobus[4][0], \pos, ~controlbus[7], \width, ~controlbus[8]], ~grp[4], \addToTail));
     synths.add(Synth(\passthrough8, [\in, ~audiobus[2][0], \out, ~audiobus[4][0]], ~grp[4], \addToTail));
-	synths.add(Synth(\lpf8, [\in, ~audiobus[4][0], \out, ~audiobus[5][0], \freq, ~controlbus[11]], ~grp[4], \addToTail));
+	synths.add(Synth(\lpf8, [\in, ~audiobus[4][0], \out, ~audiobus[5][0], \freq, ~controlbus[12]], ~grp[4], \addToTail));
 
     // comb delay of viola line, send directly to gain and reverb stages
-   	synths.add(Synth(\varcombdelay, [\in, ~audiobus[0][2], \out, ~audiobus[5][0], \above, ~controlbus[2]], ~grp[2], \addToTail));
+   	synths.add(Synth(\varcombdelay, [\in, ~audiobus[0][2], \out, ~audiobus[5][0], \time, ~controlbus[9], \decaytime, 3], ~grp[2], \addToTail));
 
 	// SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
 	synths_out = List();
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][0], \out, ~gainbus, \mul_sig, ~controlbus[9], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[10], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][0], \out, ~gainbus, \mul_sig, ~controlbus[10], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[11], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
     "7 UPDATE 7.0: Event 7 running and ready for freeze.".yield;
 
     synth_freeze.set(\freeze, 1.0);
     "7 UPDATE 7.1: Event 7 freeze.".yield;
 
     // open the comb delay
-    synths.add(Synth(\passthrough8, [\in, ~audiobus[0][1], \out, ~audiobus[0][2], \attack_time, 0.5, \release_time, 0.5], ~grp[4], \addToTail));
+    synths.add(Synth(\passthrough8, [\in, ~audiobus[0][1], \out, ~audiobus[0][2], \attack_time, 0.5, \release_time, 0.5], ~grp[1], \addToTail));
     "7 UPDATE 7.2: Event 7 delay open.".yield;
 
     // close the comb delay
     synths[synths.size - 1].set(\gate, 0);
     "7 UPDATE 7.3: Event 7 delay closed.".yield;
-	
+
     // kill stage
 	synths_out.do({|item| item.set(\gate, 0)});
     "7 UPDATE 7.4: Event 7 fading out.".yield;

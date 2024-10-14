@@ -23,7 +23,7 @@ e.put("e9", Routine({
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
     synths_freeze = List();
-	
+
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
@@ -173,9 +173,9 @@ e.put("e18", Routine({
 
     // 1 freeze
     synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"]], ~grp[1], \addToTail));
-    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \below, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail);
+    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \above, 2, \release_time, freeze_release_time], ~grp[1], \addToTail);
     "18 UPDATE 18.0: Event 18 running and ready for freeze 1 (F4).".yield;
-    synths_freeze[0].set(\freeze, 1.0);
+    synth_freeze.set(\freeze, 1.0);
     "18 UPDATE 18.1: Event 18 freeze 1 (F4).".yield;
 
 
@@ -212,7 +212,7 @@ e.put("e19", Routine({
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
 	synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail));
-	synths.add(Synth(\combdelay, [\in, ~audiobus[0][0] \out, ~audiobus[1][0], \delaytime, 1, \decaytime, 6], ~grp[1], \addToTail));
+	synths.add(Synth(\combdelay, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \delaytime, 1, \decaytime, 6], ~grp[1], \addToTail));
 
 	// SENDS
     // Set attack and release time for this event here.
@@ -226,7 +226,7 @@ e.put("e19", Routine({
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
     synths[0].set(\gate, 0);
     "19 UPDATE 19.1: Event 19 mic close.".yield;
-	
+
 	synths_out.do({|item| item.set(\gate, 0)});
 	"19 UPDATE 19.2: Event 19 fading out.".yield;
 	synths_out.do({|item| item.free});

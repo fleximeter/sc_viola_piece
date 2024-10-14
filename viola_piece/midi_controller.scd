@@ -11,7 +11,7 @@ MIDIIn.connectAll;
 // This synth allows for changing control bus values without clicking.
 SynthDef(\buschange, {
 	var sig;
-	sig = Line.kr(\start.ir(0), \end.ir(1), \dur.ir(0.0001), doneAction: 2);
+	sig = Line.kr(\start.ir(0), \end.ir(1), \dur.ir(0.001), doneAction: 2);
 	Out.kr(\bus.ir(0), sig);
 }).add;
 
