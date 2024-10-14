@@ -161,9 +161,257 @@ e.put("e69", Routine({
     "69 UPDATE 69.2: Event 69 kill stage complete. Event finished.".postln;
 }));
 
+// EVENT 68 - PATTERN
+// This event is meant to be played automatically, not stepped through.
+e.put("e70", Routine({
+	var control, control_specs,	patterns, synth_freeze, synths, synths_out, tempo_clock;
+    var freeze_release_time;
+    freeze_release_time = 2;
 
-// EVENT 85 - PATTERN
-e.put("e85", Routine({
+	// CONTROLS ///////////////////////////////////////////////////////////////
+	control_specs = [
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.95, 0.95, 0.95], "times" -> #[10, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.05, 0.05, 0.05], "times" -> #[10, 100], "curves" -> #[0, 0]],
+	];
+
+	control = Array.fill(control_specs.size, {
+		| i |
+		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+	});
+
+	// the samples to play
+	patterns = List();
+	patterns.add(Pbind(\instrument, \sampler_adsr,
+		\buf, Pseq([
+			~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["57"]["buffer"],
+		], 3),
+		\pan_mode, 1,
+		\pos, Pwhite(-0.4, 0.4, inf),
+		\out, ~audiobus[0][0],
+		\mul, 0.25,
+		\dur, Pseq([Rest(0.5), Rest(0.5), 0.5], 1),
+		\group, ~grp[1],
+		\addAction, \addToTail,
+	));
+	patterns.add(Pbind(\instrument, \sampler_adsr,
+		\buf, Pseq([
+			~samples["viola.pizz"]["ff"]["g"]["55"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
+			~samples["viola.pizz"]["ff"]["g"]["55"]["buffer"],
+		], 3),
+		\pan_mode, 1,
+		\pos, Pwhite(-0.4, 0.4, inf),
+		\out, ~audiobus[0][0],
+		\mul, 0.25,
+		\dur, Pseq([0.5], 3),
+		\group, ~grp[1],
+		\addAction, \addToTail,
+	));
+
+	// SYNTHS ///////////////////////////////////////////////////////////////
+	synths = List();
+
+	// SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+	synths_out = List();
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~gainbus, \mul_sig, ~controlbus[2], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[3], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+
+	tempo_clock = TempoClock(96/60);
+	patterns.do{|pattern| pattern.play(tempo_clock, quant: 1)};
+    "70 UPDATE 70.0: Event 70 pattern start.".postln;
+	4.wait;
+
+	// SHUTDOWN ///////////////////////////////////////////////////////////////
+	synths_out.do({|item| item.set(\gate, 0)});
+	"70 UPDATE 70.1: Event 70 fading out.".postln;
+	2.wait;
+	tempo_clock.free;
+	synths_out.do({|item| item.free});
+    synths.do({|item| item.free});
+	synth_freeze.free;
+	control.do({|item| item.free});
+    "70 UPDATE 70.2: Event 70 kill stage complete. Event finished.".postln;
+}));
+
+// EVENT 72 - PATTERN
+// This event is meant to be played automatically, not stepped through.
+e.put("e72", Routine({
+	var control, control_specs,	patterns, synth_freeze, synths, synths_out, tempo_clock;
+    var freeze_release_time;
+    freeze_release_time = 2;
+
+	// CONTROLS ///////////////////////////////////////////////////////////////
+	control_specs = [
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.95, 0.95, 0.95], "times" -> #[10, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.05, 0.05, 0.05], "times" -> #[10, 100], "curves" -> #[0, 0]],
+	];
+
+	control = Array.fill(control_specs.size, {
+		| i |
+		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+	});
+
+	// the samples to play
+	patterns = List();
+	patterns.add(Pbind(\instrument, \sampler_adsr,
+		\buf, Pseq([
+			~samples["viola.pizz"]["ff"]["d"]["65"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["67"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["67"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["67"]["buffer"],
+			~samples["viola.pizz"]["ff"]["a"]["69"]["buffer"],
+		], 3),
+		\transpose, Pseq([1, 1, 1, -0.5.midiratio, 1, 1], 1),
+		\pan_mode, 1,
+		\pos, Pwhite(-0.4, 0.4, inf),
+		\out, ~audiobus[0][0],
+		\mul, 0.25,
+		\dur, Pseq([1/3], 6),
+		\group, ~grp[1],
+		\addAction, \addToTail,
+	));
+	patterns.add(Pbind(\instrument, \sampler_adsr,
+		\buf, Pseq([
+			~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["63"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["64"]["buffer"],
+			~samples["viola.pizz"]["ff"]["g"]["57"]["buffer"],
+			~samples["viola.pizz"]["ff"]["g"]["57"]["buffer"],
+		], 3),
+		\transpose, Pseq([1, 1, 1, 1, -0.5.midiratio], 1),
+		\pan_mode, 1,
+		\pos, Pwhite(-0.4, 0.4, inf),
+		\out, ~audiobus[0][0],
+		\mul, 0.25,
+		\dur, Pseq([0.5], 5),
+		\group, ~grp[1],
+		\addAction, \addToTail,
+	));
+
+	// SYNTHS ///////////////////////////////////////////////////////////////
+	synths = List();
+
+	// SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+	synths_out = List();
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~gainbus, \mul_sig, ~controlbus[2], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[3], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+
+	tempo_clock = TempoClock(96/60);
+	patterns.do{|pattern| pattern.play(tempo_clock, quant: 1)};
+    "72 UPDATE 72.0: Event 72 pattern start.".postln;
+	4.wait;
+
+	// SHUTDOWN ///////////////////////////////////////////////////////////////
+	synths_out.do({|item| item.set(\gate, 0)});
+	"72 UPDATE 72.1: Event 72 fading out.".postln;
+	2.wait;
+	tempo_clock.free;
+	synths_out.do({|item| item.free});
+    synths.do({|item| item.free});
+	synth_freeze.free;
+	control.do({|item| item.free});
+    "72 UPDATE 72.2: Event 72 kill stage complete. Event finished.".postln;
+}));
+
+// EVENT 73 - PATTERN
+// This event is meant to be played automatically, not stepped through.
+e.put("e73", Routine({
+	var control, control_specs,	patterns, synth_freeze, synths, synths_out, tempo_clock;
+    var freeze_release_time;
+    freeze_release_time = 2;
+
+	// CONTROLS ///////////////////////////////////////////////////////////////
+	control_specs = [
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.95, 0.95, 0.95], "times" -> #[10, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.05, 0.05, 0.05], "times" -> #[10, 100], "curves" -> #[0, 0]],
+	];
+
+	control = Array.fill(control_specs.size, {
+		| i |
+		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+	});
+
+	// the samples to play
+	patterns = List();
+	patterns.add(Pbind(\instrument, \sampler_adsr,
+		\buf, Pseq([
+			~samples["viola.pizz"]["ff"]["a"]["71"]["buffer"],
+			~samples["viola.pizz"]["ff"]["a"]["69"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["67"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["67"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["67"]["buffer"],
+			~samples["viola.pizz"]["ff"]["a"]["69"]["buffer"],
+		], 3),
+		\transpose, Pseq([1, 1, 1, -0.5.midiratio, 1, 1], 1),
+		\pan_mode, 1,
+		\pos, Pwhite(-0.4, 0.4, inf),
+		\out, ~audiobus[0][0],
+		\mul, 0.25,
+		\dur, Pseq([0.5, 0.5, 1/3, 1/3, 1/3, 0.5], 1),
+		\group, ~grp[1],
+		\addAction, \addToTail,
+	));
+	patterns.add(Pbind(\instrument, \sampler_adsr,
+		\buf, Pseq([
+			~samples["viola.pizz"]["ff"]["d"]["64"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["64"]["buffer"],
+			~samples["viola.pizz"]["ff"]["d"]["64"]["buffer"],
+			~samples["viola.pizz"]["ff"]["g"]["64"]["buffer"],
+			~samples["viola.pizz"]["ff"]["g"]["67"]["buffer"],
+		], 3),
+		\transpose, Pseq([1, 1, 1, -0.5.midiratio, -0.5.midiratio], 1),
+		\pan_mode, 1,
+		\pos, Pwhite(-0.4, 0.4, inf),
+		\out, ~audiobus[0][0],
+		\mul, 0.25,
+		\dur, Pseq([0.5], 5),
+		\group, ~grp[1],
+		\addAction, \addToTail,
+	));
+
+	// SYNTHS ///////////////////////////////////////////////////////////////
+	synths = List();
+
+	// SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+	synths_out = List();
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~gainbus, \mul_sig, ~controlbus[2], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[3], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+
+	tempo_clock = TempoClock(96/60);
+	patterns.do{|pattern| pattern.play(tempo_clock, quant: 1)};
+    "73 UPDATE 73.0: Event 73 pattern start.".postln;
+	4.wait;
+
+	// SHUTDOWN ///////////////////////////////////////////////////////////////
+	synths_out.do({|item| item.set(\gate, 0)});
+	"73 UPDATE 73.1: Event 73 fading out.".postln;
+	2.wait;
+	tempo_clock.free;
+	synths_out.do({|item| item.free});
+    synths.do({|item| item.free});
+	synth_freeze.free;
+	control.do({|item| item.free});
+    "73 UPDATE 73.2: Event 73 kill stage complete. Event finished.".postln;
+}));
+
+
+// EVENT 75 - PATTERN
+e.put("e75", Routine({
 	var control, control_specs,	pattern, synth_freeze, synths, synths_out, tempo_clock;
     var freeze_release_time;
     freeze_release_time = 2;
@@ -208,23 +456,23 @@ e.put("e85", Routine({
 	tempo_clock = TempoClock(96/60);
 	pattern.play(tempo_clock);
 
-    "85 UPDATE 85.0: Event 85 pattern start.".yield;
+    "75 UPDATE 75.0: Event 75 pattern start.".yield;
 
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
 	synths_out.do({|item| item.set(\gate, 0)});
-	"85 UPDATE 85.1: Event 85 fading out.".yield;
+	"75 UPDATE 75.1: Event 75 fading out.".yield;
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
 	synth_freeze.free;
 	control.do({|item| item.free});
-    "85 UPDATE 85.2: Event 85 kill stage complete. Event finished.".postln;
+    "75 UPDATE 75.2: Event 75 kill stage complete. Event finished.".postln;
 }));
 
 
-// EVENT 87 - PATTERN
-e.put("e87", Routine({
+// EVENT 76 - PATTERN
+e.put("e76", Routine({
 	var control, control_specs,	pattern, synth_freeze, synths, synths_out, tempo_clock;
     var freeze_release_time;
     freeze_release_time = 2;
@@ -270,23 +518,23 @@ e.put("e87", Routine({
 	tempo_clock = TempoClock(96/60);
 	pattern.play(tempo_clock);
 
-    "87 UPDATE 87.0: Event 87 pattern start.".yield;
+    "76 UPDATE 76.0: Event 76 pattern start.".yield;
 
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
 	synths_out.do({|item| item.set(\gate, 0)});
-	"87 UPDATE 87.1: Event 87 fading out.".yield;
+	"76 UPDATE 76.1: Event 76 fading out.".yield;
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
 	synth_freeze.free;
 	control.do({|item| item.free});
-    "87 UPDATE 87.2: Event 87 kill stage complete. Event finished.".postln;
+    "76 UPDATE 76.2: Event 76 kill stage complete. Event finished.".postln;
 }));
 
 
-// EVENT 88 - PATTERN
-e.put("e88", Routine({
+// EVENT 79 - PATTERN
+e.put("e79", Routine({
 	var control, control_specs,	pattern, synth_freeze, synths, synths_out, tempo_clock;
     var freeze_release_time;
     freeze_release_time = 2;
@@ -331,23 +579,23 @@ e.put("e88", Routine({
 	tempo_clock = TempoClock(96/60);
 	pattern.play(tempo_clock);
 
-    "88 UPDATE 88.0: Event 88 pattern start.".yield;
+    "79 UPDATE 79.0: Event 79 pattern start.".yield;
 
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
 	synths_out.do({|item| item.set(\gate, 0)});
-	"88 UPDATE 88.1: Event 88 fading out.".yield;
+	"79 UPDATE 79.1: Event 79 fading out.".yield;
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
 	synth_freeze.free;
 	control.do({|item| item.free});
-    "88 UPDATE 88.2: Event 88 kill stage complete. Event finished.".postln;
+    "79 UPDATE 79.2: Event 79 kill stage complete. Event finished.".postln;
 }));
 
 
-// EVENT 91 - PATTERN
-e.put("e91", Routine({
+// EVENT 82a - PATTERN
+e.put("e82a", Routine({
 	var control, control_specs,	patterns, synth_freeze, synths, synths_out, tempo_clock;
     var freeze_release_time;
     freeze_release_time = 2;
@@ -406,18 +654,122 @@ e.put("e91", Routine({
 	tempo_clock = TempoClock(96/60);
 	patterns.do{|pattern| pattern.play(tempo_clock, quant: 1)};
 
-    "91 UPDATE 91.0: Event 91 pattern start.".yield;
+    "82a UPDATE 82a.0: Event 82a pattern start.".yield;
 
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
 	synths_out.do({|item| item.set(\gate, 0)});
-	"91 UPDATE 91.1: Event 91 fading out.".yield;
+	"82a UPDATE 82a.1: Event 82a fading out.".yield;
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
 	synth_freeze.free;
 	control.do({|item| item.free});
-    "91 UPDATE 91.2: Event 91 kill stage complete. Event finished.".postln;
+    "82a UPDATE 82a.2: Event 82a kill stage complete. Event finished.".postln;
 }));
+
+// Event: shifting pattern playing
+e.put("e82b", Routine({
+	var control, control_specs,	pattern, synths, synths_out, tempo_clock;
+
+	// CONTROLS ///////////////////////////////////////////////////////////////
+	control_specs = [
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_delay_semitones_1", "levels" -> #[4.0, 5.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_delay_time_1", "levels" -> #[0.5, 0.4], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_delay_mul_1", "levels" -> #[1.0, 0.5], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_delay_semitones_2", "levels" -> #[-5.0, -4.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_delay_time_2", "levels" -> #[0.8, 0.9], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_delay_mul_2", "levels" -> #[0.5, 1.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_delay_semitones_3", "levels" -> #[1.0, 2.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_delay_time_3", "levels" -> #[2.0, 1.8], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_delay_mul_3", "levels" -> #[1.0, 0.5], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_delay_semitones_4", "levels" -> #[-1.0, -2.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_delay_time_4", "levels" -> #[1.3, 1.5], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_delay_mul_4", "levels" -> #[1.0, 0.5], "times" -> #[20], "curves" -> #[0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.95, 0.95, 0.95], "times" -> #[10, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.05, 0.05, 0.05], "times" -> #[10, 100], "curves" -> #[0, 0]],
+	];
+
+	control = Array.fill(control_specs.size, {
+		| i |
+		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+	});
+
+	synths = List();
+
+	// microtonal pattern
+	pattern = Pbind(\instrument, \sampler_adsr,
+		\buf, Pseq([
+			~samples["viola.pizz"]["ff"]["c"]["55"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["59"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["69"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["65"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["64"]["buffer"], //+
+			~samples["viola.pizz"]["ff"]["c"]["65"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["59"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["55"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["54"]["buffer"], //+
+			~samples["viola.pizz"]["ff"]["c"]["57"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["64"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["65"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["54"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["57"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["61"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["68"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["72"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["71"]["buffer"], //+
+			~samples["viola.pizz"]["ff"]["c"]["72"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["65"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"],
+			~samples["viola.pizz"]["ff"]["c"]["61"]["buffer"], //+
+			~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"]
+		], 4),
+		\transpose, Pseq([1, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 1, 1, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 1, 0.5.midiratio, 1], inf),
+		\pan_mode, 1,
+		\pos, Pwhite(-0.5, 0.5, inf),
+		\out, ~audiobus[0][1],
+		\mul, 0.25,
+		\dur, Pseq([0.15, 0.15, 0.15, 0.15], inf),
+		\group, ~grp[1],
+		\addAction, \addToTail,
+	);
+
+	// SYNTHS ///////////////////////////////////////////////////////////////
+	synths = List();
+	synths.add(Synth(\passthrough8, [\in, ~audiobus[0][1], \out, ~audiobus[1][1]], ~grp[2], \addToTail));
+	synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus[0][1], \out, ~audiobus[1][1], \semitones, ~controlbus[2], \delayint, ~controlbus[3], \mul, ~controlbus[4]], ~grp[2], \addToTail));
+	synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus[0][1], \out, ~audiobus[1][1], \semitones, ~controlbus[5], \delayint, ~controlbus[6], \mul, ~controlbus[7]], ~grp[2], \addToTail));
+	synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus[0][1], \out, ~audiobus[1][1], \semitones, ~controlbus[8], \delayint, ~controlbus[9], \mul, ~controlbus[10]], ~grp[2], \addToTail));
+	synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus[0][1], \out, ~audiobus[1][1], \semitones, ~controlbus[11], \delayint, ~controlbus[12], \mul, ~controlbus[13]], ~grp[2], \addToTail));
+	//synth_fft = Synth(\fft_magbelow2, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \threshold, 0.2, \rmfreq, 200, \rmmul, 0.5, \lpf, 4000, \mul, 10], ~grp[2], \addToTail);
+    //synth_filter = Synth(\bpf8, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \freq, ~controlbus[0], \mul, ~controlbus[1]], ~grp[2], \addToTail);
+
+
+	// SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+	synths_out = List();
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][1], \out, ~gainbus, \mul_sig, ~controlbus[14], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus[15], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+
+	tempo_clock = TempoClock(96/60);
+	pattern.play(tempo_clock, quant: 1);
+
+    "82a UPDATE 82a.0: Event 82a pattern start.".yield;
+
+
+	// SHUTDOWN ///////////////////////////////////////////////////////////////
+	synths_out.do({|item| item.set(\gate, 0)});
+	"82a UPDATE 82a.1: Event 82a fading out.".yield;
+	tempo_clock.free;
+	synths_out.do({|item| item.free});
+    synths.do({|item| item.free});
+	control.do({|item| item.free});
+    "82a UPDATE 82a.2: Event 82a kill stage complete. Event finished.".postln;
+}));
+
 
 )
