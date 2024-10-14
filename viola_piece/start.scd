@@ -87,20 +87,21 @@
     //  - group 4 for effects 3
     ~grp = Array.fill(10, {Group.new(s, \addToTail)});
 };
-)
+
 
 // Manually load things
-~bus_maker.();
+/*~bus_maker.();
 ~file_loader.();
 ~group_maker.();
 ~convolution_setup.();
-
+*/
 
 // Alternatively, this can be done automatically
 s.waitForBoot({
-    ~file_loader.();
+	~bus_maker.();
+	~file_loader.();
     s.sync;
-    ~convolution_setup.();
-    ~bus_maker.();
-    s.sync;
+	~group_maker.();
+	~convolution_setup.();
 });
+)
