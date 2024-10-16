@@ -42,13 +42,13 @@
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "sample_defs/samples.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "midi_controller.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/event_main.scd").load;
-    //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events049.scd").load;
-    //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events075.scd").load;
-    //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events091.scd").load;
-    //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events111.scd").load;
-    //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events117.scd").load;
-    //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events130.scd").load;
-    //(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events148.scd").load;
+    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events001.scd").load;
+    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events009.scd").load;
+    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events025.scd").load;
+    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events047.scd").load;
+    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events068.scd").load;
+    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events083.scd").load;
+    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events105.scd").load;
 };
 
 // Prepare impulse response buffers for PartConv
