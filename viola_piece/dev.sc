@@ -1,5 +1,3 @@
-~mic_zero = 8;
-
 e["main"].next;
 e["e1"].next;  // x5
 e["e1alt"].next;  // x5
@@ -46,8 +44,7 @@ e["ex6"].next;
 e["octaves"].next;
 e["feedback"].next;
 
-~grp = Array.fill(10, {Group.new(s, \addToTail)});
-e.keysValuesDo({|key, val| val.reset});  // reset all events
+
 
 
 // check sound

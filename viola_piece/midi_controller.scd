@@ -34,6 +34,8 @@ SynthDef(\buschange, {
     "test", 79,
 ]);
 
+
+
 // I'm having trouble with fader 1 on the QuNeo.
 /*
 MIDIdef.cc("fader1", {
@@ -45,6 +47,28 @@ MIDIdef.cc("fader1", {
 	("fader bus 0: " ++ target).postln;
 }, ~midimap["fader1"]).permanent = true;
 */
+
+// note: the quneo pads go from note number 36 to 51
+MIDIdef.noteOn("on", {
+	arg velocity, noteNumber, channel, source;
+	if(noteNumber == 36, {
+		~event_func_list[~event_counter].();
+		~event_counter = ~event_counter + 1;
+	});
+	if(noteNumber == 50, {
+		~partial_reset.();
+	});
+	if(noteNumber == 51, {
+		~full_reset.();
+	});
+	
+	("note number " ++ noteNumber ++ " was pressed").postln;
+}).permanent = true;
+
+MIDIdef.noteOff("off", {
+	arg velocity, noteNumber, channel, source;
+	("note number " ++ noteNumber ++ " was released").postln;
+}).permanent = true;
 
 MIDIdef.cc("fader2", {
 	arg val, idx;

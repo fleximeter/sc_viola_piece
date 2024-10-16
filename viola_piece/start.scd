@@ -22,6 +22,7 @@
 
     // The event dictionary
     e = Dictionary();
+    ~event_counter = 0;  // the event counter for executing in order
 
     // A global synth list. This is needed if an event is to be manually stopped after it is started.
     // This is because some events cannot run for a specified time.
@@ -49,6 +50,7 @@
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events068.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events083.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events105.scd").load;
+    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "event_runner.scd").load;
 };
 
 // Prepare impulse response buffers for PartConv
@@ -88,6 +90,19 @@
     ~grp = Array.fill(10, {Group.new(s, \addToTail)});
 };
 
+// Reset all events except the main event
+~partial_reset = {
+	e.keysValuesDo({|key, val| if(key != "main", {val.reset})});  // reset all events but main
+    "Partial reset performed.".postln;
+};
+
+// Rest all events and recreate groups. This should be performed after a Cmd+.
+~full_reset = {
+    //CmdPeriod.run;
+	e.keysValuesDo({|key, val| val.reset});  // reset all events including main
+	~grp = Array.fill(10, {Group.new(s, \addToTail)});
+    "Full reset performed.".postln;
+};
 
 // Manually load things
 /*~bus_maker.();
@@ -103,5 +118,7 @@ s.waitForBoot({
     s.sync;
 	~group_maker.();
 	~convolution_setup.();
+	s.sync;
+	e["main"].next;
 });
 )
