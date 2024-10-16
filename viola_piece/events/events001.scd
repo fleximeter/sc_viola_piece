@@ -493,7 +493,7 @@ e.put("e6", Routine({
 	synths_out = List();
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][0], \out, ~gainbus, \mul_sig, ~controlbus[9], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
 	//synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[10], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-    "6 UPDATE 6.0: Event 4 running.".yield;
+    "6 UPDATE 6.0: Event 6 running.".yield;
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
    	synths_out.do({|item| item.set(\gate, 0)});
