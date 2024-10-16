@@ -75,6 +75,7 @@ SynthDef(\pan1to8, {
     // map the fader 0-1 to 2-8 for pan width
     width = In.kr(\width.kr(0), 1);
     env = EnvGen.ar(Env.asr(\attack_time.kr(0.01), 1, \decay_time.kr(0.5)), \gate.kr(1.0));
+	sig = sig * env;
 	sig = PanAz.ar(8, sig, pos, 1.0, width, 0.5);
 	Out.ar(\out.kr(0), sig);
 }).add;
