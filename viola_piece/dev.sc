@@ -46,6 +46,7 @@ e["feedback"].next;
 
 
 
+~event_counter = 0;
 
 // check sound
 {PanAz.ar(8, SinOsc.ar(440, 0, 0.1, 0), 0.5, 1, 2.0)}.play;

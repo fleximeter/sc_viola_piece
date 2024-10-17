@@ -148,31 +148,31 @@ e.put("e2", Routine({
 
 	control = Array.fill(control_specs.size, {
 		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+		Synth(\ctrl_env, [\out, ~controlbus[i+20], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
 	});
 
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-	synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail));
+	synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus[0][1], \pos, ~controlbus[20], \width, ~controlbus[21]], ~grp[1], \addToTail));
 
     // freeze and mag below
-    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \above, 1, \amp_fluctuation, 0.1], ~grp[1], \addToTail);
-	synths.add(Synth(\fft_magbelow, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \below, ~controlbus[2]], ~grp[2], \addToTail));
+    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][1], \out, ~audiobus[1][1], \above, 1, \amp_fluctuation, 0.1], ~grp[1], \addToTail);
+	synths.add(Synth(\fft_magbelow, [\in, ~audiobus[1][1], \out, ~audiobus[2][1], \below, ~controlbus[22]], ~grp[2], \addToTail));
 
     // pitch shift and independent panning
-    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus[2][0], \out, ~audiobus[3][0], \semitones1, ~controlbus[3], \mul, 0.5], ~grp[3], \addToTail));
-	synths.add(Synth(\pitchshift1_et, [\in, ~audiobus[2][0], \out, ~audiobus[3][1], \semitones1, ~controlbus[4], \mul, 0.5], ~grp[3], \addToTail));
-    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus[3][0], \out, ~audiobus[4][0], \pos, ~controlbus[5], \width, ~controlbus[6]], ~grp[4], \addToTail));
-    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus[3][1], \out, ~audiobus[4][0], \pos, ~controlbus[7], \width, ~controlbus[8]], ~grp[4], \addToTail));
-    synths.add(Synth(\passthrough8, [\in, ~audiobus[2][0], \out, ~audiobus[4][0]], ~grp[4], \addToTail));
-	synths.add(Synth(\lpf8, [\in, ~audiobus[4][0], \out, ~audiobus[5][0], \freq, ~controlbus[9]], ~grp[4], \addToTail));
+    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus[2][1], \out, ~audiobus[3][2], \semitones1, ~controlbus[23], \mul, 0.5], ~grp[3], \addToTail));
+	synths.add(Synth(\pitchshift1_et, [\in, ~audiobus[2][1], \out, ~audiobus[3][3], \semitones1, ~controlbus[24], \mul, 0.5], ~grp[3], \addToTail));
+    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus[3][2], \out, ~audiobus[4][1], \pos, ~controlbus[25], \width, ~controlbus[26]], ~grp[4], \addToTail));
+    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus[3][3], \out, ~audiobus[4][1], \pos, ~controlbus[27], \width, ~controlbus[28]], ~grp[4], \addToTail));
+    synths.add(Synth(\passthrough8, [\in, ~audiobus[2][1], \out, ~audiobus[4][1]], ~grp[4], \addToTail));
+	synths.add(Synth(\lpf8, [\in, ~audiobus[4][1], \out, ~audiobus[5][1], \freq, ~controlbus[29]], ~grp[4], \addToTail));
 
 	// SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
 	synths_out = List();
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][0], \out, ~gainbus, \mul_sig, ~controlbus[10], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[11], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][1], \out, ~gainbus, \mul_sig, ~controlbus[30], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus[31], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
     "2 UPDATE 2.0: Event 2 running and ready for freeze.".yield;
 
     synth_freeze.set(\freeze, 1.0);
@@ -210,31 +210,31 @@ e.put("e2alt", Routine({
 
 	control = Array.fill(control_specs.size, {
 		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+		Synth(\ctrl_env, [\out, ~controlbus[i+20], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
 	});
 
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-	synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
+	synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][1], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
 
     // freeze and mag below
-    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \above, 1, \amp_fluctuation, 0.1], ~grp[1], \addToTail);
-	synths.add(Synth(\fft_magbelow, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \below, ~controlbus[2]], ~grp[2], \addToTail));
+    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][1], \out, ~audiobus[1][1], \above, 1, \amp_fluctuation, 0.1], ~grp[1], \addToTail);
+	synths.add(Synth(\fft_magbelow, [\in, ~audiobus[1][1], \out, ~audiobus[2][1], \below, ~controlbus[22]], ~grp[2], \addToTail));
 
     // pitch shift and independent panning
-    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus[2][0], \out, ~audiobus[3][0], \semitones1, ~controlbus[3], \mul, 0.5], ~grp[3], \addToTail));
-	synths.add(Synth(\pitchshift1_et, [\in, ~audiobus[2][0], \out, ~audiobus[3][1], \semitones1, ~controlbus[4], \mul, 0.5], ~grp[3], \addToTail));
-    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus[3][0], \out, ~audiobus[4][0], \pos, ~controlbus[5], \width, ~controlbus[6]], ~grp[4], \addToTail));
-    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus[3][1], \out, ~audiobus[4][0], \pos, ~controlbus[7], \width, ~controlbus[8]], ~grp[4], \addToTail));
-    synths.add(Synth(\passthrough8, [\in, ~audiobus[2][0], \out, ~audiobus[4][0]], ~grp[4], \addToTail));
-	synths.add(Synth(\lpf8, [\in, ~audiobus[4][0], \out, ~audiobus[5][0], \freq, ~controlbus[9]], ~grp[4], \addToTail));
+    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus[2][1], \out, ~audiobus[3][2], \semitones1, ~controlbus[23], \mul, 0.5], ~grp[3], \addToTail));
+	synths.add(Synth(\pitchshift1_et, [\in, ~audiobus[2][1], \out, ~audiobus[3][3], \semitones1, ~controlbus[24], \mul, 0.5], ~grp[3], \addToTail));
+    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus[3][2], \out, ~audiobus[4][1], \pos, ~controlbus[25], \width, ~controlbus[26]], ~grp[4], \addToTail));
+    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus[3][3], \out, ~audiobus[4][1], \pos, ~controlbus[27], \width, ~controlbus[28]], ~grp[4], \addToTail));
+    synths.add(Synth(\passthrough8, [\in, ~audiobus[2][1], \out, ~audiobus[4][1]], ~grp[4], \addToTail));
+	synths.add(Synth(\lpf8, [\in, ~audiobus[4][1], \out, ~audiobus[5][1], \freq, ~controlbus[29]], ~grp[4], \addToTail));
 
 	// SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
 	synths_out = List();
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][0], \out, ~gainbus, \mul_sig, ~controlbus[10], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[11], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][1], \out, ~gainbus, \mul_sig, ~controlbus[30], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus[31], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
     "2 UPDATE 2.0: Event 2 running and ready for freeze.".yield;
 
     synth_freeze.set(\freeze, 1.0);
@@ -391,22 +391,22 @@ e.put("e4", Routine({
 
 	control = Array.fill(control_specs.size, {
 		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+		Synth(\ctrl_env, [\out, ~controlbus[i+20], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
 	});
 
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail));
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus[0][1], \pos, ~controlbus[20], \width, ~controlbus[21]], ~grp[1], \addToTail));
 
 	// add processing synths
-	synths.add(Synth(\fb1, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8]], ~grp[3], \addToTail));
+	synths.add(Synth(\fb1, [\in, ~audiobus[0][1], \out, ~audiobus[1][1], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8]], ~grp[3], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
 	synths_out = List();
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][0], \out, ~gainbus, \mul_sig, ~controlbus[9], \attack_time, 0.01, \release_time, 2], ~grp[5], \addToTail));
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[10], \attack_time, 0.01, \release_time, 2], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][1], \out, ~gainbus, \mul_sig, ~controlbus[22], \attack_time, 0.01, \release_time, 2], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus[23], \attack_time, 0.01, \release_time, 2], ~grp[5], \addToTail));
     "4 UPDATE 4.0: Event 4 running.".yield;
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
@@ -477,22 +477,22 @@ e.put("e6", Routine({
 
 	control = Array.fill(control_specs.size, {
 		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+		Synth(\ctrl_env, [\out, ~controlbus[i+20], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
 	});
 
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus[0][0], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail));
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus[0][1], \pos, ~controlbus[20], \width, ~controlbus[21]], ~grp[1], \addToTail));
 
 	// add processing synths
-	synths.add(Synth(\fb1, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8]], ~grp[3], \addToTail));
+	synths.add(Synth(\fb1, [\in, ~audiobus[0][1], \out, ~audiobus[1][1], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8]], ~grp[3], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
 	synths_out = List();
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][0], \out, ~gainbus, \mul_sig, ~controlbus[9], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-	//synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[10], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][1], \out, ~gainbus, \mul_sig, ~controlbus[22], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus[23], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
     "6 UPDATE 6.0: Event 6 running.".yield;
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////

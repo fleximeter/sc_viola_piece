@@ -4,6 +4,18 @@
 // in preparation for running individual events.
 
 (
+// Set important server things here.
+Server.default.options.memSize_(1024*1024);
+Server.default.options.numBuffers_(8192);
+Server.default.options.inDevice_("Fireface UFX (23703107)");
+Server.default.options.outDevice_("Fireface UFX (23703107)");
+Server.default.options.sampleRate_(44100);
+Server.default.options.numOutputBusChannels_(8);
+Server.default.options.numInputBusChannels_(16);
+Server.default.options.hardwareBufferSize_(128);
+Server.supernova;
+
+
 // Loads files and establishes basic globals
 ~file_loader = {
     // It is necessary to set the root directory because we might be loading samples
@@ -15,7 +27,7 @@
     // Basic useful constants
     ~partconv_size = 512;  // project-wide STFT window size for convolution
     ~fft_size = 2048;  // project-wide STFT window size
-    ~mic_zero = 9;     // the zero mic - NOTE on the RME in the studio it is 8!
+    ~mic_zero = 8;     // the zero mic - NOTE on the RME in the studio it is 8!
 
     // Global buffers
     ~bufs = Array.fill(20, {Buffer.alloc(s, 20 * s.sampleRate)});    // buffers for sampling live audio
@@ -91,17 +103,27 @@
 };
 
 // Reset all events except the main event
+~event_counter_reset = {
+	~event_counter = 0;
+	"--------------------------------------\nEvent counter reset to 0.\n--------------------------------------".postln;
+};
+
+// Reset all events except the main event
 ~partial_reset = {
 	e.keysValuesDo({|key, val| if(key != "main", {val.reset})});  // reset all events but main
-    "Partial reset performed.".postln;
+	"--------------------------------------\nPartial reset performed.\n--------------------------------------".postln;
 };
 
 // Rest all events and recreate groups. This should be performed after a Cmd+.
 ~full_reset = {
-    //CmdPeriod.run;
-	e.keysValuesDo({|key, val| val.reset});  // reset all events including main
-	~grp = Array.fill(10, {Group.new(s, \addToTail)});
-    "Full reset performed.".postln;
+	Routine({
+		CmdPeriod.run;
+		0.5.wait;
+		e.keysValuesDo({|key, val| val.reset});  // reset all events including main
+		~grp = Array.fill(10, {Group.new(s, \addToTail)});
+		e["main"].next;
+	}).play;
+	"--------------------------------------\nFull reset performed.\n--------------------------------------".postln;
 };
 
 // Manually load things

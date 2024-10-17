@@ -55,19 +55,24 @@ MIDIdef.noteOn("on", {
 		~event_func_list[~event_counter].();
 		~event_counter = ~event_counter + 1;
 	});
+	if(noteNumber == 49, {
+		~event_counter_reset.();
+	});
 	if(noteNumber == 50, {
 		~partial_reset.();
 	});
 	if(noteNumber == 51, {
 		~full_reset.();
 	});
-	
-	("note number " ++ noteNumber ++ " was pressed").postln;
+	if(noteNumber == 19, {
+		"Test QuNeo MIDI controller".postln;
+	});
+	//("note number " ++ noteNumber ++ " was pressed").postln;
 }).permanent = true;
 
 MIDIdef.noteOff("off", {
 	arg velocity, noteNumber, channel, source;
-	("note number " ++ noteNumber ++ " was released").postln;
+	//("note number " ++ noteNumber ++ " was released").postln;
 }).permanent = true;
 
 MIDIdef.cc("fader2", {
@@ -76,7 +81,7 @@ MIDIdef.cc("fader2", {
 	current = ~faderbus[1].getSynchronous;
 	target = val.linlin(0, 127, 0.0, 1.0);
 	Synth(\buschange, [\start, current, \end, target, \bus, ~faderbus[1]]);
-	("fader bus 1: " ++ target).postln;
+	//("fader bus 1: " ++ target).postln;
 }, ~midimap["fader2"]).permanent = true;
 
 MIDIdef.cc("fader3", {
@@ -85,7 +90,7 @@ MIDIdef.cc("fader3", {
 	current = ~faderbus[2].getSynchronous;
 	target = val.linlin(0, 127, 0.0, 1.0);
 	Synth(\buschange, [\start, current, \end, target, \bus, ~faderbus[2]]);
-	("fader bus 2: " ++ target).postln;
+	//("fader bus 2: " ++ target).postln;
 }, ~midimap["fader3"]).permanent = true;
 
 MIDIdef.cc("fader4", {
@@ -94,7 +99,7 @@ MIDIdef.cc("fader4", {
 	current = ~faderbus[3].getSynchronous;
 	target = val.linlin(0, 127, 0.0, 1.0);
 	Synth(\buschange, [\start, current, \end, target, \bus, ~faderbus[3]]);
-	("fader bus 3: " ++ target).postln;
+	//("fader bus 3: " ++ target).postln;
 }, ~midimap["fader4"]).permanent = true;
 
 MIDIdef.cc("fader5", {
@@ -103,7 +108,7 @@ MIDIdef.cc("fader5", {
 	current = ~faderbus[4].getSynchronous;
 	target = val.linlin(0, 127, 0.0, 1.0);
 	Synth(\buschange, [\start, current, \end, target, \bus, ~faderbus[4]]);
-	("fader bus 4: " ++ target).postln;
+	//("fader bus 4: " ++ target).postln;
 }, ~midimap["fader5"]).permanent = true;
 
 MIDIdef.cc("fader6", {
@@ -112,7 +117,7 @@ MIDIdef.cc("fader6", {
 	current = ~faderbus[5].getSynchronous;
 	target = val.linlin(0, 127, 0.0, 1.0);
 	Synth(\buschange, [\start, current, \end, target, \bus, ~faderbus[5]]);
-	("fader bus 5: " ++ target).postln;
+	//("fader bus 5: " ++ target).postln;
 }, ~midimap["fader6"]).permanent = true;
 
 MIDIdef.cc("fader7", {
@@ -121,7 +126,7 @@ MIDIdef.cc("fader7", {
 	current = ~faderbus[6].getSynchronous;
 	target = val.linlin(0, 127, 0.0, 1.0);
 	Synth(\buschange, [\start, current, \end, target, \bus, ~faderbus[6]]);
-	("fader bus 6: " ++ target).postln;
+	//("fader bus 6: " ++ target).postln;
 }, ~midimap["fader7"]).permanent = true;
 
 MIDIdef.cc("fader8", {
@@ -130,7 +135,7 @@ MIDIdef.cc("fader8", {
 	current = ~faderbus[7].getSynchronous;
 	target = val.linlin(0, 127, 0.0, 1.0);
 	Synth(\buschange, [\start, current, \end, target, \bus, ~faderbus[7]]);
-	("fader bus 7: " ++ target).postln;
+	//("fader bus 7: " ++ target).postln;
 }, ~midimap["fader8"]).permanent = true;
 
 MIDIdef.cc("fader9", {
@@ -139,7 +144,7 @@ MIDIdef.cc("fader9", {
 	current = ~faderbus[8].getSynchronous;
 	target = val.linlin(0, 127, 0.0, 1.0);
 	Synth(\buschange, [\start, current, \end, target, \bus, ~faderbus[8]]);
-	("fader bus 8: " ++ target).postln;
+	//("fader bus 8: " ++ target).postln;
 }, ~midimap["fader9"]).permanent = true;
 
 MIDIdef.cc("knob1", {
@@ -148,7 +153,7 @@ MIDIdef.cc("knob1", {
 	current = ~knobbus[0].getSynchronous;
 	target = val.linlin(0, 127, 0.0, 1.0);
 	Synth(\buschange, [\start, current, \end, target, \bus, ~knobbus[0]]);
-	("knob bus 1: " ++ target).postln;
+	//("knob bus 1: " ++ target).postln;
 }, ~midimap["knob1"]).permanent = true;
 
 MIDIdef.cc("knob2", {
@@ -157,25 +162,25 @@ MIDIdef.cc("knob2", {
 	current = ~knobbus[1].getSynchronous;
 	target = val.linlin(0, 127, 0.0, 1.0);
 	Synth(\buschange, [\start, current, \end, target, \bus, ~knobbus[1]]);
-	("knob bus 2: " ++ target).postln;
+	//("knob bus 2: " ++ target).postln;
 }, ~midimap["knob2"]).permanent = true;
 
 MIDIdef.cc("stop", {
 	arg val, idx;
-	val.postln;
+	//val.postln;
 }, ~midimap["stop"]).permanent = true;
 
 MIDIdef.cc("pause", {
 	arg val, idx;
-	val.postln;
+	//val.postln;
 }, ~midimap["pause"]).permanent = true;
 
 MIDIdef.cc("play", {
 	arg val, idx;
-	val.postln;
+	//val.postln;
 }, ~midimap["play"]).permanent = true;
 
 MIDIdef.cc("test", {
 	arg val, idx;
-	"test midi controller".postln;
+	//"test midi controller".postln;
 }, ~midimap["test"]).permanent = true;
