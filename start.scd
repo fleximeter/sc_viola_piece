@@ -101,15 +101,17 @@ Server.supernova;
 ~event_counter_reset = {
 	~event_counter = 0;
 	"--------------------------------------\nEvent counter reset to 0.\n--------------------------------------".postln;
+	nil
 };
 
-// Reset all events except the main event
+// Resets all events except the main event
 ~partial_reset = {
 	e.keysValuesDo({|key, val| if(key != "main", {val.reset})});  // reset all events but main
 	"--------------------------------------\nPartial reset performed.\n--------------------------------------".postln;
+	nil
 };
 
-// Rest all events and recreate groups. This should be performed after a Cmd+.
+// Performs a Cmd+., resets all events, and recreates groups.
 ~full_reset = {
 	Routine({
 		CmdPeriod.run;
@@ -118,8 +120,42 @@ Server.supernova;
 		~grp = Array.fill(10, {Group.new(s, \addToTail)});
 		e["main"].next;
 	}).play;
+	~event_counter = 0;
 	"--------------------------------------\nFull reset performed.\n--------------------------------------".postln;
+	nil
 };
+
+// Performs a reset for all events, except main, where the measure number of the event
+// is greater than or equal to the specified measure number. This allows starting
+// partway through the piece.
+~reset_to_event = {
+	| num |
+	e.keysValuesDo({
+		|key, val|
+		var result;
+		result = key.findRegexp("[0-9]+");
+		if(result.size > 0, {
+			if(result[0][1] >= num, {
+				val.reset;
+			}, {
+				val.stop;
+			});
+		});
+	});
+	i = 0;
+	~event_counter = 0;
+	while({
+		var val;
+		val = ~event_order_list[i][0].findRegexp("[0-9]+");
+		if(val.size == 0, {true}, {val[0][1] >= num})
+	}, {
+		~event_counter = ~event_counter + 1;
+		i += 1;
+	});
+	("--------------------------------------\nReset to measure " ++ num ++ ".\n--------------------------------------").postln;
+	nil
+};
+
 
 // Manually load things
 /*~bus_maker.();
@@ -136,6 +172,8 @@ s.waitForBoot({
 	~group_maker.();
 	~convolution_setup.();
 	s.sync;
+	s.meter;
+	s.plotTree;
 	e["main"].next;
 });
 )

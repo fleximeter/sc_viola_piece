@@ -52,7 +52,11 @@ MIDIdef.cc("fader1", {
 MIDIdef.noteOn("on", {
 	arg velocity, noteNumber, channel, source;
 	if(noteNumber == 36, {
-		~event_func_list[~event_counter].();
+		if(~event_order_list[~event_counter][1] == "next", {
+			e[~event_order_list[~event_counter][0]].next.postln;
+		}, {
+			e[~event_order_list[~event_counter][0]].play;
+		});
 		~event_counter = ~event_counter + 1;
 	});
 	if(noteNumber == 49, {

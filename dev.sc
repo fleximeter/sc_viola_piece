@@ -46,6 +46,7 @@ e["feedback"].next;
 
 
 ~event_counter = 0;
+~reset_to_event.(3);
 
 // check sound
 {PanAz.ar(8, SinOsc.ar(440, 0, 0.1, 0), 0.5, 1, 2.0)}.play;
@@ -64,3 +65,54 @@ SynthDef(\delay, {
 z = Synth(\mic1, [\in, ~mic_zero, \out, ~micbus], addAction: \addToTail);
 x = Synth(\delay, [\out, ~gainbus], ~grp[3], \addToTail);
 x.free;
+
+
+z = [5, 2, 4];
+a = 0;
+while({z[a] != 2}, {
+	z[a].postln;
+	a = a + 1;
+});
+
+~reset_to_event = {
+	| num |
+	e.keysValuesDo({
+		|key, val|
+		var result;
+		result = key.findRegexp("[0-9]+");
+		if(result.size > 0, {
+			if(result[0][1] >= num, {
+				val.reset;
+			}, {
+				val.stop;
+			});
+		});
+	});
+	i = 0;
+	~event_counter = 0;
+	while({
+		var val;
+		val = ~event_order_list[i][0].findRegexp("[0-9]+");
+		if(val.size == 0, {true}, {val[0][1] >= num})
+	}, {
+		~event_counter = ~event_counter + 1;
+		i += 1;
+	});
+	("--------------------------------------\nReset to measure " ++ num ++ ".\n--------------------------------------").postln;
+	nil
+};
+
+
+// Performs a Cmd+., resets all events, and recreates groups.
+~full_reset = {
+	Routine({
+		CmdPeriod.run;
+		0.5.wait;
+		e.keysValuesDo({|key, val| val.reset});  // reset all events including main
+		~grp = Array.fill(10, {Group.new(s, \addToTail)});
+		e["main"].next;
+	}).play;
+	~event_counter = 0;
+	"--------------------------------------\nFull reset performed.\n--------------------------------------".postln;
+	nil
+};
