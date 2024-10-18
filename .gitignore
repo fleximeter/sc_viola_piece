@@ -1,3 +1,6 @@
+# Directories
+samples/
+
 # Audio files
 *.mid
 *.wav

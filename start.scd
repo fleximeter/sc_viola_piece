@@ -18,16 +18,11 @@ Server.supernova;
 
 // Loads files and establishes basic globals
 ~file_loader = {
-    // It is necessary to set the root directory because we might be loading samples
-    // from a different location depending on the computer
-    //~root_sample_dir = "D:/";  // for desktop at home
-    //~root_sample_dir = "C:/Users/jeffr/";  // for laptop
-    ~root_sample_dir = "/Users/jmartin50/";  // for studio Mac
-
     // Basic useful constants
     ~partconv_size = 512;  // project-wide STFT window size for convolution
     ~fft_size = 2048;  // project-wide STFT window size
-    ~mic_zero = 8;     // the zero mic - NOTE on the RME in the studio it is 8!
+    ~mic_zero = 8;     // the zero mic - NOTE on the RME in the studio it is 8! 
+    ~root_sample_dir = thisProcess.nowExecutingPath;
 
     // Global buffers
     ~bufs = Array.fill(20, {Buffer.alloc(s, 20 * s.sampleRate)});    // buffers for sampling live audio
