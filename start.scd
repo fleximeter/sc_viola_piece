@@ -145,9 +145,10 @@ Server.supernova;
 	i = 0;
 	~event_counter = 0;
 	while({
-		var val;
+		var val, result;
 		val = ~event_order_list[i][0].findRegexp("[0-9]+");
-		if(val.size == 0, {true}, {val[0][1] >= num})
+		if(val.size == 0, {result = true}, {result = val[0][1] >= num});
+        result
 	}, {
 		~event_counter = ~event_counter + 1;
 		i += 1;

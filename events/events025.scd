@@ -204,6 +204,172 @@ e.put("e35", Routine({
 }));
 
 
+// EVENT 41
+// SAMPLE
+e.put("e41", Routine({
+	var control, control_specs,	synths, synths_out;
+
+	// CONTROLS ///////////////////////////////////////////////////////////////
+	control_specs = [
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
+	];
+
+	control = Array.fill(control_specs.size, {
+		| i |
+		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+	});
+
+	// SYNTHS ///////////////////////////////////////////////////////////////
+	synths = List();
+    synths.add(Synth(\sampler_env, [\out, ~audiobus[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["ede"]["buffer"], \dur, 2, \release_time, 0.2], ~grp[1], \addToTail));
+    
+    // SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+	synths_out = List();
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~gainbus, \mul_sig, ~controlbus[3], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[4], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+    "41 UPDATE 41.0: Playing sample.".postln;
+    1.5.wait;
+
+	synths_out.do({|item| item.set(\gate, 0)});
+	"41 UPDATE 41.1: Event 41 fading out.".postln;
+    
+    1.wait;
+	synths_out.do({|item| item.free});
+	synths.do({|item| item.free});
+	control.do({|item| item.free});
+	"41 UPDATE 41.2: Event 41 kill stage complete. Event finished.".postln;
+}));
+
+// EVENT 42
+// SAMPLE
+e.put("e42", Routine({
+	var control, control_specs,	synths, synths_out;
+
+	// CONTROLS ///////////////////////////////////////////////////////////////
+	control_specs = [
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
+	];
+
+	control = Array.fill(control_specs.size, {
+		| i |
+		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+	});
+
+	// SYNTHS ///////////////////////////////////////////////////////////////
+	synths = List();
+    synths.add(Synth(\sampler_env, [\out, ~audiobus[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["ede"]["buffer"], \dur, 2, \release_time, 0.2], ~grp[1], \addToTail));
+    
+    // SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+	synths_out = List();
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~gainbus, \mul_sig, ~controlbus[3], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[4], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+    "42 UPDATE 42.0: Playing sample.".postln;
+    1.5.wait;
+
+	synths_out.do({|item| item.set(\gate, 0)});
+	"42 UPDATE 42.1: Event 42 fading out.".postln;
+    
+    1.wait;
+	synths_out.do({|item| item.free});
+	synths.do({|item| item.free});
+	control.do({|item| item.free});
+	"42 UPDATE 42.2: Event 42 kill stage complete. Event finished.".postln;
+}));
+
+// EVENT 43
+// SAMPLE
+e.put("e43", Routine({
+	var control, control_specs,	synths, synths_out;
+
+	// CONTROLS ///////////////////////////////////////////////////////////////
+	control_specs = [
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
+	];
+
+	control = Array.fill(control_specs.size, {
+		| i |
+		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+	});
+
+	// SYNTHS ///////////////////////////////////////////////////////////////
+	synths = List();
+    synths.add(Synth(\sampler_env, [\out, ~audiobus[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["ede"]["buffer"], \dur, 2, \release_time, 0.2], ~grp[1], \addToTail));
+    
+    // SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+	synths_out = List();
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~gainbus, \mul_sig, ~controlbus[3], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[4], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+    "43 UPDATE 43.0: Playing sample.".postln;
+    1.5.wait;
+
+	synths_out.do({|item| item.set(\gate, 0)});
+	"43 UPDATE 43.1: Event 43 fading out.".postln;
+    
+    1.wait;
+	synths_out.do({|item| item.free});
+	synths.do({|item| item.free});
+	control.do({|item| item.free});
+	"43 UPDATE 43.2: Event 43 kill stage complete. Event finished.".postln;
+}));
+
+// EVENT 44
+// SAMPLE
+e.put("e44", Routine({
+	var control, control_specs,	synths, synths_out;
+
+	// CONTROLS ///////////////////////////////////////////////////////////////
+	control_specs = [
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
+	];
+
+	control = Array.fill(control_specs.size, {
+		| i |
+		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+	});
+
+	// SYNTHS ///////////////////////////////////////////////////////////////
+	synths = List();
+    synths.add(Synth(\sampler_env, [\out, ~audiobus[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["ede"]["buffer"], \dur, 2, \release_time, 0.2], ~grp[1], \addToTail));
+    
+    // SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+	synths_out = List();
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~gainbus, \mul_sig, ~controlbus[3], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[0][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[4], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+    "44 UPDATE 44.0: Playing sample.".postln;
+    1.5.wait;
+
+	synths_out.do({|item| item.set(\gate, 0)});
+	"44 UPDATE 44.1: Event 44 fading out.".postln;
+    
+    1.wait;
+	synths_out.do({|item| item.free});
+	synths.do({|item| item.free});
+	control.do({|item| item.free});
+	"44 UPDATE 44.2: Event 44 kill stage complete. Event finished.".postln;
+}));
+
+
+
 // Event 45: feedback
 e.put("e45", Routine({
 	var control, control_specs,	synths, synths_out;
