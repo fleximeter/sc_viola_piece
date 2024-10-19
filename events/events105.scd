@@ -29,9 +29,9 @@ e.put("e105", Routine({
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
 	synths_out = List();
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \mul_sig, ~controlbus[2], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[2][0], \out, ~gainbus, \mul_sig, ~controlbus[3], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[2][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[4], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][0], \out, ~audiobus[1][1], \mul_sig, ~controlbus[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][1], \out, ~gainbus, \mul_sig, ~controlbus[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 
 
     // 1 freeze
@@ -83,9 +83,9 @@ e.put("e128", Routine({
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
 	synths_out = List();
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[2][0], \out, ~audiobus[3][0], \mul_sig, ~controlbus[3], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[3][0], \out, ~gainbus, \mul_sig, ~controlbus[4], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[3][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[5], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[2][0], \out, ~audiobus[2][1], \mul_sig, ~controlbus[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[2][1], \out, ~gainbus, \mul_sig, ~controlbus[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[2][1], \out, ~reverbbus[0], \mul_sig, ~controlbus[5], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "128 UPDATE 128.0: Event 128 running and ready for freeze.".yield;
     synth_freeze.set(\freeze, 1.0);
     "128 UPDATE 128.1: Event 128 freeze.".yield;
