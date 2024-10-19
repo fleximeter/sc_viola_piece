@@ -57,7 +57,7 @@ Server.supernova;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events068.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events083.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events105.scd").load;
-    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "event_runner.scd").load;
+    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/event_runner.scd").load;
 };
 
 // Prepare impulse response buffers for PartConv
@@ -135,7 +135,9 @@ Server.supernova;
 		var result;
 		result = key.findRegexp("[0-9]+");
 		if(result.size > 0, {
-			if(result[0][1] >= num, {
+			var eventnum;
+			eventnum = result[0][1].asInteger;
+			if(eventnum >= num, {
 				val.reset;
 			}, {
 				val.stop;
@@ -145,13 +147,15 @@ Server.supernova;
 	i = 0;
 	~event_counter = 0;
 	while({
-		var val, result;
-		val = ~event_order_list[i][0].findRegexp("[0-9]+");
-		if(val.size == 0, {result = true}, {result = val[0][1] >= num});
-        result
+		var regex, val;
+		regex = ~event_order_list[i][0].findRegexp("[0-9]+");
+		if(regex.size == 0, {true}, {
+			val = regex[0][1].asInteger;
+			val < num
+		})
 	}, {
 		~event_counter = ~event_counter + 1;
-		i += 1;
+		i = i + 1;
 	});
 	("--------------------------------------\nReset to measure " ++ num ++ ".\n--------------------------------------").postln;
 	nil

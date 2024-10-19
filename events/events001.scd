@@ -383,10 +383,10 @@ e.put("e4", Routine({
 
 	// CONTROLS ///////////////////////////////////////////////////////////////
 	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5], "times" -> #[10], "curves" -> #[0]],
-		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5], "times" -> #[10], "curves" -> #[0]],
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[10, 20], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 20], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 20], "curves" -> #[0, 0]],
 	];
 
 	control = Array.fill(control_specs.size, {
@@ -425,10 +425,10 @@ e.put("e5", Routine({
 
 	// CONTROLS ///////////////////////////////////////////////////////////////
 	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-	    Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 1.0], "times" -> #[10], "curves" -> #[0]],
-		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5], "times" -> #[10], "curves" -> #[0]],
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
+	    Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 40], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 40], "curves" -> #[0, 0]],
 	];
 
 	control = Array.fill(control_specs.size, {
@@ -469,10 +469,51 @@ e.put("e6", Routine({
 
 	// CONTROLS ///////////////////////////////////////////////////////////////
 	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5], "times" -> #[10], "curves" -> #[0]],
-		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5], "times" -> #[10], "curves" -> #[0]],
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[10, 20], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 20], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 20], "curves" -> #[0, 0]],
+	];
+
+	control = Array.fill(control_specs.size, {
+		| i |
+		Synth(\ctrl_env, [\out, ~controlbus[i+10], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+	});
+
+	// SYNTHS ///////////////////////////////////////////////////////////////
+	synths = List();
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus[0][1], \pos, ~controlbus[10], \width, ~controlbus[11]], ~grp[1], \addToTail));
+
+	// add processing synths
+	synths.add(Synth(\fb1, [\in, ~audiobus[0][1], \out, ~audiobus[1][1], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8]], ~grp[3], \addToTail));
+
+    // SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+	synths_out = List();
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][1], \out, ~gainbus, \mul_sig, ~controlbus[12], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus[13], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
+    "6 UPDATE 6.0: Event 6 running.".yield;
+
+	// SHUTDOWN ///////////////////////////////////////////////////////////////
+   	synths_out.do({|item| item.set(\gate, 0)});
+    "6 UPDATE 6.1: Event 6 fading out.".yield;
+	synths_out.do({|item| item.free});
+	synths.do({|item| item.free});
+	control.do({|item| item.free});
+    "6 UPDATE 6.2: Event 6 kill stage complete. Event finished.".postln;
+}));
+
+// Event 7: feedback
+e.put("e7", Routine({
+	var control, control_specs,	synths, synths_out;
+
+	// CONTROLS ///////////////////////////////////////////////////////////////
+	control_specs = [
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 40], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 40], "curves" -> #[0, 0]],
 	];
 
 	control = Array.fill(control_specs.size, {
@@ -493,96 +534,16 @@ e.put("e6", Routine({
 	synths_out = List();
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][1], \out, ~gainbus, \mul_sig, ~controlbus[22], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus[23], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-    "6 UPDATE 6.0: Event 6 running.".yield;
+    "7 UPDATE 7.0: Event 7 running.".yield;
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
    	synths_out.do({|item| item.set(\gate, 0)});
-    "6 UPDATE 6.1: Event 6 fading out.".yield;
+    "7 UPDATE 7.1: Event 7 fading out.".yield;
 	synths_out.do({|item| item.free});
 	synths.do({|item| item.free});
 	control.do({|item| item.free});
-    "6 UPDATE 6.2: Event 6 kill stage complete. Event finished.".postln;
+    "7 UPDATE 7.2: Event 7 kill stage complete. Event finished.".postln;
 }));
 
-
-// this alternate event 7 uses a sampler, not live audio
-e.put("e7alt", Routine({
-	var control, control_osc, control_specs, synth_freeze, synths, synths_out;
-
-	// CONTROLS ///////////////////////////////////////////////////////////////
-	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_above", "levels" -> #[0.1, 20, 20], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift1", "levels" -> #[1.33333333333333, 1.25, 1.25], "times" -> #[15, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0.0, -0.5, -0.5], "times" -> #[15, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pan_pos1", "levels" -> #[2.0, 1.5, 1.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pan_pos2", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_delay", "levels" -> #[0.2, 0.3, 0.2, 0.2], "times" -> #[3, 3, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
-		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
-	];
-
-	control = Array.fill(control_specs.size, {
-		| i |
-		Synth(\ctrl_env, [\out, ~controlbus[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
-	});
-
-    // lpf oscillator control
-    control_osc = [
-        Synth(\ctrl_tri, [\out, ~controlbus[12], \freq, 0.5, \high, 10000, \low, 440], ~grp[0])
-    ];
-
-	// SYNTHS ///////////////////////////////////////////////////////////////
-	synths = List();
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
-    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus[0][1], \pos, ~controlbus[0], \width, ~controlbus[1]], ~grp[1], \addToTail));
-
-    // freeze and mag below
-    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \above, 3, \amp_fluctuation, 0.1], ~grp[1], \addToTail);
-	synths.add(Synth(\fft_magabove, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \above, ~controlbus[2]], ~grp[2], \addToTail));
-
-    // pitch shift, independent panning, delay
-    synths.add(Synth(\pitchshift1, [\in, ~audiobus[2][0], \out, ~audiobus[3][0], \ratio1, ~controlbus[3], \mul, 0.5], ~grp[3], \addToTail));
-	synths.add(Synth(\pitchshift1_et, [\in, ~audiobus[2][0], \out, ~audiobus[3][1], \semitones1, ~controlbus[4], \mul, 0.5], ~grp[3], \addToTail));
-    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus[3][0], \out, ~audiobus[4][0], \pos, ~controlbus[5], \width, ~controlbus[6]], ~grp[4], \addToTail));
-    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus[3][1], \out, ~audiobus[4][0], \pos, ~controlbus[7], \width, ~controlbus[8]], ~grp[4], \addToTail));
-    synths.add(Synth(\passthrough8, [\in, ~audiobus[2][0], \out, ~audiobus[4][0]], ~grp[4], \addToTail));
-	synths.add(Synth(\lpf8, [\in, ~audiobus[4][0], \out, ~audiobus[5][0], \freq, ~controlbus[12]], ~grp[4], \addToTail));
-
-    // comb delay of viola line, send directly to gain and reverb stages
-   	synths.add(Synth(\varcombdelay, [\in, ~audiobus[0][2], \out, ~audiobus[5][0], \time, ~controlbus[9], \decaytime, 3], ~grp[2], \addToTail));
-
-	// SENDS
-    // Set attack and release time for this event here.
-    // Also set dry and wet reverb gain levels here.
-	synths_out = List();
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][0], \out, ~gainbus, \mul_sig, ~controlbus[10], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus[5][0], \out, ~reverbbus[0], \mul_sig, ~controlbus[11], \attack_time, 0.01, \release_time, 0.1], ~grp[5], \addToTail));
-    "7 UPDATE 7.0: Event 7 running and ready for freeze.".yield;
-
-    synth_freeze.set(\freeze, 1.0);
-    "7 UPDATE 7.1: Event 7 freeze.".yield;
-
-    // open the comb delay
-    synths.add(Synth(\passthrough8, [\in, ~audiobus[0][1], \out, ~audiobus[0][2], \attack_time, 0.5, \release_time, 0.5], ~grp[1], \addToTail));
-    "7 UPDATE 7.2: Event 7 delay open.".yield;
-
-    // close the comb delay
-    synths[synths.size - 1].set(\gate, 0);
-    "7 UPDATE 7.3: Event 7 delay closed.".yield;
-
-    // kill stage
-	synths_out.do({|item| item.set(\gate, 0)});
-    "7 UPDATE 7.4: Event 7 fading out.".yield;
-	synths_out.do({|item| item.free});
-	synth_freeze.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-	control_osc.do({|item| item.free});
-    "7 UPDATE 7.5: Event 7 kill stage complete. Event finished.".postln;
-}));
 
 )

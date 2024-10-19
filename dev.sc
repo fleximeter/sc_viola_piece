@@ -47,6 +47,7 @@ e["feedback"].next;
 
 ~event_counter = 0;
 ~reset_to_event.(3);
+~event_counter.postln;
 
 // check sound
 {PanAz.ar(8, SinOsc.ar(440, 0, 0.1, 0), 0.5, 1, 2.0)}.play;
@@ -67,13 +68,9 @@ x = Synth(\delay, [\out, ~gainbus], ~grp[3], \addToTail);
 x.free;
 
 
-z = [5, 2, 4];
-a = 0;
-while({z[a] != 2}, {
-	z[a].postln;
-	a = a + 1;
-});
-
+// Performs a reset for all events, except main, where the measure number of the event
+// is greater than or equal to the specified measure number. This allows starting
+// partway through the piece.
 ~reset_to_event = {
 	| num |
 	e.keysValuesDo({
@@ -81,7 +78,9 @@ while({z[a] != 2}, {
 		var result;
 		result = key.findRegexp("[0-9]+");
 		if(result.size > 0, {
-			if(result[0][1] >= num, {
+			var eventnum;
+			eventnum = result[0][1].asInteger;
+			if(eventnum >= num, {
 				val.reset;
 			}, {
 				val.stop;
@@ -91,16 +90,22 @@ while({z[a] != 2}, {
 	i = 0;
 	~event_counter = 0;
 	while({
-		var val;
-		val = ~event_order_list[i][0].findRegexp("[0-9]+");
-		if(val.size == 0, {true}, {val[0][1] >= num})
+		var regex, val;
+		regex = ~event_order_list[i][0].findRegexp("[0-9]+");
+		if(regex.size == 0,
+		{true},
+		{
+			val = regex[0][1].asInteger;
+			val < num
+		})
 	}, {
 		~event_counter = ~event_counter + 1;
-		i += 1;
+		i = i + 1;
 	});
 	("--------------------------------------\nReset to measure " ++ num ++ ".\n--------------------------------------").postln;
 	nil
 };
+
 
 
 // Performs a Cmd+., resets all events, and recreates groups.
