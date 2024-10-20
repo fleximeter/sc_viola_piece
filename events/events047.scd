@@ -179,13 +179,13 @@ e.put("e54", Routine({
     
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
     
     2.wait;
 
@@ -230,13 +230,13 @@ e.put("e58", Routine({
     
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
     
     2.wait;
 
@@ -327,7 +327,7 @@ e.put("e62", Routine({
     
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));  
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));  
     1.5.wait;
 
 	synths_out.do({|item| item.set(\gate, 0)});
@@ -371,7 +371,7 @@ e.put("e63", Routine({
     
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));  
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));  
     1.5.wait;
 
 	synths_out.do({|item| item.set(\gate, 0)});
@@ -414,7 +414,7 @@ e.put("e64", Routine({
     
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));  
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));  
     1.5.wait;
 
 	synths_out.do({|item| item.set(\gate, 0)});
@@ -457,7 +457,7 @@ e.put("e65a", Routine({
 
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-	synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
+	synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
     synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 1, \amp_fluctuation, 0.1], ~grp[1], \addToTail);
     
 	// SENDS

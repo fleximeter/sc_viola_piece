@@ -75,6 +75,7 @@ e.put("e68", Routine({
 	synths_out.do({|item| item.set(\gate, 0)});
 	"68 UPDATE 68.1: Event 68 fading out.".postln;
 	2.wait;
+	patterns.do({|item| item.stop});
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -157,6 +158,7 @@ e.put("e69", Routine({
 	synths_out.do({|item| item.set(\gate, 0)});
 	"69 UPDATE 69.1: Event 69 fading out.".postln;
 	2.wait;
+	patterns.do({|item| item.stop});
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -237,6 +239,7 @@ e.put("e70", Routine({
 	synths_out.do({|item| item.set(\gate, 0)});
 	"70 UPDATE 70.1: Event 70 fading out.".postln;
 	2.wait;
+	patterns.do({|item| item.stop});
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -324,6 +327,7 @@ e.put("e72", Routine({
 	synths_out.do({|item| item.set(\gate, 0)});
 	"72 UPDATE 72.1: Event 72 fading out.".postln;
 	2.wait;
+	patterns.do({|item| item.stop});
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -411,6 +415,7 @@ e.put("e73", Routine({
 	synths_out.do({|item| item.set(\gate, 0)});
 	"73 UPDATE 73.1: Event 73 fading out.".postln;
 	2.wait;
+	patterns.do({|item| item.stop});
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -468,12 +473,14 @@ e.put("e75", Routine({
 	tempo_clock = TempoClock(96/60);
 	pattern.play(tempo_clock);
 
-    "75 UPDATE 75.0: Event 75 pattern start.".yield;
-
+    "75 UPDATE 75.0: Event 75 pattern start.".postln;
+	15.wait;
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
 	synths_out.do({|item| item.set(\gate, 0)});
-	"75 UPDATE 75.1: Event 75 fading out.".yield;
+	"75 UPDATE 75.1: Event 75 fading out.".postln;
+	2.wait;
+	pattern.stop;
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -532,12 +539,14 @@ e.put("e76", Routine({
 	tempo_clock = TempoClock(96/60);
 	pattern.play(tempo_clock);
 
-    "76 UPDATE 76.0: Event 76 pattern start.".yield;
-
+    "76 UPDATE 76.0: Event 76 pattern start.".postln;
+	22.wait;
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
 	synths_out.do({|item| item.set(\gate, 0)});
-	"76 UPDATE 76.1: Event 76 fading out.".yield;
+	"76 UPDATE 76.1: Event 76 fading out.".postln;
+	2.wait;
+	pattern.stop;
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -595,12 +604,14 @@ e.put("e79", Routine({
 	tempo_clock = TempoClock(96/60);
 	pattern.play(tempo_clock);
 
-    "79 UPDATE 79.0: Event 79 pattern start.".yield;
-
+    "79 UPDATE 79.0: Event 79 pattern start.".postln;
+	6.wait;
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
 	synths_out.do({|item| item.set(\gate, 0)});
-	"79 UPDATE 79.1: Event 79 fading out.".yield;
+	"79 UPDATE 79.1: Event 79 fading out.".postln;
+	2.wait;
+	pattern.stop;
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -640,7 +651,7 @@ e.put("e82a", Routine({
 		\pan_mode, 1,
 		\pos, Pwhite(-0.4, 0.4, inf),
 		\out, ~audiobus_grp1[0][0],
-		\mul, 0.25,
+		\mul, -18.dbamp,
 		\dur, Pseq(Array.interpolation(16, 0.5, 0.125) ++ Array.interpolation(16, 0.125, 0.5), 3),
 		\group, ~grp[1],
 		\addAction, \addToTail,
@@ -652,7 +663,7 @@ e.put("e82a", Routine({
 		\pan_mode, 1,
 		\pos, Pwhite(-0.4, 0.4, inf),
 		\out, ~audiobus_grp1[0][0],
-		\mul, 0.25,
+		\mul, -18.dbamp,
 		\dur, Pseq(Array.interpolation(16, 0.5, 0.125) ++ Array.interpolation(16, 0.125, 0.5), 3),
 		\group, ~grp[1],
 		\addAction, \addToTail,
@@ -672,12 +683,14 @@ e.put("e82a", Routine({
 	tempo_clock = TempoClock(96/60);
 	patterns.do{|pattern| pattern.play(tempo_clock, quant: 1)};
 
-    "82a UPDATE 82a.0: Event 82a pattern start.".yield;
-
+    "82a UPDATE 82a.0: Event 82a pattern start.".postln;
+	20.wait;
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
 	synths_out.do({|item| item.set(\gate, 0)});
-	"82a UPDATE 82a.1: Event 82a fading out.".yield;
+	"82a UPDATE 82a.1: Event 82a fading out.".postln;
+	2.wait;
+    patterns.do({|item| item.stop});
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -778,12 +791,15 @@ e.put("e82b", Routine({
 	tempo_clock = TempoClock(96/60);
 	pattern.play(tempo_clock, quant: 1);
 
-    "82a UPDATE 82a.0: Event 82a pattern start.".yield;
+    "82a UPDATE 82a.0: Event 82a pattern start.".postln;
+	30.wait;
 
 
 	// SHUTDOWN ///////////////////////////////////////////////////////////////
 	synths_out.do({|item| item.set(\gate, 0)});
-	"82a UPDATE 82a.1: Event 82a fading out.".yield;
+	"82a UPDATE 82a.1: Event 82a fading out.".postln;
+	2.wait;
+	pattern.stop;
 	tempo_clock.free;
 	synths_out.do({|item| item.free});
     synths.do({|item| item.free});

@@ -10,8 +10,8 @@ e.put("e105", Routine({
 
 	// CONTROLS ///////////////////////////////////////////////////////////////
 	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.5, 0.0, 0.0, 0.5, 0.0, 0.8, 0.5, 1.0, 0.2, 0.0], "times" -> #[3, 3, 1, 3, 5, 4, 4, 8, 5, 4], "curves" -> #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[0.8, 0.5, 0.8, 0.3], "times" -> #[10, 10, 10, 10], "curves" -> #[0, 0, 0, 0]],
 		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.2, 0.5, 0.2, 0.7], "times" -> #[10, 10, 10, 10], "curves" -> #[0, 0, 0, 0]],
@@ -35,7 +35,7 @@ e.put("e105", Routine({
 
 
     // 1 freeze
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["ff"]["c"]["48"]["buffer"]], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["ff"]["c"]["48"]["buffer"]], ~grp[1], \addToTail));
     synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \above, 1.5, \release_time, freeze_release_time, \mul, 0.5], ~grp[1], \addToTail);
     "105 UPDATE 105.0: Event 105 running and ready for freeze (C3).".yield;
     synth_freeze.set(\freeze, 1.0);
@@ -75,7 +75,7 @@ e.put("e109", Routine({
 
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["other"]["8ve_harmonics_trill"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["8ve_harmonics_trill"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
     
     // SENDS
     // Set attack and release time for this event here.
