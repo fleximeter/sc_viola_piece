@@ -763,8 +763,8 @@ e.put("e82b", Routine({
 	synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \semitones, ~controlbus_grp2[5], \delayint, ~controlbus_grp2[6], \mul, ~controlbus_grp2[7]], ~grp[2], \addToTail));
 	synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \semitones, ~controlbus_grp2[8], \delayint, ~controlbus_grp2[9], \mul, ~controlbus_grp2[10]], ~grp[2], \addToTail));
 	synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \semitones, ~controlbus_grp2[11], \delayint, ~controlbus_grp2[12], \mul, ~controlbus_grp2[13]], ~grp[2], \addToTail));
-	//synth_fft = Synth(\fft_magbelow2, [\in, ~audiobus[0][0], \out, ~audiobus[1][0], \threshold, 0.2, \rmfreq, 200, \rmmul, 0.5, \lpf, 4000, \mul, 10], ~grp[2], \addToTail);
-    //synth_filter = Synth(\bpf8, [\in, ~audiobus[1][0], \out, ~audiobus[2][0], \freq, ~controlbus[0], \mul, ~controlbus[1]], ~grp[2], \addToTail);
+	//synth_fft = Synth(\fft_magbelow2, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \threshold, 0.2, \rmfreq, 200, \rmmul, 0.5, \lpf, 4000, \mul, 10], ~grp[2], \addToTail);
+    //synth_filter = Synth(\bpf8, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[2][0], \freq, ~controlbus_grp2[0], \mul, ~controlbus_grp2[1]], ~grp[2], \addToTail);
 
 
 	// SENDS

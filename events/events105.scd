@@ -36,7 +36,7 @@ e.put("e105", Routine({
 
     // 1 freeze
     synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["ff"]["c"]["48"]["buffer"]], ~grp[1], \addToTail));
-    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp2[0][0], \out, ~audiobus[1][0], \above, 1.5, \release_time, freeze_release_time, \mul, 0.5], ~grp[1], \addToTail);
+    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \above, 1.5, \release_time, freeze_release_time, \mul, 0.5], ~grp[1], \addToTail);
     "105 UPDATE 105.0: Event 105 running and ready for freeze (C3).".yield;
     synth_freeze.set(\freeze, 1.0);
     "105 UPDATE 105.1: Event 105 freeze (C3).".yield;

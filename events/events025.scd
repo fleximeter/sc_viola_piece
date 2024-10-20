@@ -52,7 +52,7 @@ e.put("e25", Routine({
 }));
 
 // EVENT 25
-e.put("e25", Routine({
+e.put("e26", Routine({
 	var control, control_specs,	synths_freeze, synths, synths_out;
     var freeze_release_time;
     freeze_release_time = 2;

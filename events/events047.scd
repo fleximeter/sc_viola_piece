@@ -76,13 +76,13 @@ e.put("e48", Routine({
     
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["89"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["89"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     roll_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["77"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["77"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     roll_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["d"]["65"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["d"]["65"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     roll_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["c"]["53"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["c"]["53"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     
     1.5.wait;
 
@@ -128,13 +128,13 @@ e.put("e51", Routine({
     
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[2][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["89"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["89"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     roll_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[2][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["77"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["77"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     roll_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[2][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["d"]["65"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["d"]["65"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     roll_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[2][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["c"]["53"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["c"]["53"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     
     1.5.wait;
 
@@ -272,7 +272,7 @@ e.put("e60", Routine({
 
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-	synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbu_grp2[0], \width, ~controlbus_grp2[1], \attack_time, 0.2, \release_time, 0.2], ~grp[1], \addToTail));
+	synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1], \attack_time, 0.2, \release_time, 0.2], ~grp[1], \addToTail));
 	synths.add(Synth(\combdelay, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \delaytime, 1, \decaytime, 6], ~grp[1], \addToTail));
 
 	// SENDS

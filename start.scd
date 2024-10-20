@@ -69,7 +69,6 @@ Server.supernova;
     // Control buses come in 3 groups so that successive events
     // do not share the same control buses. This prevents some
     // annoying bus writes.
-    ~controlbus = Array.fill(20, {Bus.control(s, 1)});
     ~controlbus_grp1 = Array.fill(20, {Bus.control(s, 1)});
     ~controlbus_grp2 = Array.fill(20, {Bus.control(s, 1)});
     ~controlbus_grp3 = Array.fill(20, {Bus.control(s, 1)});
@@ -87,14 +86,6 @@ Server.supernova;
     // Audio bus arrays. Audio signals are 8-channel.
     // The audio buses also come in 3 groups so that successive
     // events do not share the same audio buses.
-    ~audiobus = [
-        Array.fill(10, {Bus.audio(s, 8)}),
-        Array.fill(10, {Bus.audio(s, 8)}),
-        Array.fill(10, {Bus.audio(s, 8)}),
-        Array.fill(10, {Bus.audio(s, 8)}),
-        Array.fill(10, {Bus.audio(s, 8)}),
-        Array.fill(10, {Bus.audio(s, 8)}),
-    ];
     ~audiobus_grp1 = [
         Array.fill(10, {Bus.audio(s, 8)}),
         Array.fill(10, {Bus.audio(s, 8)}),

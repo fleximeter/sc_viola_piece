@@ -76,7 +76,7 @@ e.put("e83", Routine({
 
     // 6 freeze
     synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
-    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus[_grp10][1], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
+    synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][1], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
     "83 UPDATE 83.11: Event 83 ready for freeze 6 (D5).".yield;
     synths_freeze[5].set(\freeze, 1.0);
     "83 UPDATE 83.12: Event 83 freeze 6 (D5).".yield;
