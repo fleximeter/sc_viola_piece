@@ -262,6 +262,49 @@ e.put("e98", Routine({
 }));
 
 
+// Event 99: feedback
+e.put("e99", Routine({
+	var control, control_specs,	synths, synths_out;
+
+	// CONTROLS ///////////////////////////////////////////////////////////////
+	control_specs = [
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[10, 20], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 20], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 20], "curves" -> #[0, 0]],
+	];
+
+	control = Array.fill(control_specs.size, {
+		| i |
+		Synth(\ctrl_env, [\out, ~controlbus_grp3[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+	});
+
+	// SYNTHS ///////////////////////////////////////////////////////////////
+	synths = List();
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp3[0][0], \pos, ~controlbus_grp3[0], \width, ~controlbus_grp3[1]], ~grp[1], \addToTail));
+
+	// add processing synths
+	synths.add(Synth(\fb1, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8]], ~grp[2], \addToTail));
+
+    // SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+	synths_out = List();
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][0], \out, ~audiobus_grp3[1][1], \mul_sig, ~controlbus_grp3[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp3[3], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
+    "99 UPDATE 99.0: Event 99 running.".yield;
+
+	// SHUTDOWN ///////////////////////////////////////////////////////////////
+   	synths_out.do({|item| item.set(\gate, 0)});
+    "99 UPDATE 99.1: Event 99 fading out.".yield;
+	synths_out.do({|item| item.free});
+	synths.do({|item| item.free});
+	control.do({|item| item.free});
+    "99 UPDATE 99.2: Event 99 kill stage complete. Event finished.".postln;
+}));
+
 // EVENT 101
 // PS 8ve down
 e.put("e101", Routine({
@@ -283,7 +326,7 @@ e.put("e101", Routine({
 
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
-	synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1]], ~grp[1], \addToTail));
+	synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp1[1]], ~grp[1], \addToTail));
 
 	synths.add(Synth(\pitchshift, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \ratio, 1/2], ~grp[2], \addToTail));
 
@@ -308,5 +351,53 @@ e.put("e101", Routine({
 	control.do({|item| item.free});
 	"101 UPDATE 101.3: Event 101 kill stage complete. Event finished.".postln;
 }));
+
+// EVENT 104
+// PS DELAY
+e.put("e104", Routine({
+	var control, control_specs,	synths, synths_out;
+
+	// CONTROLS ///////////////////////////////////////////////////////////////
+	control_specs = [
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+	];
+
+	control = Array.fill(control_specs.size, {
+		| i |
+		Synth(\ctrl_env, [\out, ~controlbus_grp1[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+	});
+
+	// SYNTHS ///////////////////////////////////////////////////////////////
+	synths = List();
+	synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus_grp1[1]], ~grp[1], \addToTail));
+
+	synths.add(Synth(\psdelay3_et, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \semitones, -3, \delayint, 60/84/2], ~grp[2], \addToTail));
+
+    // SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+	synths_out = List();
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[1][1], \mul_sig, ~controlbus_grp1[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+	"104 UPDATE 104.0: Pitch shift in effect.".yield;
+
+	synths[0].set(\gate, 0);
+	"104 UPDATE 104.1: Mic closed.".yield;
+
+
+	synths_out.do({|item| item.set(\gate, 0)});
+	"104 UPDATE 104.2: Event 104 fading out.".yield;
+
+	synths_out.do({|item| item.free});
+	synths.do({|item| item.free});
+	control.do({|item| item.free});
+	"104 UPDATE 104.3: Event 104 kill stage complete. Event finished.".postln;
+}));
+
 
 )
