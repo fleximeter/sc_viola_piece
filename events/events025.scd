@@ -262,15 +262,15 @@ e.put("e31", Routine({
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["g"]["55"]["buffer"], \dur, 60/108, \release_time, 0.2], ~grp[1], \addToTail));
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["d"]["64"]["buffer"], \dur, 60/108, \release_time, 0.2], ~grp[1], \addToTail));
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"], \dur, 60/108, \release_time, 0.2], ~grp[1], \addToTail));
-    "31 UPDATE 31.0: Pitch shift closed, second chord playing.".yield;    
+    "31 UPDATE 31.1: Pitch shift closed, second chord playing.".yield;    
 
 	synths_out.do({|item| item.set(\gate, 0)});
-	"31 UPDATE 31.1: Event 31 fading out.".yield;
+	"31 UPDATE 31.2: Event 31 fading out.".yield;
 
 	synths_out.do({|item| item.free});
 	synths.do({|item| item.free});
 	control.do({|item| item.free});
-	"31 UPDATE 31.2: Event 31 kill stage complete. Event finished.".postln;
+	"31 UPDATE 31.3: Event 31 kill stage complete. Event finished.".postln;
 }));
 
 // EVENT 33
@@ -350,10 +350,6 @@ e.put("e35", Routine({
     "35 UPDATE 35.0: Event 35 delay open 1.".yield;
 
     // 3 open/close pairs
-    synths[0].set(\gate, 0);
-    "35 UPDATE 35.1: Event 35 mic close 1. Ready for mic open 2.".yield;
-    synths[0].set(\gate, 1);
-    "35 UPDATE 35.1: Event 35 mic open 2. Ready for mic close 2.".yield;
     synths[0].set(\gate, 0);
     "35 UPDATE 35.1: Event 35 mic close 2.".yield;
 
