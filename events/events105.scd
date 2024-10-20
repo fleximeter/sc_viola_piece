@@ -61,8 +61,8 @@ e.put("e109", Routine({
 
 	// CONTROLS ///////////////////////////////////////////////////////////////
 	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
@@ -104,8 +104,8 @@ e.put("e128", Routine({
 
 	// CONTROLS ///////////////////////////////////////////////////////////////
 	control_specs = [
-		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0], "times" -> #[20], "curves" -> #[0]],
-		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0], "times" -> #[20], "curves" -> #[0]],
+		Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
+		Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "pitch_shift", "levels" -> #[0.0, 0.5, 8.0], "times" -> #[0.5, 4.5], "curves" -> #[0, 0]],
 		Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.5, 0.1, 0.0, 0.0], "times" -> #[3, 2, 0.3, 5], "curves" -> #[0, 0, 0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[0.8, 0.8, 0.8], "times" -> #[10, 10], "curves" -> #[0, 0]],
