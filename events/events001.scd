@@ -29,6 +29,14 @@ e.put("e1", Routine({
 		Synth(\ctrl_env, [\out, ~controlbus_grp1[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
 	});
 
+    // SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+	synths_out = List();
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][0], \out, ~audiobus_grp1[5][1], \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[12], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    
 	// SYNTHS ///////////////////////////////////////////////////////////////
 	synths = List();
 	synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus[1]], ~grp[1], \addToTail));
@@ -45,24 +53,24 @@ e.put("e1", Routine({
     synths.add(Synth(\passthrough8, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[4][0]], ~grp[2], \addToTail));
 	synths.add(Synth(\lpf8, [\in, ~audiobus_grp1[4][0], \out, ~audiobus_grp1[5][0], \freq, ~controlbus_grp1[9]], ~grp[4], \addToTail));
 
-	// SENDS
-    // Set attack and release time for this event here.
-    // Also set dry and wet reverb gain levels here.
-	synths_out = List();
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][0], \out, ~audiobus_grp1[5][1], \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[12], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    "1 UPDATE 1.0: Event 1 running and ready for freeze.".yield;
+    // freeze
+    Routine({
+        0.5.wait;
+        synth_freeze.set(\freeze, 1.0);
+    }).play;
+    "1 UPDATE 1.0: Event 1 running.".yield;
 
-    synth_freeze.set(\freeze, 1.0);
-    "1 UPDATE 1.1: Event 1 freeze.".yield;
-	synths_out.do({|item| item.set(\gate, 0)});
-    "1 UPDATE 1.2: Event 1 fading out.".yield;
-	synths_out.do({|item| item.free});
-	synth_freeze.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-    "1 UPDATE 1.3: Event 1 kill stage complete. Event finished.".postln;
+    // cleanup
+    Routine({
+        synths_out.do({|item| item.set(\gate, 0)});
+        1.5.wait;
+        synths_out.do({|item| item.free});
+        synth_freeze.free;
+        synths.do({|item| item.free});
+        control.do({|item| item.free});
+        "1 UPDATE 1.2: Event 1 kill stage complete. Event finished.".postln;
+    }).play;
+    "1 UPDATE 1.1: Event 1 fading out.".postln;
 }));
 
 
