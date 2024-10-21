@@ -219,198 +219,198 @@
             ]),
         ]),
         "sc", Dictionary.newFrom([
-			"brownnoise_slow_0-5", Dictionary.newFrom([
+            "brownnoise_slow_0-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_0-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_0-5.wav").fullPath),
             ]),
-			"brownnoise_slow_1", Dictionary.newFrom([
+            "brownnoise_slow_1", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_1.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_1.wav").fullPath),
             ]),
-			"brownnoise_slow_1-5", Dictionary.newFrom([
+            "brownnoise_slow_1-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_1-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_1-5.wav").fullPath),
             ]),
-			"brownnoise_slow_2", Dictionary.newFrom([
+            "brownnoise_slow_2", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_2.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_2.wav").fullPath),
             ]),
-			"brownnoise_slow_2-5", Dictionary.newFrom([
+            "brownnoise_slow_2-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_2-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_2-5.wav").fullPath),
             ]),
-			"brownnoise_slow_3", Dictionary.newFrom([
+            "brownnoise_slow_3", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_3.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_3.wav").fullPath),
             ]),
-			"brownnoise_slow_3-5", Dictionary.newFrom([
+            "brownnoise_slow_3-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_3-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_3-5.wav").fullPath),
             ]),
-			"brownnoise_slow_4", Dictionary.newFrom([
+            "brownnoise_slow_4", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_4.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_4.wav").fullPath),
             ]),
-			"brownnoise_slow_4-5", Dictionary.newFrom([
+            "brownnoise_slow_4-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_4-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_4-5.wav").fullPath),
             ]),
-			"brownnoise_slow_5", Dictionary.newFrom([
+            "brownnoise_slow_5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_5.wav").fullPath),
             ]),
-			"brownnoise_slow_5-5", Dictionary.newFrom([
+            "brownnoise_slow_5-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_5-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_5-5.wav").fullPath),
             ]),
-			"brownnoise_slow_6", Dictionary.newFrom([
+            "brownnoise_slow_6", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_6.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/slow_vibrato/noise_6.wav").fullPath),
             ]),
-			"brownnoise_medium_0-5", Dictionary.newFrom([
+            "brownnoise_medium_0-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_0-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_0-5.wav").fullPath),
             ]),
-			"brownnoise_medium_1", Dictionary.newFrom([
+            "brownnoise_medium_1", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_1.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_1.wav").fullPath),
             ]),
-			"brownnoise_medium_1-5", Dictionary.newFrom([
+            "brownnoise_medium_1-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_1-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_1-5.wav").fullPath),
             ]),
-			"brownnoise_medium_2", Dictionary.newFrom([
+            "brownnoise_medium_2", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_2.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_2.wav").fullPath),
             ]),
-			"brownnoise_medium_2-5", Dictionary.newFrom([
+            "brownnoise_medium_2-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_2-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_2-5.wav").fullPath),
             ]),
-			"brownnoise_medium_3", Dictionary.newFrom([
+            "brownnoise_medium_3", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_3.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_3.wav").fullPath),
             ]),
-			"brownnoise_medium_3-5", Dictionary.newFrom([
+            "brownnoise_medium_3-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_3-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_3-5.wav").fullPath),
             ]),
-			"brownnoise_medium_4", Dictionary.newFrom([
+            "brownnoise_medium_4", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_4.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_4.wav").fullPath),
             ]),
-			"brownnoise_medium_4-5", Dictionary.newFrom([
+            "brownnoise_medium_4-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_4-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_4-5.wav").fullPath),
             ]),
-			"brownnoise_medium_5", Dictionary.newFrom([
+            "brownnoise_medium_5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_5.wav").fullPath),
             ]),
-			"brownnoise_medium_5-5", Dictionary.newFrom([
+            "brownnoise_medium_5-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_5-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_5-5.wav").fullPath),
             ]),
-			"brownnoise_medium_6", Dictionary.newFrom([
+            "brownnoise_medium_6", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_6.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/brownnoise/medium_vibrato/noise_6.wav").fullPath),
             ]),
-			"whitenoise_slow_0-5", Dictionary.newFrom([
+            "whitenoise_slow_0-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_0-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_0-5.wav").fullPath),
             ]),
-			"whitenoise_slow_1", Dictionary.newFrom([
+            "whitenoise_slow_1", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_1.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_1.wav").fullPath),
             ]),
-			"whitenoise_slow_1-5", Dictionary.newFrom([
+            "whitenoise_slow_1-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_1-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_1-5.wav").fullPath),
             ]),
-			"whitenoise_slow_2", Dictionary.newFrom([
+            "whitenoise_slow_2", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_2.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_2.wav").fullPath),
             ]),
-			"whitenoise_slow_2-5", Dictionary.newFrom([
+            "whitenoise_slow_2-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_2-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_2-5.wav").fullPath),
             ]),
-			"whitenoise_slow_3", Dictionary.newFrom([
+            "whitenoise_slow_3", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_3.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_3.wav").fullPath),
             ]),
-			"whitenoise_slow_3-5", Dictionary.newFrom([
+            "whitenoise_slow_3-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_3-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_3-5.wav").fullPath),
             ]),
-			"whitenoise_slow_4", Dictionary.newFrom([
+            "whitenoise_slow_4", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_4.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_4.wav").fullPath),
             ]),
-			"whitenoise_slow_4-5", Dictionary.newFrom([
+            "whitenoise_slow_4-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_4-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_4-5.wav").fullPath),
             ]),
-			"whitenoise_slow_5", Dictionary.newFrom([
+            "whitenoise_slow_5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_5.wav").fullPath),
             ]),
-			"whitenoise_slow_5-5", Dictionary.newFrom([
+            "whitenoise_slow_5-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_5-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_5-5.wav").fullPath),
             ]),
-			"whitenoise_slow_6", Dictionary.newFrom([
+            "whitenoise_slow_6", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_6.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/slow_vibrato/noise_6.wav").fullPath),
             ]),
-			"whitenoise_medium_0-5", Dictionary.newFrom([
+            "whitenoise_medium_0-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_0-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_0-5.wav").fullPath),
             ]),
-			"whitenoise_medium_1", Dictionary.newFrom([
+            "whitenoise_medium_1", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_1.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_1.wav").fullPath),
             ]),
-			"whitenoise_medium_1-5", Dictionary.newFrom([
+            "whitenoise_medium_1-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_1-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_1-5.wav").fullPath),
             ]),
-			"whitenoise_medium_2", Dictionary.newFrom([
+            "whitenoise_medium_2", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_2.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_2.wav").fullPath),
             ]),
-			"whitenoise_medium_2-5", Dictionary.newFrom([
+            "whitenoise_medium_2-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_2-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_2-5.wav").fullPath),
             ]),
-			"whitenoise_medium_3", Dictionary.newFrom([
+            "whitenoise_medium_3", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_3.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_3.wav").fullPath),
             ]),
-			"whitenoise_medium_3-5", Dictionary.newFrom([
+            "whitenoise_medium_3-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_3-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_3-5.wav").fullPath),
             ]),
-			"whitenoise_medium_4", Dictionary.newFrom([
+            "whitenoise_medium_4", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_4.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_4.wav").fullPath),
             ]),
-			"whitenoise_medium_4-5", Dictionary.newFrom([
+            "whitenoise_medium_4-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_4-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_4-5.wav").fullPath),
             ]),
-			"whitenoise_medium_5", Dictionary.newFrom([
+            "whitenoise_medium_5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_5.wav").fullPath),
             ]),
-			"whitenoise_medium_5-5", Dictionary.newFrom([
+            "whitenoise_medium_5-5", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_5-5.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_5-5.wav").fullPath),
             ]),
-			"whitenoise_medium_6", Dictionary.newFrom([
+            "whitenoise_medium_6", Dictionary.newFrom([
                 "path", PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_6.wav").fullPath,
                 "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/Impulse_Responses/sc/whitenoise/medium_vibrato/noise_6.wav").fullPath),
             ]),
-		])
+        ])
     ])
 ]);

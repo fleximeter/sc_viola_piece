@@ -4,10 +4,10 @@
 // delay
 SynthDef(\delay1, {
     var sig, dur;
-	dur = \num_beats.ir(1) * 60 / \tempo.ir(60);
+    dur = \num_beats.ir(1) * 60 / \tempo.ir(60);
     sig = In.ar(\in.kr(0), 8);
-	sig = DelayL.ar(sig, 10, dur);
-	sig = sig.madd(\mul.kr(1.0), \add.kr(0.0));
+    sig = DelayL.ar(sig, 10, dur);
+    sig = sig.madd(\mul.kr(1.0), \add.kr(0.0));
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -15,16 +15,16 @@ SynthDef(\delay1, {
 SynthDef(\pandelay3, {
     var sig, delay_sig, num_delays, pan;
     num_delays = 3;
-	pan = \pan.kr(#[0, 3, 2]);
+    pan = \pan.kr(#[0, 3, 2]);
     sig = In.ar(\in.kr(0), 8);
     sig = Mix(sig);
-	sig = Array.fill(num_delays, {
+    sig = Array.fill(num_delays, {
         | i |
         var delaysig;
         delaysig = DelayL.ar(sig, 10, \delayint.kr(0.2) * (i+1), (num_delays - i) / num_delays);
-		PanAz.ar(8, delaysig, pan[i], 1, 2.0, 0.5);
+        PanAz.ar(8, delaysig, pan[i], 1, 2.0, 0.5);
     });
-	sig = Mix(sig);
+    sig = Mix(sig);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -32,16 +32,16 @@ SynthDef(\pandelay3, {
 SynthDef(\pandelay4, {
     var sig, delay_sig, num_delays, pan;
     num_delays = 4;
-	pan = \pan.kr(#[0, 3, 2, 3]);
+    pan = \pan.kr(#[0, 3, 2, 3]);
     sig = In.ar(\in.kr(0), 8);
     sig = Mix(sig);
-	sig = Array.fill(num_delays, {
+    sig = Array.fill(num_delays, {
         | i |
         var delaysig;
         delaysig = DelayL.ar(sig, 10, \delayint.kr(0.2) * (i+1), (num_delays - i) / num_delays);
-		PanAz.ar(8, delaysig, pan[i], 1, 2.0, 0.5);
+        PanAz.ar(8, delaysig, pan[i], 1, 2.0, 0.5);
     });
-	sig = Mix(sig);
+    sig = Mix(sig);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -49,16 +49,16 @@ SynthDef(\pandelay4, {
 SynthDef(\pandelay5, {
     var sig, delay_sig, num_delays, pan;
     num_delays = 5;
-	pan = \pan.kr(#[0, 3, 2, 1, 2]);
+    pan = \pan.kr(#[0, 3, 2, 1, 2]);
     sig = In.ar(\in.kr(0), 8);
     sig = Mix(sig);
-	sig = Array.fill(num_delays, {
+    sig = Array.fill(num_delays, {
         | i |
         var delaysig;
         delaysig = DelayL.ar(sig, 10, \delayint.kr(0.2) * (i+1), (num_delays - i) / num_delays);
-		PanAz.ar(8, delaysig, pan[i], 1, 2.0, 0.5);
+        PanAz.ar(8, delaysig, pan[i], 1, 2.0, 0.5);
     });
-	sig = Mix(sig);
+    sig = Mix(sig);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -66,16 +66,16 @@ SynthDef(\pandelay5, {
 SynthDef(\pandelay6, {
     var sig, delay_sig, num_delays, pan;
     num_delays = 6;
-	pan = \pan.kr(#[0, 3, 2, 0, 2, 1]);
+    pan = \pan.kr(#[0, 3, 2, 0, 2, 1]);
     sig = In.ar(\in.kr(0), 8);
     sig = Mix(sig);
-	sig = Array.fill(num_delays, {
+    sig = Array.fill(num_delays, {
         | i |
         var delaysig;
         delaysig = DelayL.ar(sig, 10, \delayint.kr(0.2) * (i+1), (num_delays - i) / num_delays);
-		PanAz.ar(8, delaysig, pan[i], 1, 2.0, 0.5);
+        PanAz.ar(8, delaysig, pan[i], 1, 2.0, 0.5);
     });
-	sig = Mix(sig);
+    sig = Mix(sig);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -83,16 +83,16 @@ SynthDef(\pandelay6, {
 SynthDef(\pandelay7, {
     var sig, delay_sig, num_delays, pan;
     num_delays = 7;
-	pan = \pan.kr(#[0, 3, 2, 2, 0, 3, 1]);
+    pan = \pan.kr(#[0, 3, 2, 2, 0, 3, 1]);
     sig = In.ar(\in.kr(0), 8);
     sig = Mix(sig);
-	sig = Array.fill(num_delays, {
+    sig = Array.fill(num_delays, {
         | i |
         var delaysig;
         delaysig = DelayL.ar(sig, 10, \delayint.kr(0.2) * (i+1), (num_delays - i) / num_delays);
-		PanAz.ar(8, delaysig, pan[i], 1, 2.0, 0.5);
+        PanAz.ar(8, delaysig, pan[i], 1, 2.0, 0.5);
     });
-	sig = Mix(sig);
+    sig = Mix(sig);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -100,16 +100,16 @@ SynthDef(\pandelay7, {
 SynthDef(\pandelay8, {
     var sig, delay_sig, num_delays, pan;
     num_delays = 8;
-	pan = \pan.kr(#[0, 3, 2, 1, 0, 1, 3, 1]);
+    pan = \pan.kr(#[0, 3, 2, 1, 0, 1, 3, 1]);
     sig = In.ar(\in.kr(0), 8);
     sig = Mix(sig);
-	sig = Array.fill(num_delays, {
+    sig = Array.fill(num_delays, {
         | i |
         var delaysig;
         delaysig = DelayL.ar(sig, 10, \delayint.kr(0.2) * (i+1), (num_delays - i) / num_delays);
-		PanAz.ar(8, delaysig, pan[i], 1, 2.0, 0.5);
+        PanAz.ar(8, delaysig, pan[i], 1, 2.0, 0.5);
     });
-	sig = Mix(sig);
+    sig = Mix(sig);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -119,13 +119,13 @@ SynthDef(\randpandelay3, {
     num_delays = 3;
     sig = In.ar(\in.kr(0), 8);
     sig = Mix(sig);
-	sig = Array.fill(num_delays, {
+    sig = Array.fill(num_delays, {
         | i |
         var delaysig;
         delaysig = DelayL.ar(sig, 10, \delayint.kr(0.2) * (i+1), (num_delays - i) / num_delays);
-		PanAz.ar(8, delaysig, rrand(0.0, 2.0), 1, 2.0, 0.5);
+        PanAz.ar(8, delaysig, rrand(0.0, 2.0), 1, 2.0, 0.5);
     });
-	sig = Mix(sig);
+    sig = Mix(sig);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -135,13 +135,13 @@ SynthDef(\randpandelay4, {
     num_delays = 4;
     sig = In.ar(\in.kr(0), 8);
     sig = Mix(sig);
-	sig = Array.fill(num_delays, {
+    sig = Array.fill(num_delays, {
         | i |
         var delaysig;
         delaysig = DelayL.ar(sig, 10, \delayint.kr(0.2) * (i+1), (num_delays - i) / num_delays);
-		PanAz.ar(8, delaysig, rrand(0.0, 2.0), 1, 2.0, 0.5);
+        PanAz.ar(8, delaysig, rrand(0.0, 2.0), 1, 2.0, 0.5);
     });
-	sig = Mix(sig);
+    sig = Mix(sig);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -151,13 +151,13 @@ SynthDef(\randpandelay5, {
     num_delays = 5;
     sig = In.ar(\in.kr(0), 8);
     sig = Mix(sig);
-	sig = Array.fill(num_delays, {
+    sig = Array.fill(num_delays, {
         | i |
         var delaysig;
         delaysig = DelayL.ar(sig, 10, \delayint.kr(0.2) * (i+1), (num_delays - i) / num_delays);
-		PanAz.ar(8, delaysig, rrand(0.0, 2.0), 1, 2.0, 0.5);
+        PanAz.ar(8, delaysig, rrand(0.0, 2.0), 1, 2.0, 0.5);
     });
-	sig = Mix(sig);
+    sig = Mix(sig);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -165,15 +165,15 @@ SynthDef(\randpandelay5, {
 SynthDef(\randpandelay6, {
     var sig, delay_sig, num_delays;
     num_delays = 6;
-	sig = In.ar(\in.kr(0), 8);
+    sig = In.ar(\in.kr(0), 8);
     sig = Mix(sig);
-	sig = Array.fill(num_delays, {
+    sig = Array.fill(num_delays, {
         | i |
         var delaysig;
         delaysig = DelayL.ar(sig, 10, \delayint.kr(0.2) * (i+1), (num_delays - i) / num_delays);
-		PanAz.ar(8, delaysig, rrand(0.0, 2.0), 1, 2.0, 0.5);
+        PanAz.ar(8, delaysig, rrand(0.0, 2.0), 1, 2.0, 0.5);
     });
-	sig = Mix(sig);
+    sig = Mix(sig);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -183,13 +183,13 @@ SynthDef(\randpandelay7, {
     num_delays = 7;
    sig = In.ar(\in.kr(0), 8);
     sig = Mix(sig);
-	sig = Array.fill(num_delays, {
+    sig = Array.fill(num_delays, {
         | i |
         var delaysig;
         delaysig = DelayL.ar(sig, 10, \delayint.kr(0.2) * (i+1), (num_delays - i) / num_delays);
-		PanAz.ar(8, delaysig, rrand(0.0, 2.0);, 1, 2.0, 0.5);
+        PanAz.ar(8, delaysig, rrand(0.0, 2.0);, 1, 2.0, 0.5);
     });
-	sig = Mix(sig);
+    sig = Mix(sig);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -199,13 +199,13 @@ SynthDef(\randpandelay8, {
     num_delays = 8;
     sig = In.ar(\in.kr(0), 8);
     sig = Mix(sig);
-	sig = Array.fill(num_delays, {
+    sig = Array.fill(num_delays, {
         | i |
         var delaysig;
         delaysig = DelayL.ar(sig, 10, \delayint.kr(0.2) * (i+1), (num_delays - i) / num_delays);
-		PanAz.ar(8, delaysig, rrand(0.0, 2.0), 1, 2.0, 0.5);
+        PanAz.ar(8, delaysig, rrand(0.0, 2.0), 1, 2.0, 0.5);
     });
-	sig = Mix(sig);
+    sig = Mix(sig);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -221,7 +221,7 @@ SynthDef(\psdelay1, {
         PitchShift.ar(sig, 0.1, \ratio.kr(1), \pitchDispersion.kr(0.0), \timeDispersion.kr(0.004)),
         3,
         \delayint.kr(1.0),
-		\mul.kr(1.0),
+        \mul.kr(1.0),
     );
     Out.ar(\out.kr(0), sig);
 }).add;
@@ -238,7 +238,7 @@ SynthDef(\psdelay1ctrl, {
         PitchShift.ar(sig, 0.1, ctrl_shift, \pitchDispersion.kr(0.0), \timeDispersion.kr(0.004)),
         3,
         ctrl_int,
-	    ctrl_mul,
+        ctrl_mul,
     );
     Out.ar(\out.kr(0), sig);
 }).add;
@@ -381,7 +381,7 @@ SynthDef(\psdelay1_et, {
         PitchShift.ar(sig, 0.1, 2 ** (\semitones.kr(0) / 12), \pitchDispersion.kr(0.0), \timeDispersion.kr(0.004)),
         3,
         \delayint.kr(1.0),
-		\mul.kr(1.0),
+        \mul.kr(1.0),
     );
     Out.ar(\out.kr(0), sig);
 }).add;
@@ -398,7 +398,7 @@ SynthDef(\psdelay1ctrl_et, {
         PitchShift.ar(sig, 0.1, 2 ** (ctrl_semitones / 12), \pitchDispersion.kr(0.0), \timeDispersion.kr(0.004)),
         3,
         ctrl_int,
-	    ctrl_mul,
+        ctrl_mul,
     );
     Out.ar(\out.kr(0), sig);
 }).add;

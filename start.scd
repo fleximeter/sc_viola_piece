@@ -23,10 +23,10 @@ Server.supernova;
     ~partconv_size = 512;  // project-wide STFT window size for convolution
     ~fft_size = 2048;  // project-wide STFT window size
     ~mic_zero = 8;     // the zero mic - NOTE on the RME in the studio it is 8!
-	~root_sample_dir = PathName(thisProcess.nowExecutingPath).parentPath;
-    
+    ~root_sample_dir = PathName(thisProcess.nowExecutingPath).parentPath;
+
     // gain can be adjusted here on a global level
-    ~global_gain = 0.dbamp;
+    ~global_gain = -12.dbamp;
 
     // Global buffers
     ~bufs = Array.fill(20, {Buffer.alloc(s, 20 * s.sampleRate)});    // buffers for sampling live audio
@@ -37,7 +37,7 @@ Server.supernova;
 
     // A global synth list. This is needed if an event is to be manually stopped after it is started.
     // This is because some events cannot run for a specified time.
-	~synths = List();
+    ~synths = List();
 
     // Specify file paths for other code to load automatically. Note that since the event code can be
     // so long for individual events, it is necessary to split it into multiple files.
@@ -122,71 +122,71 @@ Server.supernova;
 
 // Reset all events except the main event
 ~event_counter_reset = {
-	~event_counter = 0;
-	"--------------------------------------\nEvent counter reset to 0.\n--------------------------------------".postln;
-	nil
+    ~event_counter = 0;
+    "--------------------------------------\nEvent counter reset to 0.\n--------------------------------------".postln;
+    nil
 };
 
 // Resets all events except the main event
 ~partial_reset = {
-	e.keysValuesDo({|key, val| if(key != "main", {val.reset})});  // reset all events but main
-	"--------------------------------------\nPartial reset performed.\n--------------------------------------".postln;
-	nil
+    e.keysValuesDo({|key, val| if(key != "main", {val.reset})});  // reset all events but main
+    "--------------------------------------\nPartial reset performed.\n--------------------------------------".postln;
+    nil
 };
 
 // Performs a Cmd+., resets all events, and recreates groups.
 ~full_reset = {
-	Routine({
-		CmdPeriod.run;
-		0.1.wait;
-		e.keysValuesDo({|key, val| val.reset});  // reset all events including main
-		~grp = Array.fill(10, {Group.new(s, \addToTail)});
-		e["main"].next;
-	}).play;
-	~event_counter = 0;
-	"--------------------------------------\nFull reset performed.\n--------------------------------------".postln;
-	nil
+    Routine({
+        CmdPeriod.run;
+        0.1.wait;
+        e.keysValuesDo({|key, val| val.reset});  // reset all events including main
+        ~grp = Array.fill(10, {Group.new(s, \addToTail)});
+        e["main"].next;
+    }).play;
+    ~event_counter = 0;
+    "--------------------------------------\nFull reset performed.\n--------------------------------------".postln;
+    nil
 };
 
 // Performs a reset for all events, except main, where the measure number of the event
 // is greater than or equal to the specified measure number. This allows starting
 // partway through the piece.
 ~reset_to_event = {
-	| num |
+    | num |
     // Reset each event that is numbered
-	e.keysValuesDo({
-		|key, val|
-		var result;
-		result = key.findRegexp("[0-9]+");
-		if(result.size > 0, {
-			var eventnum;
-			eventnum = result[0][1].asInteger;
+    e.keysValuesDo({
+        |key, val|
+        var result;
+        result = key.findRegexp("[0-9]+");
+        if(result.size > 0, {
+            var eventnum;
+            eventnum = result[0][1].asInteger;
             // Only reset the targeted event and all events after it.
             // The events preceding it need to be killed.
-			if(eventnum >= num, {
-				val.reset;
-			}, {
-				val.stop;
-			});
-		});
-	});
+            if(eventnum >= num, {
+                val.reset;
+            }, {
+                val.stop;
+            });
+        });
+    });
 
     // Update the event counter so that it points at the targeted event
-	i = 0;
-	~event_counter = 0;
-	while({
-		var regex, val;
-		regex = ~event_order_list[i][0].findRegexp("[0-9]+");
-		if(regex.size == 0, {true}, {
-			val = regex[0][1].asInteger;
-			val < num
-		})
-	}, {
-		~event_counter = ~event_counter + 1;
-		i = i + 1;
-	});
-	("--------------------------------------\nReset to measure " ++ num ++ ".\n--------------------------------------").postln;
-	nil
+    i = 0;
+    ~event_counter = 0;
+    while({
+        var regex, val;
+        regex = ~event_order_list[i][0].findRegexp("[0-9]+");
+        if(regex.size == 0, {true}, {
+            val = regex[0][1].asInteger;
+            val < num
+        })
+    }, {
+        ~event_counter = ~event_counter + 1;
+        i = i + 1;
+    });
+    ("--------------------------------------\nReset to measure " ++ num ++ ".\n--------------------------------------").postln;
+    nil
 };
 
 
@@ -199,14 +199,14 @@ Server.supernova;
 
 // Alternatively, this can be done automatically
 s.waitForBoot({
-	~bus_maker.();
-	~file_loader.();
+    ~bus_maker.();
+    ~file_loader.();
     s.sync;
-	~group_maker.();
-	~convolution_setup.();
-	s.sync;
-	s.meter;
-	s.plotTree;
-	e["main"].next;
+    ~group_maker.();
+    ~convolution_setup.();
+    s.sync;
+    s.meter;
+    s.plotTree;
+    e["main"].next;
 });
 )
