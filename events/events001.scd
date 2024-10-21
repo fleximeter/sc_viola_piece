@@ -55,7 +55,7 @@ e.put("e1", Routine({
 
     // freeze
     Routine({
-        0.5.wait;
+        1.wait;
         synth_freeze.set(\freeze, 1.0);
     }).play;
     "1 UPDATE 1.0: Event 1 running.".yield;
@@ -124,17 +124,25 @@ e.put("e1alt", Routine({
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][0], \out, ~audiobus_grp1[5][1], \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[12], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    "1 UPDATE 1.0: Event 1 running and ready for freeze.".yield;
+    
+	// freeze
+    Routine({
+        1.wait;
+        synth_freeze.set(\freeze, 1.0);
+    }).play;
+    "1 UPDATE 1.0: Event 1 running.".yield;
 
-    synth_freeze.set(\freeze, 1.0);
-    "1 UPDATE 1.1: Event 1 freeze.".yield;
-	synths_out.do({|item| item.set(\gate, 0)});
-    "1 UPDATE 1.2: Event 1 fading out.".yield;
-	synths_out.do({|item| item.free});
-	synth_freeze.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-    "1 UPDATE 1.3: Event 1 kill stage complete. Event finished.".postln;
+    // cleanup
+    Routine({
+        synths_out.do({|item| item.set(\gate, 0)});
+        1.5.wait;
+        synths_out.do({|item| item.free});
+        synth_freeze.free;
+        synths.do({|item| item.free});
+        control.do({|item| item.free});
+        "1 UPDATE 1.2: Event 1 kill stage complete. Event finished.".postln;
+    }).play;
+    "1 UPDATE 1.1: Event 1 fading out.".postln;
 }));
 
 // Event 2: freeze with pitch shift and spectral modification
@@ -187,17 +195,26 @@ e.put("e2", Routine({
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[5][0], \out, ~audiobus_grp2[5][1], \mul_sig, ~controlbus_grp2[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[12], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    "2 UPDATE 2.0: Event 2 running and ready for freeze.".yield;
+	
+	// freeze
+    Routine({
+        1.wait;
+        synth_freeze.set(\freeze, 1.0);
+    }).play;
+    "2 UPDATE 2.0: Event 2 running.".yield;
 
-    synth_freeze.set(\freeze, 1.0);
-    "2 UPDATE 2.1: Event 2 freeze.".yield;
-	synths_out.do({|item| item.set(\gate, 0)});
-    "2 UPDATE 2.2: Event 2 fading out.".yield;
-	synths_out.do({|item| item.free});
-	synth_freeze.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-    "2 UPDATE 2.3: Event 2 kill stage complete. Event finished.".postln;
+    // cleanup
+    Routine({
+        synths_out.do({|item| item.set(\gate, 0)});
+        1.5.wait;
+        synths_out.do({|item| item.free});
+        synth_freeze.free;
+        synths.do({|item| item.free});
+        control.do({|item| item.free});
+        "1 UPDATE 2.2: Event 2 kill stage complete. Event finished.".postln;
+    }).play;
+    "2 UPDATE 2.1: Event 2 fading out.".postln;
+
 }));
 
 
@@ -251,17 +268,26 @@ e.put("e2alt", Routine({
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[5][0], \out, ~audiobus_grp2[5][1], \mul_sig, ~controlbus_grp2[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[12], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    "2 UPDATE 2.0: Event 2 running and ready for freeze.".yield;
+	
+	// freeze
+    Routine({
+        1.wait;
+        synth_freeze.set(\freeze, 1.0);
+    }).play;
+    "2 UPDATE 2.0: Event 2 running.".yield;
 
-    synth_freeze.set(\freeze, 1.0);
-    "2 UPDATE 2.1: Event 2 freeze.".yield;
-	synths_out.do({|item| item.set(\gate, 0)});
-    "2 UPDATE 2.2: Event 2 fading out.".yield;
-	synths_out.do({|item| item.free});
-	synth_freeze.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-    "2 UPDATE 2.3: Event 2 kill stage complete. Event finished.".postln;
+    // cleanup
+    Routine({
+        synths_out.do({|item| item.set(\gate, 0)});
+        1.5.wait;
+        synths_out.do({|item| item.free});
+        synth_freeze.free;
+        synths.do({|item| item.free});
+        control.do({|item| item.free});
+        "2 UPDATE 2.2: Event 2 kill stage complete. Event finished.".postln;
+    }).play;
+    "2 UPDATE 2.1: Event 2 fading out.".postln;
+
 }));
 
 // Event 3: freeze with pitch shift and spectral modification
@@ -317,17 +343,26 @@ e.put("e3", Routine({
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][0], \out, ~audiobus_grp1[5][1], \mul_sig, ~controlbus_grp1[9], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    "3 UPDATE 3.0: Event 3 running and ready for freeze.".yield;
+    	
+	// freeze
+    Routine({
+        1.wait;
+        synth_freeze.set(\freeze, 1.0);
+    }).play;
+    "3 UPDATE 3.0: Event 3 running.".yield;
 
-    synth_freeze.set(\freeze, 1.0);
-    "3 UPDATE 3.1: Event 3 freeze.".yield;
-	synths_out.do({|item| item.set(\gate, 0)});
-    "3 UPDATE 3.2: Event 3 fading out.".yield;
-	synths_out.do({|item| item.free});
-	synth_freeze.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-    "3 UPDATE 3.3: Event 3 kill stage complete. Event finished.".postln;
+    // cleanup
+    Routine({
+        synths_out.do({|item| item.set(\gate, 0)});
+        1.5.wait;
+        synths_out.do({|item| item.free});
+        synth_freeze.free;
+        synths.do({|item| item.free});
+        control.do({|item| item.free});
+        "3 UPDATE 3.2: Event 3 kill stage complete. Event finished.".postln;
+    }).play;
+    "3 UPDATE 3.1: Event 3 fading out.".postln;
+
 }));
 
 // this alternate event 3 uses a sampler, not live audio
@@ -383,18 +418,26 @@ e.put("e3alt", Routine({
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][0], \out, ~audiobus_grp1[5][1], \mul_sig, ~controlbus_grp1[9], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    "3 UPDATE 3.0: Event 3 running and ready for freeze.".yield;
+    
+	// freeze
+    Routine({
+        1.wait;
+        synth_freeze.set(\freeze, 1.0);
+    }).play;
+    "3 UPDATE 3.0: Event 3 running.".yield;
 
-    synth_freeze.set(\freeze, 1.0);
-    "3 UPDATE 3.1: Event 3 freeze.".yield;
-	synths_out.do({|item| item.set(\gate, 0)});
-    "3 UPDATE 3.2: Event 3 fading out.".yield;
-	synths_out.do({|item| item.free});
-	synth_freeze.free;
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-	control_osc.do({|item| item.free});
-    "3 UPDATE 3.3: Event 3 kill stage complete. Event finished.".postln;
+    // cleanup
+    Routine({
+        synths_out.do({|item| item.set(\gate, 0)});
+        1.5.wait;
+        synths_out.do({|item| item.free});
+        synth_freeze.free;
+        synths.do({|item| item.free});
+        control.do({|item| item.free});
+        "3 UPDATE 3.2: Event 3 kill stage complete. Event finished.".postln;
+    }).play;
+    "3 UPDATE 3.1: Event 3 fading out.".postln;
+
 }));
 
 // Event 4: feedback
@@ -431,13 +474,16 @@ e.put("e4", Routine({
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
     "4 UPDATE 4.0: Event 4 running.".yield;
 
-	// SHUTDOWN ///////////////////////////////////////////////////////////////
-   	synths_out.do({|item| item.set(\gate, 0)});
-    "4 UPDATE 4.1: Event 4 fading out.".yield;
-	synths_out.do({|item| item.free});
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-    "4 UPDATE 4.2: Event 4 kill stage complete. Event finished.".postln;
+    // cleanup
+    Routine({
+        synths_out.do({|item| item.set(\gate, 0)});
+        1.5.wait;
+        synths_out.do({|item| item.free});
+        synths.do({|item| item.free});
+        control.do({|item| item.free});
+        "4 UPDATE 4.2: Event 4 kill stage complete. Event finished.".postln;
+    }).play;
+    "4 UPDATE 4.1: Event 4 fading out.".postln;
 }));
 
 // EVENT 5
@@ -478,13 +524,16 @@ e.put("e5", Routine({
     synths[2].set(\gate, 1);
     "5 UPDATE 5.2: Pitch shift fade in.".yield;
 
-	synths_out.do({|item| item.set(\gate, 0)});
-	"5 UPDATE 5.3: Gate closed.".yield;
-
-	synths_out.do({|item| item.free});
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-	"5 UPDATE 5.4: Event 5 kill stage complete. Event finished.".postln;
+    // cleanup
+    Routine({
+        synths_out.do({|item| item.set(\gate, 0)});
+        1.5.wait;
+        synths_out.do({|item| item.free});
+        synths.do({|item| item.free});
+        control.do({|item| item.free});
+        "5 UPDATE 5.4: Event 5 kill stage complete. Event finished.".postln;
+    }).play;
+    "5 UPDATE 5.3: Event 5 fading out.".postln;
 }));
 
 // Event 6: feedback
@@ -521,13 +570,16 @@ e.put("e6", Routine({
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "6 UPDATE 6.0: Event 6 running.".yield;
 
-	// SHUTDOWN ///////////////////////////////////////////////////////////////
-   	synths_out.do({|item| item.set(\gate, 0)});
-    "6 UPDATE 6.1: Event 6 fading out.".yield;
-	synths_out.do({|item| item.free});
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-    "6 UPDATE 6.2: Event 6 kill stage complete. Event finished.".postln;
+    // cleanup
+    Routine({
+        synths_out.do({|item| item.set(\gate, 0)});
+        1.5.wait;
+        synths_out.do({|item| item.free});
+        synths.do({|item| item.free});
+        control.do({|item| item.free});
+        "6 UPDATE 6.2: Event 6 kill stage complete. Event finished.".postln;
+    }).play;
+    "6 UPDATE 6.1: Event 6 fading out.".postln;
 }));
 
 // Event 7: feedback
@@ -564,14 +616,15 @@ e.put("e7", Routine({
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "7 UPDATE 7.0: Event 7 running.".yield;
 
-	// SHUTDOWN ///////////////////////////////////////////////////////////////
-   	synths_out.do({|item| item.set(\gate, 0)});
-    "7 UPDATE 7.1: Event 7 fading out.".yield;
-	synths_out.do({|item| item.free});
-	synths.do({|item| item.free});
-	control.do({|item| item.free});
-    "7 UPDATE 7.2: Event 7 kill stage complete. Event finished.".postln;
+    // cleanup
+    Routine({
+        synths_out.do({|item| item.set(\gate, 0)});
+        1.5.wait;
+        synths_out.do({|item| item.free});
+        synths.do({|item| item.free});
+        control.do({|item| item.free});
+        "7 UPDATE 7.2: Event 7 kill stage complete. Event finished.".postln;
+    }).play;
+    "7 UPDATE 7.1: Event 7 fading out.".postln;
 }));
-
-
 )

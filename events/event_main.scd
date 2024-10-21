@@ -29,7 +29,7 @@ e.put("main", Routine({
     synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[3], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["toilet"]], ~grp[~grp.size-1], \addToTail));*/
 
     // control the gain with fader 4
-	synths.add(Synth(\gain8mul, [\in, ~gainbus, \out, ~postprocessingbus[0], \mul, 1, \mul_sig, ~faderbus[3], \limit, -6.dbamp], ~grp[~grp.size-1], \addToTail));
+	synths.add(Synth(\gain8mul, [\in, ~gainbus, \out, ~postprocessingbus[0], \mul, ~global_gain, \mul_sig, ~faderbus[3], \limit, -6.dbamp], ~grp[~grp.size-1], \addToTail));
 
 	// the pan mapping (stereo or 8-channel)
 	//synths.add(Synth(\from8to2, [\in, ~postprocessingbus[0], \out, 0], ~grp[~grp.size-1], \addToTail));
