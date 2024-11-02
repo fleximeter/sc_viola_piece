@@ -20,8 +20,8 @@ e.put("e1", Routine({
         Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_lpf", "levels" -> #[10000, 440, 440], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.95, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.05, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
     ];
 
 
@@ -37,7 +37,7 @@ e.put("e1", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][0], \out, ~audiobus_grp1[5][1], \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[12], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    
+
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus[1]], ~grp[1], \addToTail));
@@ -86,17 +86,17 @@ e.put("e1alt", Routine({
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_above", "levels" -> #[0.1, 20, 20], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[4.0, 5.0, 5.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0.0, -0.5, -0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_above", "levels" -> #[30, 2, 2], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[4.0, 5.0, 5.0], "times" -> #[6, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pitch_shift2", "levels" -> #[-12.0, -12.0, -12.0], "times" -> #[4, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pan_pos1", "levels" -> #[2.0, 1.5, 1.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[8, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pan_pos2", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_lpf", "levels" -> #[10000, 440, 440], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_lpf", "levels" -> #[800, 800, 800], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.25, 0.5], "times" -> #[10, 100], "curves" -> #[2, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
     ];
 
 
@@ -107,37 +107,39 @@ e.put("e1alt", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["74"]["buffer"]], ~grp[1], \addToTail));
 
     // freeze and mag below
-    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 3, \amp_fluctuation, 0.1], ~grp[1], \addToTail);
-    synths.add(Synth(\fft_magabove, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[2][0], \above, ~controlbus_grp1[2]], ~grp[1], \addToTail));
+	synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[2][0], \above_frac, 0.2, \amp_fluctuation, 0.1, \release_time, 3], ~grp[1], \addToTail);
+    synths.add(Synth(\fft_magbelow, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[2][0], \below, ~controlbus_grp1[2]], ~grp[1], \addToTail));
 
     // pitch shift and independent panning
-    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[3][0], \semitones1, ~controlbus_grp1[3], \mul, 0.5], ~grp[2], \addToTail));
-    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[3][1], \semitones1, ~controlbus_grp1[4], \mul, 0.5], ~grp[2], \addToTail));
-    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp1[3][0], \out, ~audiobus_grp1[4][0], \pos, ~controlbus_grp1[5], \width, ~controlbus_grp1[6]], ~grp[3], \addToTail));
-    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp1[3][1], \out, ~audiobus_grp1[4][0], \pos, ~controlbus_grp1[7], \width, ~controlbus_grp1[8]], ~grp[3], \addToTail));
-    synths.add(Synth(\passthrough8, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[4][0]], ~grp[2], \addToTail));
-    synths.add(Synth(\lpf8, [\in, ~audiobus_grp1[4][0], \out, ~audiobus_grp1[5][0], \freq, ~controlbus_grp1[9]], ~grp[4], \addToTail));
+    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[3][0], \semitones1, ~controlbus_grp1[3], \mul, -3.dbamp], ~grp[2], \addToTail));
+    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[3][1], \semitones1, ~controlbus_grp1[4], \mul, -12.dbamp], ~grp[2], \addToTail));
+    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp1[3][0], \out, ~audiobus_grp1[5][0], \pos, ~controlbus_grp1[5], \width, ~controlbus_grp1[6]], ~grp[3], \addToTail));
+    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp1[3][1], \out, ~audiobus_grp1[5][0], \pos, ~controlbus_grp1[7], \width, ~controlbus_grp1[8]], ~grp[3], \addToTail));
+    synths.add(Synth(\passthrough8, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[5][0]], ~grp[2], \addToTail));
+    //synths.add(Synth(\lpf8, [\in, ~audiobus_grp1[4][0], \out, ~audiobus_grp1[5][0], \freq, ~controlbus_grp1[9]], ~grp[4], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][0], \out, ~audiobus_grp1[5][1], \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][0], \out, ~audiobus_grp1[5][1], \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, freeze_release_time], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[12], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    
+
     // freeze
     Routine({
         1.wait;
         synth_freeze.set(\freeze, 1.0);
     }).play;
-    "1 UPDATE 1.0: Event 1 running.".yield;
+    "1 UPDATE 1.0: Event 1 running. Wait 6 sec...".postln;
 
     // cleanup
     Routine({
+		6.wait;
+		"1 UPDATE 1.1: Event 1 fading out.".postln;
         synth_freeze.do({|item| item.set(\gate, 0)});
         freeze_release_time.wait;
         synths_out.do({|item| item.set(\gate, 0)});
@@ -148,7 +150,6 @@ e.put("e1alt", Routine({
         control.do({|item| item.free});
         "1 UPDATE 1.2: Event 1 kill stage complete. Event finished.".postln;
     }).play;
-    "1 UPDATE 1.1: Event 1 fading out.".postln;
 }));
 
 // Event 2: freeze with pitch shift and spectral modification
@@ -202,13 +203,13 @@ e.put("e2", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[5][0], \out, ~audiobus_grp2[5][1], \mul_sig, ~controlbus_grp2[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[12], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    
+
     // freeze
     Routine({
         1.wait;
         synth_freeze.set(\freeze, 1.0);
     }).play;
-    "2 UPDATE 2.0: Event 2 running.".yield;
+    "2 UPDATE 2.0: Event 2 running. Wait 8 sec...".yield;
 
     // cleanup
     Routine({
@@ -236,15 +237,15 @@ e.put("e2alt", Routine({
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_below", "levels" -> #[30, 3, 3], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pitch_shift1", "levels" -> #[5.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0, -0.5, -0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0, 0, -0.5, -0.5], "times" -> #[2, 8, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pan_pos1", "levels" -> #[2.0, 1.5, 1.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pan_pos2", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_lpf", "levels" -> #[10000, 440, 440], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_gain", "levels" -> #[0.25, 3.0, 4.0, 4.0], "times" -> #[6, 6, 100], "curves" -> #[2, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.0, 0.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
     ];
 
 
@@ -255,19 +256,19 @@ e.put("e2alt", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
 
     // freeze and mag below
-    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \above, 1, \amp_fluctuation, 0.1], ~grp[1], \addToTail);
+    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \above_frac, 0.2, \amp_fluctuation, 0.1, \release_time, freeze_release_time], ~grp[1], \addToTail);
     synths.add(Synth(\fft_magbelow, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[2][0], \below, ~controlbus_grp2[2]], ~grp[1], \addToTail));
 
     // pitch shift and independent panning
-    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[3][0], \semitones1, ~controlbus_grp2[3], \mul, 0.5], ~grp[2], \addToTail));
-    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[3][1], \semitones1, ~controlbus_grp2[4], \mul, 0.5], ~grp[2], \addToTail));
-    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp2[3][0], \out, ~audiobus_grp2[4][0], \pos, ~controlbus_grp2[5], \width, ~controlbus_grp2[6]], ~grp[3], \addToTail));
-    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp2[3][1], \out, ~audiobus_grp2[4][0], \pos, ~controlbus_grp2[7], \width, ~controlbus_grp2[8]], ~grp[3], \addToTail));
-    synths.add(Synth(\passthrough8, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[4][0]], ~grp[2], \addToTail));
-    synths.add(Synth(\lpf8, [\in, ~audiobus_grp2[4][0], \out, ~audiobus_grp2[5][0], \freq, ~controlbus_grp2[9]], ~grp[4], \addToTail));
+    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[3][0], \semitones1, ~controlbus_grp2[3], \mul, -6.dbamp], ~grp[2], \addToTail));
+    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[3][1], \semitones1, ~controlbus_grp2[4], \mul, -12.dbamp], ~grp[2], \addToTail));
+    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp2[3][0], \out, ~audiobus_grp2[5][0], \pos, ~controlbus_grp2[5], \width, ~controlbus_grp2[6]], ~grp[3], \addToTail));
+    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp2[3][1], \out, ~audiobus_grp2[5][0], \pos, ~controlbus_grp2[7], \width, ~controlbus_grp2[8]], ~grp[3], \addToTail));
+    synths.add(Synth(\passthrough8, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[5][0]], ~grp[2], \addToTail));
+    //synths.add(Synth(\lpf8, [\in, ~audiobus_grp2[4][0], \out, ~audiobus_grp2[5][0], \freq, ~controlbus_grp2[9]], ~grp[4], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
@@ -276,16 +277,18 @@ e.put("e2alt", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[5][0], \out, ~audiobus_grp2[5][1], \mul_sig, ~controlbus_grp2[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[12], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    
+
     // freeze
     Routine({
         1.wait;
         synth_freeze.set(\freeze, 1.0);
     }).play;
-    "2 UPDATE 2.0: Event 2 running.".yield;
+    "2 UPDATE 2.0: Event 2 running. Wait 8 sec...".postln;
 
     // cleanup
     Routine({
+		8.wait;
+		"2 UPDATE 2.1: Event 2 fading out.".postln;
         synth_freeze.do({|item| item.set(\gate, 0)});
         freeze_release_time.wait;
         synths_out.do({|item| item.set(\gate, 0)});
@@ -296,7 +299,6 @@ e.put("e2alt", Routine({
         control.do({|item| item.free});
         "2 UPDATE 2.2: Event 2 kill stage complete. Event finished.".postln;
     }).play;
-    "2 UPDATE 2.1: Event 2 fading out.".postln;
 
 }));
 
@@ -328,7 +330,7 @@ e.put("e3", Routine({
 
     // lpf oscillator control
     control_osc = [
-        Synth(\ctrl_tri, [\out, ~controlbus_grp1[12], \freq, 1.5, \low, 440, \high, 10000], ~grp[0])
+        Synth(\ctrl_tri, [\out, ~controlbus_grp1[12], \freq, 1.5, \low, 880, \high, 10000], ~grp[0])
     ];
 
     // SYNTHS ///////////////////////////////////////////////////////////////
@@ -354,7 +356,7 @@ e.put("e3", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][0], \out, ~audiobus_grp1[5][1], \mul_sig, ~controlbus_grp1[9], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-        
+
     // freeze
     Routine({
         1.wait;
@@ -381,22 +383,22 @@ e.put("e3", Routine({
 // this alternate event 3 uses a sampler, not live audio
 e.put("e3alt", Routine({
     var control, control_osc, control_specs, freeze_release_time, synth_freeze, synths, synths_out;
-    freeze_release_time = 2;
+    freeze_release_time = 3;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_above", "levels" -> #[0.1, 20, 20], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_above", "levels" -> #[0.1, 0.5, 20, 20], "times" -> #[4, 10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pitch_shift1", "levels" -> #[7.0, 7.5, 7.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pitch_shift2", "levels" -> #[-7.0, -7.5, -7.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pan_pos1", "levels" -> #[2.0, 1.5, 1.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[12, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pan_pos2", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[12, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.25, 0.25], "times" -> #[13, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
     ];
 
     control = Array.fill(control_specs.size, {
@@ -406,20 +408,20 @@ e.put("e3alt", Routine({
 
     // lpf oscillator control
     control_osc = [
-        Synth(\ctrl_tri, [\out, ~controlbus_grp1[12], \freq, 0.5, \high, 10000, \low, 440], ~grp[0])
+        Synth(\ctrl_tri, [\out, ~controlbus_grp1[12], \freq, 1, \high, 10000, \low, 1600], ~grp[0])
     ];
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
 
     // freeze and mag below
-    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 3, \amp_fluctuation, 0.1], ~grp[1], \addToTail);
+    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above_frac, 0.2, \amp_fluctuation, 0.1, \release_time, freeze_release_time], ~grp[1], \addToTail);
     synths.add(Synth(\fft_magabove, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[2][0], \above, ~controlbus_grp1[2]], ~grp[1], \addToTail));
 
     // pitch shift and independent panning
-    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[3][0], \semitones1, ~controlbus_grp1[3], \mul, 0.5], ~grp[2], \addToTail));
-    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[3][1], \semitones1, ~controlbus_grp1[4], \mul, 0.5], ~grp[2], \addToTail));
+    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[3][0], \semitones1, ~controlbus_grp1[3], \mul, -6.dbamp], ~grp[2], \addToTail));
+    synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[3][1], \semitones1, ~controlbus_grp1[4], \mul, -12.dbamp], ~grp[2], \addToTail));
     synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp1[3][0], \out, ~audiobus_grp1[4][0], \pos, ~controlbus_grp1[5], \width, ~controlbus_grp1[6]], ~grp[3], \addToTail));
     synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp1[3][1], \out, ~audiobus_grp1[4][0], \pos, ~controlbus_grp1[7], \width, ~controlbus_grp1[8]], ~grp[3], \addToTail));
     synths.add(Synth(\passthrough8, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[4][0]], ~grp[2], \addToTail));
@@ -432,16 +434,18 @@ e.put("e3alt", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][0], \out, ~audiobus_grp1[5][1], \mul_sig, ~controlbus_grp1[9], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[5][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    
+
     // freeze
     Routine({
         1.wait;
         synth_freeze.set(\freeze, 1.0);
     }).play;
-    "3 UPDATE 3.0: Event 3 running.".yield;
+    "3 UPDATE 3.0: Event 3 running. Wait 10 sec...".postln;
 
     // cleanup
     Routine({
+		10.wait;
+		"3 UPDATE 3.1: Event 3 fading out.".postln;
         synth_freeze.do({|item| item.set(\gate, 0)});
         freeze_release_time.wait;
         synths_out.do({|item| item.set(\gate, 0)});
@@ -452,7 +456,6 @@ e.put("e3alt", Routine({
         control.do({|item| item.free});
         "3 UPDATE 3.2: Event 3 kill stage complete. Event finished.".postln;
     }).play;
-    "3 UPDATE 3.1: Event 3 fading out.".postln;
 
 }));
 
@@ -485,7 +488,7 @@ e.put("e4", Routine({
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
     "4 UPDATE 4.0: Event 4 running.".yield;

@@ -13,8 +13,8 @@ e.put("e9", Routine({
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],    ];
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],    ];
 
     control = Array.fill(control_specs.size, {
         | i |
@@ -37,18 +37,18 @@ e.put("e9", Routine({
     // 1 freeze
     Routine({
         synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
-        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
+        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above_frac, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
-        synths_freeze[0].set(\freeze, 1.0);    
-    }).play;    
+        synths_freeze[0].set(\freeze, 1.0);
+    }).play;
     "9 UPDATE 9.0: Event 9 running, freeze 1 (D5).".yield;
 
     // 2 freeze
     Routine({
         synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["g"]["55"]["buffer"]], ~grp[1], \addToTail));
-        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][1], \out, ~audiobus_grp1[1][0], \above, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
+        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][1], \out, ~audiobus_grp1[1][0], \above_frac, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
         0.5.wait;
-        synths_freeze[1].set(\freeze, 1.0);    
+        synths_freeze[1].set(\freeze, 1.0);
     }).play;
     "9 UPDATE 9.1: Event 9, freeze 2 (G3).".yield;
     synths_freeze[0].set(\gate, 0);
@@ -57,18 +57,18 @@ e.put("e9", Routine({
     // 3 freeze
     Routine({
         synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["73"]["buffer"]], ~grp[1], \addToTail));
-        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][2], \out, ~audiobus_grp1[1][0], \above, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
+        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][2], \out, ~audiobus_grp1[1][0], \above_frac, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
-        synths_freeze[2].set(\freeze, 1.0);    
+        synths_freeze[2].set(\freeze, 1.0);
     }).play;
     "9 UPDATE 9.3: Event 9, freeze 3 (C+5).".yield;
 
     // 4 freeze
     Routine({
         synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][3], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["62"]["buffer"]], ~grp[1], \addToTail));
-        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][3], \out, ~audiobus_grp1[1][0], \above, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
+        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][3], \out, ~audiobus_grp1[1][0], \above_frac, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
-        synths_freeze[3].set(\freeze, 1.0);    
+        synths_freeze[3].set(\freeze, 1.0);
     }).play;
     "9 UPDATE 9.4: Event 9, freeze 4 (D4).\nReady for release 2.".yield;
     synths_freeze[1].set(\gate, 0);
@@ -77,9 +77,9 @@ e.put("e9", Routine({
     // 5 freeze
     Routine({
         synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][4], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["71"]["buffer"]], ~grp[1], \addToTail));
-        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][4], \out, ~audiobus_grp1[1][0], \above, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
+        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][4], \out, ~audiobus_grp1[1][0], \above_frac, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
-        synths_freeze[4].set(\freeze, 1.0);    
+        synths_freeze[4].set(\freeze, 1.0);
     }).play;
     "9 UPDATE 9.6: Event 9, freeze 5 (B4).\nReady for release 3.".yield;
     synths_freeze[2].set(\gate, 0);
@@ -88,9 +88,9 @@ e.put("e9", Routine({
     // 6 freeze
     Routine({
         synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][5], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["63"]["buffer"]], ~grp[1], \addToTail));
-        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][5], \out, ~audiobus_grp1[1][0], \above, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
+        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][5], \out, ~audiobus_grp1[1][0], \above_frac, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
-        synths_freeze[5].set(\freeze, 1.0);    
+        synths_freeze[5].set(\freeze, 1.0);
     }).play;
     "9 UPDATE 9.8: Event 9, freeze 6 (D+4).\nReady for release 4.".yield;
     synths_freeze[3].set(\gate, 0);
@@ -99,9 +99,9 @@ e.put("e9", Routine({
     // 7 freeze
     Routine({
         synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][6], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"]], ~grp[1], \addToTail));
-        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][6], \out, ~audiobus_grp1[1][0], \above, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
+        synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][6], \out, ~audiobus_grp1[1][0], \above_frac, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
-        synths_freeze[6].set(\freeze, 1.0);    
+        synths_freeze[6].set(\freeze, 1.0);
     }).play;
     "9 UPDATE 9.10: Event 9 freeze 7 (F4).\nReady for final realeases.".yield;
 
@@ -199,8 +199,8 @@ e.put("e17", Routine({
     // 1 freeze
     // freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"]], ~grp[1], \addToTail));
-        synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 1, \release_time, freeze_release_time], ~grp[1], \addToTail);
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["g"]["65"]["buffer"]], ~grp[1], \addToTail));
+        synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above_frac, 0.2, \release_time, freeze_release_time], ~grp[1], \addToTail);
         1.wait;
         synth_freeze.set(\freeze, 1.0);
     }).play;

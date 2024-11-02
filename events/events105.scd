@@ -12,10 +12,12 @@ e.put("e105", Routine({
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.5, 0.0, 0.0, 0.5, 0.0, 0.8, 0.5, 1.0, 0.2, 0.0], "times" -> #[3, 3, 1, 3, 5, 4, 4, 8, 5, 4], "curves" -> #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[0.8, 0.5, 0.8, 0.3], "times" -> #[10, 10, 10, 10], "curves" -> #[0, 0, 0, 0]],
         Dictionary["name" -> "control_wet_gain", "levels" -> #[0.2, 0.5, 0.2, 0.7], "times" -> #[10, 10, 10, 10], "curves" -> #[0, 0, 0, 0]],
     ];
+
+//	        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.5, 0.001, 0.001, 0.5, 0.001, 0.8, 0.5, 1.0, 0.2, 0.0], "times" -> #[3, 3, 1, 3, 5, 4, 4, 8, 5, 4], "curves" -> #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
 
     control = Array.fill(control_specs.size, {
         | i |
@@ -36,12 +38,26 @@ e.put("e105", Routine({
 
     // 1 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["ff"]["c"]["48"]["buffer"]], ~grp[1], \addToTail));
-        synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \above, 1.5, \release_time, freeze_release_time, \mul, 0.5], ~grp[1], \addToTail);
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.arco"]["ff"]["c"]["48"]["buffer"]], ~grp[1], \addToTail));
+        synth_freeze = Synth(\fft_freeze_level_adjust, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \above_frac, 0.1, \release_time, freeze_release_time, \mul, 0.5], ~grp[1], \addToTail);
         1.wait;
         synth_freeze.set(\freeze, 1.0);
     }).play;
     "105 UPDATE 105.1: Event 105, freeze (C3).".yield;
+
+	synth_freeze.set(\attack_time, freeze_release_time);
+	synth_freeze.set(\mul, 0);
+    "105 UPDATE 105.2: Event 105, fade 1.".yield;
+
+	synth_freeze.set(\mul_lag, 6);
+	synth_freeze.set(\mul, -6.dbamp);
+    "105 UPDATE 105.2: Event 105, fade 1.".yield;
+
+	synth_freeze.set(\mul, -18.dbamp);
+    "105 UPDATE 105.2: Event 105, fade 1.".yield;
+
+	synth_freeze.set(\mul, 0);
+    "105 UPDATE 105.2: Event 105, fade 1.".yield;
 
     // cleanup
     Routine({
@@ -80,7 +96,7 @@ e.put("e109", Routine({
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["8ve_harmonics_trill"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
-    
+
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
@@ -93,7 +109,7 @@ e.put("e109", Routine({
 
     synths_out.do({|item| item.set(\gate, 0)});
     "109 UPDATE 109.1: Event 109 fading out.".postln;
-    
+
     1.wait;
     synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -145,7 +161,7 @@ e.put("e128", Routine({
     }).play;
     "128 UPDATE 128.1: Event 128 freeze.".postln;
     8.wait;
-    
+
     // cleanup
     Routine({
         synth_freeze.set(\gate, 0);

@@ -21,8 +21,8 @@ Server.supernova;
 ~file_loader = {
     // Basic useful constants
     ~partconv_size = 512;  // project-wide STFT window size for convolution
-    ~fft_size = 2048;  // project-wide STFT window size
-    ~mic_zero = 8;     // the zero mic - NOTE on the RME in the studio it is 8!
+    ~fft_size = 4096;  // project-wide STFT window size
+    ~mic_zero = 9;     // the zero mic - NOTE on the RME in the studio it is 8!
     ~root_sample_dir = PathName(thisProcess.nowExecutingPath).parentPath;
 
     // gain can be adjusted here on a global level
