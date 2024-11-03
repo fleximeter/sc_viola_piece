@@ -46,7 +46,7 @@ e["feedback"].next;
 
 
 ~event_counter = 0;
-~reset_to_event.(105);
+~reset_to_event.(82);
 ~event_counter.postln;
 ~global_gain = -12.dbamp;
 

@@ -6,7 +6,7 @@
 // EVENT 68 - PATTERN
 // This event is meant to be played automatically, not stepped through.
 e.put("e68", Routine({
-    var control, control_specs,    patterns, synth_freeze, synths, synths_out, tempo_clock;
+    var control, control_specs, patterns, synth_freeze, synths, synths_out, tempo_clock;
     var freeze_release_time;
     freeze_release_time = 2;
 
@@ -26,7 +26,7 @@ e.put("e68", Routine({
 
     // the samples to play
     patterns = List();
-    patterns.add(Pbind(\instrument, \sampler_adsr,
+    patterns.add(Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
             ~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
@@ -40,7 +40,7 @@ e.put("e68", Routine({
         \group, ~grp[1],
         \addAction, \addToTail,
     ));
-    patterns.add(Pbind(\instrument, \sampler_adsr,
+    patterns.add(Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["g"]["62"]["buffer"],
             ~samples["viola.pizz"]["ff"]["g"]["59"]["buffer"],
@@ -88,7 +88,7 @@ e.put("e68", Routine({
 // EVENT 69 - PATTERN
 // This event is meant to be played automatically, not stepped through.
 e.put("e69", Routine({
-    var control, control_specs,    patterns, synth_freeze, synths, synths_out, tempo_clock;
+    var control, control_specs, patterns, synth_freeze, synths, synths_out, tempo_clock;
     var freeze_release_time;
     freeze_release_time = 2;
 
@@ -108,7 +108,7 @@ e.put("e69", Routine({
 
     // the samples to play
     patterns = List();
-    patterns.add(Pbind(\instrument, \sampler_adsr,
+    patterns.add(Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
             ~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
@@ -122,7 +122,7 @@ e.put("e69", Routine({
         \group, ~grp[1],
         \addAction, \addToTail,
     ));
-    patterns.add(Pbind(\instrument, \sampler_adsr,
+    patterns.add(Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["g"]["55"]["buffer"],
             ~samples["viola.pizz"]["ff"]["g"]["57"]["buffer"],
@@ -190,7 +190,7 @@ e.put("e70", Routine({
 
     // the samples to play
     patterns = List();
-    patterns.add(Pbind(\instrument, \sampler_adsr,
+    patterns.add(Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
             ~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
@@ -204,7 +204,7 @@ e.put("e70", Routine({
         \group, ~grp[1],
         \addAction, \addToTail,
     ));
-    patterns.add(Pbind(\instrument, \sampler_adsr,
+    patterns.add(Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["g"]["55"]["buffer"],
             ~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
@@ -271,7 +271,7 @@ e.put("e72", Routine({
 
     // the samples to play
     patterns = List();
-    patterns.add(Pbind(\instrument, \sampler_adsr,
+    patterns.add(Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["d"]["65"]["buffer"],
             ~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
@@ -289,7 +289,7 @@ e.put("e72", Routine({
         \group, ~grp[1],
         \addAction, \addToTail,
     ));
-    patterns.add(Pbind(\instrument, \sampler_adsr,
+    patterns.add(Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
             ~samples["viola.pizz"]["ff"]["d"]["63"]["buffer"],
@@ -359,7 +359,7 @@ e.put("e73", Routine({
 
     // the samples to play
     patterns = List();
-    patterns.add(Pbind(\instrument, \sampler_adsr,
+    patterns.add(Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["a"]["71"]["buffer"],
             ~samples["viola.pizz"]["ff"]["a"]["69"]["buffer"],
@@ -377,7 +377,7 @@ e.put("e73", Routine({
         \group, ~grp[1],
         \addAction, \addToTail,
     ));
-    patterns.add(Pbind(\instrument, \sampler_adsr,
+    patterns.add(Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["d"]["64"]["buffer"],
             ~samples["viola.pizz"]["ff"]["d"]["64"]["buffer"],
@@ -447,7 +447,7 @@ e.put("e75", Routine({
     });
 
     // the samples to play
-    pattern = Pbind(\instrument, \sampler_adsr,
+    pattern = Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["a"]["69"]["buffer"],
         ], inf),
@@ -494,7 +494,7 @@ e.put("e75", Routine({
 // EVENT 76 - PATTERN
 // This event is meant to be played automatically, not stepped through.
 e.put("e76", Routine({
-    var control, control_specs,    pattern, synth_freeze, synths, synths_out, tempo_clock;
+    var control, control_specs, pattern, synth_freeze, synths, synths_out, tempo_clock;
     var freeze_release_time;
     freeze_release_time = 2;
 
@@ -513,7 +513,7 @@ e.put("e76", Routine({
     });
 
     // the samples to play
-    pattern = Pbind(\instrument, \sampler_adsr,
+    pattern = Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"],
         ], inf),
@@ -561,7 +561,7 @@ e.put("e76", Routine({
 // This event is meant to be played automatically, not stepped through.
 e.put("e79", Routine({
     var control, control_specs, pattern, synth_freeze, synths, synths_out, tempo_clock;
-    
+
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
@@ -577,7 +577,7 @@ e.put("e79", Routine({
     });
 
     // the samples to play
-    pattern = Pbind(\instrument, \sampler_adsr,
+    pattern = Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["g"]["55"]["buffer"],
         ], inf),
@@ -644,7 +644,7 @@ e.put("e82a", Routine({
 
     // the samples to play
     patterns = List();
-    patterns.add(Pbind(\instrument, \sampler_adsr,
+	patterns.add(Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["g"]["57"]["buffer"],
         ], inf),
@@ -657,7 +657,7 @@ e.put("e82a", Routine({
         \group, ~grp[1],
         \addAction, \addToTail,
     ));
-    patterns.add(Pbind(\instrument, \sampler_adsr,
+	patterns.add(Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["g"]["55"]["buffer"],
         ], inf),
@@ -734,7 +734,7 @@ e.put("e82b", Routine({
     synths = List();
 
     // microtonal pattern
-    pattern = Pbind(\instrument, \sampler_adsr,
+    pattern = Pbind(\instrument, \sampler_asr_pbind,
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["c"]["55"]["buffer"],
             ~samples["viola.pizz"]["ff"]["c"]["59"]["buffer"],
@@ -760,12 +760,12 @@ e.put("e82b", Routine({
             ~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"],
             ~samples["viola.pizz"]["ff"]["c"]["61"]["buffer"], //+
             ~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"]
-        ], 4),
+        ], 10),
         \transpose, Pseq([1, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 1, 1, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 1, 0.5.midiratio, 1], inf),
         \pan_mode, 1,
-        \pos, Pwhite(Pseq(Array.interpolation(30, 0, -0.5) ++ Array.interpolation(30, -0.5, 0), 4), Pseq(Array.interpolation(30, 0, 0.5) ++ Array.interpolation(30, 0.5, 0), 4), 30 * 4),
+        \pos, Pwhite(Pseq(Array.interpolation(30, 0, -0.5) ++ Array.interpolation(30, -0.5, 0), 4), Pseq(Array.interpolation(30, 0, 0.5) ++ Array.interpolation(30, 0.5, 0), 4), inf),
         \out, ~audiobus_grp2[0][0],
-        \mul, Pwhite(Pseq(Array.interpolation(20, 0.6, 0.1) ++ Array.interpolation(20, 0.1, 0.6), 6), Pseq(Array.interpolation(20, 0.5, 0.05) ++ Array.interpolation(20, 0.05, 0.5), 6), 30 * 4),
+        \mul, Pwhite(Pseq(Array.interpolation(20, 0.6, 0.1) ++ Array.interpolation(20, 0.1, 0.6), 6), Pseq(Array.interpolation(20, 0.5, 0.05) ++ Array.interpolation(20, 0.05, 0.5), 6), inf),
         \dur, Pseq([0.15, 0.15, 0.15, 0.15], inf),
         \group, ~grp[1],
         \addAction, \addToTail,
@@ -794,7 +794,7 @@ e.put("e82b", Routine({
     pattern.play(tempo_clock, quant: 1);
 
     "82b UPDATE 82b.0: Event 82b pattern start.".postln;
-    30.wait;
+    60.wait;
     pattern.stop;
 
     // SHUTDOWN ///////////////////////////////////////////////////////////////
