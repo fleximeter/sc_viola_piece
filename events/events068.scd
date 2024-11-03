@@ -170,7 +170,7 @@ e.put("e69", Routine({
 // EVENT 68 - PATTERN
 // This event is meant to be played automatically, not stepped through.
 e.put("e70", Routine({
-    var control, control_specs,    patterns, synth_freeze, synths, synths_out, tempo_clock;
+    var control, control_specs, patterns, synth_freeze, synths, synths_out, tempo_clock;
     var freeze_release_time;
     freeze_release_time = 2;
 
@@ -763,9 +763,9 @@ e.put("e82b", Routine({
         ], 4),
         \transpose, Pseq([1, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 1, 1, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 1, 0.5.midiratio, 1], inf),
         \pan_mode, 1,
-        \pos, Pwhite(-0.5, 0.5, inf),
+        \pos, Pwhite(Pseq(Array.interpolation(30, 0, -0.5) ++ Array.interpolation(30, -0.5, 0), 4), Pseq(Array.interpolation(30, 0, 0.5) ++ Array.interpolation(30, 0.5, 0), 4), 30 * 4),
         \out, ~audiobus_grp2[0][0],
-        \mul, 0.25,
+        \mul, Pwhite(Pseq(Array.interpolation(20, 0.6, 0.1) ++ Array.interpolation(20, 0.1, 0.6), 6), Pseq(Array.interpolation(20, 0.5, 0.05) ++ Array.interpolation(20, 0.05, 0.5), 6), 30 * 4),
         \dur, Pseq([0.15, 0.15, 0.15, 0.15], inf),
         \group, ~grp[1],
         \addAction, \addToTail,
