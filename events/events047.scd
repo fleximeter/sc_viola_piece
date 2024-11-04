@@ -24,13 +24,13 @@ e.put("e47", Routine({
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus_grp1[1]], ~grp[1], \addToTail));
-    synths.add(Synth(\pitchshift, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[2][0], \ratio, 2], ~grp[2], \addToTail));
+    synths.add(Synth(\pitchshift, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[2][0], \ratio, 0.5], ~grp[2], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[2][1], \mul_sig, ~controlbus_grp1[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[2][1], \mul_sig, ~faderbus[6], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[2][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[3], \attack_time, 0.01, \release_time, 0.5], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[2][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 0.5], ~grp[4], \addToTail));
     "47 UPDATE 47.0: Pitch shift in effect.".yield;
@@ -433,6 +433,7 @@ e.put("e64", Routine({
 
 // event 65: freeze
 // send this to a bus that 65b can read from
+// This event is made to be played
 e.put("e65a", Routine({
     var control, control_specs,    synth_freeze, synths, synths_out;
 
@@ -471,15 +472,15 @@ e.put("e65a", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[1][1], \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[12], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    "65a UPDATE 65a.0: Event 65a running and ready for freeze.".yield;
-
+    
     // freeze
     Routine({
         1.wait;
         synth_freeze.set(\freeze, 1.0);
     }).play;
-    "65a UPDATE 65a.1: Event 65a freeze.".yield;
-
+    "65a UPDATE 65a.0: Event 65a freeze.".postln;
+    3.wait;
+    
     // cleanup
     Routine({
         synth_freeze.set(\gate, 0);
@@ -490,9 +491,9 @@ e.put("e65a", Routine({
         synths.do({|item| item.free});
         synth_freeze.free;
         control.do({|item| item.free});
-    "65a UPDATE 65a.3: Event 65a kill stage complete. Event finished.".postln;
+    "65a UPDATE 65a.2: Event 65a kill stage complete. Event finished.".postln;
     }).play;
-    "65a UPDATE 65a.2: Event 65a fading out.".postln;
+    "65a UPDATE 65a.1: Event 65a fading out.".postln;
 }));
 
 // Event 65b: feedback
@@ -503,6 +504,7 @@ e.put("e65b", Routine({
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_prev_input_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 40], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 40], "curves" -> #[0, 0]],
@@ -516,6 +518,8 @@ e.put("e65b", Routine({
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1]], ~grp[1], \addToTail));
+    // pull in audio from previous event
+    synths.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp2[0][0], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 1], ~grp[1], \addToTail));
 
     // add processing synths
     synths.add(Synth(\fb1, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8]], ~grp[2], \addToTail));
@@ -524,11 +528,20 @@ e.put("e65b", Routine({
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[5], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    
+    Routine({
+        4.wait;
+        synths[1].set(\gate, 0);
+        1.wait;
+        synths[1].free;
+        synths.removeAt(1);
+        "65b UPDATE 65b.1: Event 65b finished reading from previous event.".postln;
+    }).play;
     "65b UPDATE 65b.0: Event 65b running.".yield;
-
+    
     // cleanup
     Routine({
         synths_out.do({|item| item.set(\gate, 0)});
@@ -536,8 +549,8 @@ e.put("e65b", Routine({
         synths_out.do({|item| item.free});
         synths.do({|item| item.free});
         control.do({|item| item.free});
-    "65b UPDATE 65b.2: Event 65b kill stage complete. Event finished.".postln;
+        "65b UPDATE 65b.3: Event 65b kill stage complete. Event finished.".postln;
     }).play;
-    "65b UPDATE 65b.1: Event 65b fading out.".postln;
+    "65b UPDATE 65b.2: Event 65b fading out.".postln;
 }));
 )

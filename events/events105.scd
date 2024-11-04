@@ -31,7 +31,7 @@ e.put("e105", Routine({
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~faderbus[6], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 
@@ -45,6 +45,7 @@ e.put("e105", Routine({
     }).play;
     "105 UPDATE 105.1: Event 105, freeze (C3).".yield;
 
+    /*
 	synth_freeze.set(\attack_time, freeze_release_time);
 	synth_freeze.set(\mul, 0);
     "105 UPDATE 105.2: Event 105, fade 1.".yield;
@@ -58,6 +59,7 @@ e.put("e105", Routine({
 
 	synth_freeze.set(\mul, 0);
     "105 UPDATE 105.2: Event 105, fade 1.".yield;
+    */
 
     // cleanup
     Routine({
