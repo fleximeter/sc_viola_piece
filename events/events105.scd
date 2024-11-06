@@ -17,8 +17,6 @@ e.put("e105", Routine({
         Dictionary["name" -> "control_wet_gain", "levels" -> #[0.2, 0.5, 0.2, 0.7], "times" -> #[10, 10, 10, 10], "curves" -> #[0, 0, 0, 0]],
     ];
 
-//	        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.5, 0.001, 0.001, 0.5, 0.001, 0.8, 0.5, 1.0, 0.2, 0.0], "times" -> #[3, 3, 1, 3, 5, 4, 4, 8, 5, 4], "curves" -> #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-
     control = Array.fill(control_specs.size, {
         | i |
         Synth(\ctrl_env, [\out, ~controlbus_grp2[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
@@ -31,10 +29,9 @@ e.put("e105", Routine({
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~faderbus[6], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[4][0], \out, ~audiobus_grp2[4][1], \mul_sig, ~faderbus[6], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[4][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[4][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 
     // 1 freeze
     Routine({
@@ -45,6 +42,9 @@ e.put("e105", Routine({
     }).play;
     "105 UPDATE 105.1: Event 105, freeze (C3).".yield;
 
+    // add the control envelope for the magbelow
+    synths.add(Synth(\fft_magbelow, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[4][0], \below, ~controlbus_grp2[10]], ~grp[3], \addToTail));
+    synths.add(Synth(\ctrl_env, [\out, ~controlbus_grp2[10], \levels, #[40, 2, 2], \times, #[10, 20], \curves, #[-4, 0]], ~grp[0]));
     /*
 	synth_freeze.set(\attack_time, freeze_release_time);
 	synth_freeze.set(\mul, 0);
