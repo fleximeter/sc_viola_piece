@@ -24,6 +24,8 @@ e.put("e105", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
+    // pass the regular signal straight through
+    synths.add(Synth(\passthrough8, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[4][0], \attack_time, 0, \release_time, 5], ~grp[2], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
@@ -42,24 +44,26 @@ e.put("e105", Routine({
     }).play;
     "105 UPDATE 105.1: Event 105, freeze (C3).".yield;
 
-    // add the control envelope for the magbelow
-    synths.add(Synth(\fft_magbelow, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[4][0], \below, ~controlbus_grp2[10]], ~grp[3], \addToTail));
+    // go to mag below sound
+    synths.add(Synth(\passthrough8, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[2][0], \attack_time, 5, \release_time, 5], ~grp[2], \addToTail));
     synths.add(Synth(\ctrl_env, [\out, ~controlbus_grp2[10], \levels, #[40, 2, 2], \times, #[10, 20], \curves, #[-4, 0]], ~grp[0]));
-    /*
-	synth_freeze.set(\attack_time, freeze_release_time);
-	synth_freeze.set(\mul, 0);
-    "105 UPDATE 105.2: Event 105, fade 1.".yield;
+    synths.add(Synth(\fft_magbelow, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[4][0], \below, ~controlbus_grp2[10]], ~grp[3], \addToTail));
+    synths[0].set(\gate, 0, \attack_time, 5);
+    "105 UPDATE 105.2: Event 105, move to mag below.".yield;
 
-	synth_freeze.set(\mul_lag, 6);
-	synth_freeze.set(\mul, -6.dbamp);
-    "105 UPDATE 105.2: Event 105, fade 1.".yield;
+    // go back to the original sound
+    synths[0].set(\gate, 1);  // open the gate to the original sound
+    synths[2].set(\gate, 0);  // close the gate to the mag below sound
+    "105 UPDATE 105.3: Event 105, move to mag below.".yield;
 
-	synth_freeze.set(\mul, -18.dbamp);
-    "105 UPDATE 105.2: Event 105, fade 1.".yield;
-
-	synth_freeze.set(\mul, 0);
-    "105 UPDATE 105.2: Event 105, fade 1.".yield;
-    */
+    // go to mag smear sound
+    synths[3].free;  // delete the previous control signal
+    synths[4].free;  // delete the previous FFT synth
+    synths[3] = Synth(\ctrl_env, [\out, ~controlbus_grp2[10], \levels, #[0, 20, 20], \times, #[10, 20], \curves, #[-4, 0]], ~grp[0]);
+    synths[4] = Synth(\fft_magsmear, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[4][0], \bins, ~controlbus_grp2[10]], ~grp[3], \addToTail);
+    synths[0].set(\gate, 0);  // close the gate to the original sound
+    synths[2].set(\gate, 1);  // open the gate to the mag below sound
+    "105 UPDATE 105.4: Event 105, move to mag below.".yield;
 
     // cleanup
     Routine({
@@ -71,9 +75,9 @@ e.put("e105", Routine({
         synth_freeze.free;
         synths.do({|item| item.free});
         control.do({|item| item.free});
-        "105 UPDATE 105.19: Event 105 kill stage complete. Event finished.".postln;
+        "105 UPDATE 105.6: Event 105 kill stage complete. Event finished.".postln;
     }).play;
-    "105 UPDATE 105.18: Event 105 final realease.".postln;
+    "105 UPDATE 105.5: Event 105 final realease.".postln;
 }));
 
 // EVENT 109

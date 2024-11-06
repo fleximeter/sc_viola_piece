@@ -703,7 +703,7 @@ e.put("e82a", Routine({
 // Event: shifting pattern playing
 // This event is meant to be played automatically, not stepped through.
 e.put("e82b", Routine({
-    var control, control_specs,    pattern, synths, synths_out, tempo_clock;
+    var control, control_specs, transpose, pattern, synths, synths_out, tempo_clock;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
@@ -732,6 +732,7 @@ e.put("e82b", Routine({
     });
 
     synths = List();
+    transpose = Array[1, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 1, 1, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 1, 0.5.midiratio, 1];
 
     // microtonal pattern
     pattern = Pbind(\instrument, \sampler_asr_pbind,
@@ -760,8 +761,8 @@ e.put("e82b", Routine({
             ~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"],
             ~samples["viola.pizz"]["ff"]["c"]["61"]["buffer"], //+
             ~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"]
-        ], 10),
-        \transpose, Pseq([1, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 1, 1, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 1, 0.5.midiratio, 1], inf),
+        ], 20),
+        \transpose, Pseq(transpose ++ (transpose * 5.midiratio) ++ (transpose * -5.midiratio) ++ transpose, inf),
         \pan_mode, 1,
         \pos, Pwhite(Pseq(Array.interpolation(30, 0, -0.5) ++ Array.interpolation(30, -0.5, 0), 4), Pseq(Array.interpolation(30, 0, 0.5) ++ Array.interpolation(30, 0.5, 0), 4), inf),
         \out, ~audiobus_grp2[0][0],
