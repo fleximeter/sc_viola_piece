@@ -709,18 +709,18 @@ e.put("e82b", Routine({
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_delay_semitones_1", "levels" -> #[4.0, 5.0], "times" -> #[20], "curves" -> #[0]],
-        Dictionary["name" -> "control_delay_time_1", "levels" -> #[0.5, 0.4], "times" -> #[20], "curves" -> #[0]],
-        Dictionary["name" -> "control_delay_mul_1", "levels" -> #[1.0, 0.5], "times" -> #[20], "curves" -> #[0]],
-        Dictionary["name" -> "control_delay_semitones_2", "levesls" -> #[-5.0, -4.0], "times" -> #[20], "curves" -> #[0]],
-        Dictionary["name" -> "control_delay_time_2", "levels" -> #[0.8, 0.9], "times" -> #[20], "curves" -> #[0]],
-        Dictionary["name" -> "control_delay_mul_2", "levels" -> #[0.5, 1.0], "times" -> #[20], "curves" -> #[0]],
-        Dictionary["name" -> "control_delay_semitones_3", "levels" -> #[1.0, 2.0], "times" -> #[20], "curves" -> #[0]],
-        Dictionary["name" -> "control_delay_time_3", "levels" -> #[2.0, 1.8], "times" -> #[20], "curves" -> #[0]],
-        Dictionary["name" -> "control_delay_mul_3", "levels" -> #[1.0, 0.5], "times" -> #[20], "curves" -> #[0]],
-        Dictionary["name" -> "control_delay_semitones_4", "levels" -> #[-1.0, -2.0], "times" -> #[20], "curves" -> #[0]],
-        Dictionary["name" -> "control_delay_time_4", "levels" -> #[1.3, 1.5], "times" -> #[20], "curves" -> #[0]],
-        Dictionary["name" -> "control_delay_mul_4", "levels" -> #[1.0, 0.5], "times" -> #[20], "curves" -> #[0]],
+        Dictionary["name" -> "control_delay_semitones_1", "levels" -> #[4.0, 5.0, 2.0, -5.0, -6.0, -6.0], "times" -> #[10, 15, 5, 10, 100], "curves" -> #[0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_delay_time_1", "levels" -> #[0.5, 0.4, 0.3, 0.8, 0.7, 0.7], "times" -> #[10, 15, 5, 10, 100], "curves" -> #[0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_delay_mul_1", "levels" -> #[0.1, 1.0, 0.2, 1.0, 0.2, 0.2], "times" -> #[10, 10, 10, 10, 100], "curves" -> #[0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_delay_semitones_2", "levesls" -> #[-5.0, -4.0, -8.0, -9.0, -7.0, -7.0], "times" -> #[15, 5, 10, 10, 100], "curves" -> #[0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_delay_time_2", "levels" -> #[0.8, 0.9, 0.4, 0.5, 0.6, 0.6], "times" -> #[15, 5, 10, 10, 100], "curves" -> #[0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_delay_mul_2", "levels" -> #[0.05, 0.5, 1.0, 0.3, 1.0, 0.2, 0.1], "times" -> #[10, 10, 5, 10, 10, 100], "curves" -> #[0, 0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_delay_semitones_3", "levels" -> #[1.0, 2.0, 1.0, 5.0, 7.0, 7.0], "times" -> #[10, 10, 10, 5, 5, 100], "curves" -> #[0, 0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_delay_time_3", "levels" -> #[2.0, 1.8, 1.4, 1.2, 1.0, 1.0], "times" -> #[10, 10, 10, 10, 100], "curves" -> #[0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_delay_mul_3", "levels" -> #[0.4, 0.9, 1.0, 0.1, 0.5, 0.1, 0.1], "times" -> #[5, 10, 5, 10, 10, 100], "curves" -> #[0, 0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_delay_semitones_4", "levels" -> #[-1.0, -2.0, -2.0, 0.0, -2.0, -2.0], "times" -> #[10, 5, 10, 15, 100], "curves" -> #[0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_delay_time_4", "levels" -> #[1.3, 1.5, 1.5, 0.5, 0.7, 0.7], "times" -> #[10, 5, 5, 20, 100], "curves" -> #[0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_delay_mul_4", "levels" -> #[0.1, 0.5, 1.0, 0.5, 1.0, 0.1, 0.5, 0.1, 0.1], "times" -> #[6, 4, 5, 5, 1, 10, 10, 100], "curves" -> #[0, 0, 0, 0, 0, 0, 0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[0.95, 0.95, 0.95], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_wet_gain", "levels" -> #[0.05, 0.05, 0.05], "times" -> #[10, 100], "curves" -> #[0, 0]],
@@ -761,13 +761,25 @@ e.put("e82b", Routine({
             ~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"],
             ~samples["viola.pizz"]["ff"]["c"]["61"]["buffer"], //+
             ~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"]
-        ], 20),
-        \transpose, Pseq(transpose ++ (transpose * 5.midiratio) ++ (transpose * -5.midiratio) ++ transpose, inf),
+        ], inf),
         \pan_mode, 1,
-        \pos, Pwhite(Pseq(Array.interpolation(30, 0, -0.5) ++ Array.interpolation(30, -0.5, 0), 4), Pseq(Array.interpolation(30, 0, 0.5) ++ Array.interpolation(30, 0.5, 0), 4), inf),
-        \out, ~audiobus_grp2[0][0],
-        \mul, Pwhite(Pseq(Array.interpolation(20, 0.6, 0.1) ++ Array.interpolation(20, 0.1, 0.6), 6), Pseq(Array.interpolation(20, 0.5, 0.05) ++ Array.interpolation(20, 0.05, 0.5), 6), inf),
-        \dur, Pseq([0.15, 0.15, 0.15, 0.15], inf),
+		\legato, Pseq(Array.interpolation(40, 0.1, 2.0) ++ Array.interpolation(40, 2.0, 0.1), inf),
+		\out, ~audiobus_grp2[0][0],
+		\pos, Pswitch1([
+			Pseq(Array.interpolation(30, 0, -0.5) ++ Array.interpolation(30, -0.5, 0), 4),
+			Pseq(Array.interpolation(30, 0, 0.5) ++ Array.interpolation(30, 0.5, 0), 4)
+		], Pseq([0, 1], inf)),
+		\mul, Pswitch1([
+			Pseq(Array.interpolation(20, 0.6, 0.1) ++ Array.interpolation(20, 0.1, 0.6), inf),
+			Pseq(Array.interpolation(20, 0.5, 0.05) ++ Array.interpolation(20, 0.05, 0.5), inf)
+		], Pseq([0, 1], inf)),
+		\dur, Pseq(Array.fill(200, {
+			|i|
+			var start, end;
+			start = 0.5;
+			end = 0.05;
+			(end - start) / 200 + start
+		}), 1),
         \group, ~grp[1],
         \addAction, \addToTail,
     );
@@ -787,7 +799,7 @@ e.put("e82b", Routine({
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[14], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[15], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[16], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 

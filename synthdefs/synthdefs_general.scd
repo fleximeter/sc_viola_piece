@@ -9,7 +9,7 @@
 SynthDef(\passthrough8, {
     var sig, env;
     sig = In.ar(\in.kr(0), 8);
-    env = EnvGen.ar(Env.asr(\attack_time.ir(0.01), 1, \decay_time.ir(0.1)), \gate.kr(1.0));
+	env = EnvGen.ar(Env.asr(\attack_time.kr(0.01), 1, \decay_time.kr(0.1), \curve.kr(-4.0)), \gate.kr(1.0));
     sig = sig * env;
     sig = sig.madd(\mul.kr(1.0), 0);
     Out.ar(\out.kr(0), sig);
@@ -20,7 +20,7 @@ SynthDef(\passthrough8mul, {
     var sig, env, ctrl_mul;
     sig = In.ar(\in.kr(0), 8);
     ctrl_mul = In.kr(\mul_sig.kr(0), 1);
-    env = EnvGen.ar(Env.asr(\attack_time.ir(0.01), 1, \decay_time.ir(0.1)), \gate.kr(1.0));
+	env = EnvGen.ar(Env.asr(\attack_time.kr(0.01), 1, \decay_time.kr(0.1), \curve.kr(-4.0)), \gate.kr(1.0));
     sig = sig * env * ctrl_mul;
     sig = sig.madd(\mul.kr(1.0), 0);
     Out.ar(\out.kr(0), sig);
