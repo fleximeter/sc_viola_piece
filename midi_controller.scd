@@ -34,7 +34,7 @@ SynthDef(\buschange, {
     "test", 79,
 ]);
 
-
+~piece_index = 0;
 
 // I'm having trouble with fader 1 on the QuNeo.
 /*
@@ -49,7 +49,7 @@ MIDIdef.cc("fader1", {
 */
 
 // note: the quneo pads go from note number 36 to 51
-MIDIdef.noteOn("on", {
+/*MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
     if(noteNumber == 36, {
         if(~event_counter < ~event_order_list.size, {
@@ -77,6 +77,53 @@ MIDIdef.noteOn("on", {
     });
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }).permanent = true;
+*/
+
+MIDIdef.noteOn("on", {
+    arg velocity, noteNumber, channel, source;
+    "Test QuNeo MIDI controller".postln;
+    //("note number " ++ noteNumber ++ " was pressed").postln;
+}, 19).permanent = true;
+
+MIDIdef.noteOn("on", {
+    arg velocity, noteNumber, channel, source;
+    if(~event_counter < ~event_order_list.size, {
+        if(~event_order_list[~event_counter][1] == "next", {
+            e[~event_order_list[~event_counter][0]].next.postln;
+        }, {
+            e[~event_order_list[~event_counter][0]].play;
+        });
+        ~event_counter = ~event_counter + 1;
+    }, {
+        e["main"].next;
+    });
+    //("note number " ++ noteNumber ++ " was pressed").postln;
+}, 36).permanent = true;
+
+MIDIdef.noteOn("on", {
+    arg velocity, noteNumber, channel, source;
+    Synth(\sampler_out3, [\buf, ~samples["piece"][~piece_index]["buffer"], \mul_sig, ~faderbus[7], \out1, ~gainbus, \out2, ~reverbbus[0], \mul, 3.dbamp, \mul1, 1, \mul2, 1], ~grp[0], \addToTail);
+    ~piece_index = ~piece_index + 1;
+    //("note number " ++ noteNumber ++ " was pressed").postln;
+}, 37).permanent = true;
+
+MIDIdef.noteOn("on", {
+    arg velocity, noteNumber, channel, source;
+    ~event_counter_reset.();
+    //("note number " ++ noteNumber ++ " was pressed").postln;
+}, 49).permanent = true;
+
+MIDIdef.noteOn("on", {
+    arg velocity, noteNumber, channel, source;
+    ~partial_reset.();
+    //("note number " ++ noteNumber ++ " was pressed").postln;
+}, 50).permanent = true;
+
+MIDIdef.noteOn("on", {
+    arg velocity, noteNumber, channel, source;
+    ~full_reset.();
+    //("note number " ++ noteNumber ++ " was pressed").postln;
+}, 51).permanent = true;
 
 MIDIdef.noteOff("off", {
     arg velocity, noteNumber, channel, source;

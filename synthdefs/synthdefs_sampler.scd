@@ -34,3 +34,18 @@ SynthDef(\sampler_env, {
     sig = sig.madd(\mul.kr(1), 0);
     Out.ar(\out.kr(0), sig);
 }).add;
+
+// Sampler for doing the recorded version of the piece
+// Accepts control for volume level (which you can use the quneo for)
+// Outputs to the micbus, as well as two other outs (for gain and reverb)
+SynthDef(\sampler_out3, {
+    var ctrl_mul, playback_rate, sig, pan_sig;
+    playback_rate = \transpose.ir(1) * BufRateScale.kr(\buf.ir(0));
+    ctrl_mul = In.kr(\mul_sig.kr(0), 1);
+    sig = PlayBuf.ar(1, \buf.ir(0), playback_rate, doneAction: 2);
+    sig = sig.madd(\mul.kr(1) * ctrl_mul, 0);
+    pan_sig = PanAz.ar(8, sig, \pos.kr(0.0), 1.0, \width.kr(2.0), 0.5);
+    Out.ar(~micbus, sig);
+    Out.ar(\out1.kr(0), pan_sig * \mul1.kr(1));
+    Out.ar(\out2.kr(0), pan_sig * \mul2.kr(1));
+}).add;

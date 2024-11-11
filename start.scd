@@ -123,6 +123,7 @@ Server.supernova;
 // Reset all events except the main event
 ~event_counter_reset = {
     ~event_counter = 0;
+    ~piece_index = 0;
     "--------------------------------------\nEvent counter reset to 0.\n--------------------------------------".postln;
     nil
 };
@@ -144,6 +145,7 @@ Server.supernova;
         e["main"].next;
     }).play;
     ~event_counter = 0;
+    ~piece_index = 0;
     "--------------------------------------\nFull reset performed.\n--------------------------------------".postln;
     nil
 };
