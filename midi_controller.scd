@@ -102,10 +102,27 @@ MIDIdef.noteOn("on", {
 
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
-    Synth(\sampler_out3, [\buf, ~samples["piece"][~piece_index]["buffer"], \mul_sig, ~faderbus[7], \out1, ~gainbus, \out2, ~reverbbus[0], \mul, 3.dbamp, \mul1, 1, \mul2, 1], ~grp[0], \addToTail);
+    Synth(\sampler_out3, [\buf, ~samples["piece"][~measure_list[~piece_index]]["buffer"], \mul_sig, ~faderbus[7], \out, 0, \mul, 3.dbamp], ~grp[0], \addToTail);
+    (">> playing " ++ ~measure_list[~piece_index]).postln;
     ~piece_index = ~piece_index + 1;
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }, 37).permanent = true;
+
+MIDIdef.noteOn("on", {
+    arg velocity, noteNumber, channel, source;
+    ~record_num = ~record_num + 1;
+    if(r[0].isRecording, {
+        r[0].stopRecording;
+        r[1].stopRecording;
+        "STOPPED RECORDING".postln;
+    }, {
+        r[0].record(PathName(~root_sample_dir ++ "samples/recording_" ++ ~record_num ++ "a.wav").fullPath, ~recordbus1, 1);
+        r[1].record(PathName(~root_sample_dir ++ "samples/recording_" ++ ~record_num ++ "b.wav").fullPath, ~recordbus2, 2);
+        "RECORDING...".postln;
+    });
+    ~piece_index = ~piece_index + 1;
+    //("note number " ++ noteNumber ++ " was pressed").postln;
+}, 48).permanent = true;
 
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
@@ -124,11 +141,6 @@ MIDIdef.noteOn("on", {
     ~full_reset.();
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }, 51).permanent = true;
-
-MIDIdef.noteOff("off", {
-    arg velocity, noteNumber, channel, source;
-    //("note number " ++ noteNumber ++ " was released").postln;
-}).permanent = true;
 
 MIDIdef.cc("fader2", {
     arg val, idx;

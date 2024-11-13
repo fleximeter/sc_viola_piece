@@ -23,7 +23,10 @@ Server.supernova;
     ~partconv_size = 512;  // project-wide STFT window size for convolution
     ~fft_size = 4096;  // project-wide STFT window size
     ~mic_zero = 8;     // the zero mic - NOTE on the RME in the studio it is 8!
+	~out_channels = 8;  // the number of out channels
     ~root_sample_dir = PathName(thisProcess.nowExecutingPath).parentPath;
+    ~record_num = -1;
+    r = Array.fill(2, {Recorder(s)});
 
     // gain can be adjusted here on a global level
     ~global_gain = -12.dbamp;
@@ -113,6 +116,10 @@ Server.supernova;
         Array.fill(10, {Bus.audio(s, 8)}),
         Array.fill(10, {Bus.audio(s, 8)}),
     ];
+
+    ~recordbus1 = Bus.audio(s, 1);
+    ~recordbus2 = Bus.audio(s, 2);
+    ~recordbus8 = Bus.audio(s, 8);
 };
 
 // Make groups

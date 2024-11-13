@@ -32,8 +32,17 @@ e.put("main", Routine({
     synths.add(Synth(\gain8mul, [\in, ~gainbus, \out, ~postprocessingbus[0], \mul, ~global_gain, \mul_sig, ~faderbus[3], \limit, -6.dbamp], ~grp[~grp.size-1], \addToTail));
 
     // the pan mapping (stereo or 8-channel)
-    //synths.add(Synth(\from8to2, [\in, ~postprocessingbus[0], \out, 0], ~grp[~grp.size-1], \addToTail));
-    synths.add(Synth(\from8to8, [\in, ~postprocessingbus[0], \out, 0], ~grp[~grp.size-1], \addToTail));
+    // for the 8-channel version, we also send to a stereo recording bus
+	if(~out_channels == 8,
+		{
+            synths.add(Synth(\from8to8, [\in, ~postprocessingbus[0], \out, 0], ~grp[~grp.size-1], \addToTail));
+            synths.add(Synth(\from8to2, [\in, ~postprocessingbus[0], \out, ~recordbus2], ~grp[~grp.size-1], \addToTail));
+            
+        },
+		{
+            synths.add(Synth(\from8to2, [\in, ~postprocessingbus[0], \out, 0], ~grp[~grp.size-1], \addToTail));
+        }
+	);
     "0 UPDATE 0.0: Main event running.".yield;
 
     // cleanup

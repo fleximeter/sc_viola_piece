@@ -45,7 +45,7 @@ e["octaves"].next;
 e["feedback"].next;
 
 ~samples["piece"][~piece_index]["path"]
-~piece_index
+~piece_index = 40
 ~event_counter = 0;
 ~reset_to_event.(105);
 ~event_counter.postln;

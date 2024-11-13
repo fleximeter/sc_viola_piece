@@ -46,6 +46,6 @@ SynthDef(\sampler_out3, {
     sig = sig.madd(\mul.kr(1) * ctrl_mul, 0);
     pan_sig = PanAz.ar(8, sig, \pos.kr(0.0), 1.0, \width.kr(2.0), 0.5);
     Out.ar(~micbus, sig);
-    Out.ar(\out1.kr(0), pan_sig * \mul1.kr(1));
-    Out.ar(\out2.kr(0), pan_sig * \mul2.kr(1));
+    Out.ar(~recordbus1, sig);
+    Out.ar(\out.kr(0), pan_sig);
 }).add;
