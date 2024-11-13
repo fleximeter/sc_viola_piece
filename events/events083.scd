@@ -35,7 +35,7 @@ e.put("e83", Routine({
 
     // 1 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 1.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[0].set(\freeze, 1.0);
@@ -44,7 +44,7 @@ e.put("e83", Routine({
 
     // 2 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["g"]["55"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 0.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["g"]["55"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][1], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[1].set(\freeze, 1.0);
@@ -53,7 +53,7 @@ e.put("e83", Routine({
 
     // 3 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 1.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][2], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[2].set(\freeze, 1.0);
@@ -76,7 +76,7 @@ e.put("e83", Routine({
 
     // 5 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["77"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["77"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[4].set(\freeze, 1.0);
@@ -85,7 +85,7 @@ e.put("e83", Routine({
 
     // 6 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 1.75, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][1], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[5].set(\freeze, 1.0);
@@ -94,7 +94,7 @@ e.put("e83", Routine({
 
     // 7 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["67"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 0.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["67"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][2], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[6].set(\freeze, 1.0);
@@ -105,7 +105,7 @@ e.put("e83", Routine({
 
     // 8 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][3], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][3], \pos, 1.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][3], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[7].set(\freeze, 1.0);
@@ -118,7 +118,7 @@ e.put("e83", Routine({
 
     // 9 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["81"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.75, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["81"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[8].set(\freeze, 1.0);
@@ -127,7 +127,7 @@ e.put("e83", Routine({
 
     // 10 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 1.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][1], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[9].set(\freeze, 1.0);
@@ -138,7 +138,7 @@ e.put("e83", Routine({
 
     // 11 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["77"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 0.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["77"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][2], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[10].set(\freeze, 1.0);
@@ -147,7 +147,7 @@ e.put("e83", Routine({
 
     // 12 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][3], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["67"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][3], \pos, 1.75, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["67"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][3], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[11].set(\freeze, 1.0);
@@ -161,7 +161,7 @@ e.put("e83", Routine({
 
     // 13 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][6], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][6], \pos, 1.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][6], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[12].set(\freeze, 1.0);
@@ -170,7 +170,7 @@ e.put("e83", Routine({
 
     // 14 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][6], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][6], \pos, 0.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][6], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[13].set(\freeze, 1.0);
@@ -201,7 +201,7 @@ e.put("e96", Routine({
 
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
-        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 8.0, 8.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
@@ -251,7 +251,7 @@ e.put("e98", Routine({
 
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
-        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 8.0, 8.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
@@ -300,7 +300,7 @@ e.put("e99", Routine({
 
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
-        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
+        Dictionary["name" -> "sound_pan_pos", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[10, 20], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 20], "curves" -> #[0, 0]],
@@ -348,7 +348,7 @@ e.put("e101", Routine({
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 6.0, 6.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[0.1, 0.9, 0.3, 0.1, 0.9, 0.1, 0.1], "times" -> #[2, 1, 2, 2, 2, 10], "curves" -> #[0, 0, 0, 0, 0, 0]],
         Dictionary["name" -> "control_wet_gain", "levels" -> #[0.05, 0.1, 0.05, 0.02, 0.1, 0.05, 0.02], "times" -> #[2, 1, 2, 2, 2, 10], "curves" -> #[0, 0, 0, 0, 0, 0]],
@@ -396,7 +396,7 @@ e.put("e104", Routine({
 
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
-        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 2.0, 2.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],

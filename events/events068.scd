@@ -32,7 +32,6 @@ e.put("e68", Routine({
             ~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
             ~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
         ], 3),
-        \pan_mode, 1,
         \pos, Pwhite(-0.4, 0.4, inf),
         \out, ~audiobus_grp1[0][0],
         \mul, 0.25,
@@ -46,7 +45,6 @@ e.put("e68", Routine({
             ~samples["viola.pizz"]["ff"]["g"]["59"]["buffer"],
             ~samples["viola.pizz"]["ff"]["g"]["57"]["buffer"],
         ], 3),
-        \pan_mode, 1,
         \pos, Pwhite(-0.4, 0.4, inf),
         \out, ~audiobus_grp1[0][0],
         \mul, 0.25,
@@ -115,7 +113,7 @@ e.put("e69", Routine({
             ~samples["viola.pizz"]["ff"]["d"]["62"]["buffer"],
         ], 1),
         \pan_mode, 1,
-        \pos, Pwhite(-0.4, 0.4, inf),
+        \pos, Pwhite(0.5, 1.5, inf),
         \out, ~audiobus_grp2[0][0],
         \mul, 0.25,
         \dur, Pseq([Rest(0.5), 0.5, 0.5], 1),
@@ -130,7 +128,7 @@ e.put("e69", Routine({
         ], 1),
         \transpose, Pseq([1, 1, -0.5.midiratio], 1),
         \pan_mode, 1,
-        \pos, Pwhite(-0.4, 0.4, inf),
+        \pos, Pwhite(0.5, 1.5, inf),
         \out, ~audiobus_grp2[0][0],
         \mul, 0.25,
         \dur, Pseq([0.5], 3),
@@ -167,7 +165,7 @@ e.put("e69", Routine({
     "69 UPDATE 69.2: Event 69 kill stage complete. Event finished.".postln;
 }));
 
-// EVENT 68 - PATTERN
+// EVENT 70 - PATTERN
 // This event is meant to be played automatically, not stepped through.
 e.put("e70", Routine({
     var control, control_specs, patterns, synth_freeze, synths, synths_out, tempo_clock;
@@ -281,8 +279,7 @@ e.put("e72", Routine({
             ~samples["viola.pizz"]["ff"]["a"]["69"]["buffer"],
         ], 3),
         \transpose, Pseq([1, 1, 1, -0.5.midiratio, 1, 1], 1),
-        \pan_mode, 1,
-        \pos, Pwhite(-0.4, 0.4, inf),
+        \pos, Pwhite(0.7, 1.3, inf),
         \out, ~audiobus_grp2[0][0],
         \mul, 0.25,
         \dur, Pseq([1/3], 6),
@@ -451,8 +448,7 @@ e.put("e75", Routine({
         \buf, Pseq([
             ~samples["viola.pizz"]["ff"]["a"]["69"]["buffer"],
         ], inf),
-        \pan_mode, 1,
-        \pos, Pwhite(-0.4, 0.4, inf),
+        \pos, Pwhite(0.8, 1.2, inf),
         \out, ~audiobus_grp2[0][0],
         \mul, 0.25,
         \dur, Pseq(Array.interpolation(12, 0.5, 0.125) ++ Array.interpolation(12, 0.125, 0.5), 3),
@@ -519,7 +515,7 @@ e.put("e76", Routine({
         ], inf),
         \transpose, Pswitch1([Pseq([1], inf), Pseq(Array.interpolation(8, -0.5.midiratio, 1) ++ Array.interpolation(8, 1, -0.5.midiratio), inf)], Pseq([0, 1], inf)),
         \pan_mode, 1,
-        \pos, Pwhite(-0.4, 0.4, inf),
+        \pos, Pwhite(0.8, 1.2, inf),
         \out, ~audiobus_grp1[0][0],
         \mul, 0.25,
         \dur, Pseq(Array.interpolation(16, 0.5, 0.125) ++ Array.interpolation(16, 0.125, 0.5), 3),
@@ -582,7 +578,7 @@ e.put("e79", Routine({
             ~samples["viola.pizz"]["ff"]["g"]["55"]["buffer"],
         ], inf),
         \pan_mode, 1,
-        \pos, Pwhite(-0.4, 0.4, inf),
+        \pos, Pwhite(-0.2, 0.2, inf),
         \out, ~audiobus_grp2[0][0],
         \mul, Pseq(Array.interpolation(10, 0.25, 0.1), 1),
         \dur, Pseq([0.25], 10),
@@ -650,7 +646,7 @@ e.put("e82a", Routine({
         ], inf),
         \transpose, Pseq(Array.interpolation(16 * 6, 1, -2.midiratio), 1),
         \pan_mode, 1,
-        \pos, Pwhite(-0.4, 0.4, inf),
+        \pos, Pwhite(0.6, 1.4, inf),
         \out, ~audiobus_grp1[0][0],
         \mul, -18.dbamp,
         \dur, Pseq(Array.interpolation(16, 0.5, 0.125) ++ Array.interpolation(16, 0.125, 0.5), 3),
