@@ -30,15 +30,15 @@ e.put("e47", Routine({
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[2][1], \mul_sig, ~faderbus[6], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[2][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[3], \attack_time, 0.01, \release_time, 0.5], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[2][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 0.5], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[2][0], \out, ~audiobus_grp1[2][1], \mul_sig, ~faderbus[6], \attack_time, 0.01, \release_time, 4], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[2][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[3], \attack_time, 0.01, \release_time, 4], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[2][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 4], ~grp[4], \addToTail));
     "47 UPDATE 47.0: Pitch shift in effect.".yield;
     
     // cleanup
     Routine({
         synths_out.do({|item| item.set(\gate, 0)});
-        1.5.wait;
+        4.5.wait;
         synths_out.do({|item| item.free});
         synths.do({|item| item.free});
         control.do({|item| item.free});
@@ -287,10 +287,12 @@ e.put("e60", Routine({
     "60 UPDATE 60.0: Event 60 delay open.".yield;
 
     synths[0].set(\gate, 0);
-    "60 UPDATE 60.1: Event 60 mic close.".yield;
+    "60 UPDATE 60.1: Event 60 mic close.".postln;
 
     // cleanup
     Routine({
+        4.wait;
+        "60 UPDATE 60.2: Event 60 fading out.".postln;
         synths_out.do({|item| item.set(\gate, 0)});
         1.5.wait;
         synths_out.do({|item| item.free});
@@ -298,7 +300,6 @@ e.put("e60", Routine({
         control.do({|item| item.free});
     "60 UPDATE 60.3: Event 60 kill stage complete. Event finished.".postln;
     }).play;
-    "60 UPDATE 60.2: Event 60 fading out.".postln;
 }));
 
 // EVENT 62 - SAMPLES

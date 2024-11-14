@@ -293,10 +293,12 @@ e.put("e31", Routine({
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 1.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["g"]["55"]["buffer"], \dur, 60/108, \release_time, 0.2], ~grp[1], \addToTail));
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 0.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["64"]["buffer"], \dur, 60/108, \release_time, 0.2], ~grp[1], \addToTail));
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 1.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"], \dur, 60/108, \release_time, 0.2], ~grp[1], \addToTail));
-    "31 UPDATE 31.1: Pitch shift closed, second chord playing.".yield;
+    "31 UPDATE 31.1: Pitch shift closed, second chord playing.".postln;
 
     // cleanup
     Routine({
+        2.wait;
+        "31 UPDATE 31.2: Event 31 fading out.".postln;
         synths_out.do({|item| item.set(\gate, 0)});
         1.5.wait;
         synths_out.do({|item| item.free});
@@ -304,7 +306,6 @@ e.put("e31", Routine({
         control.do({|item| item.free});
         "31 UPDATE 31.3: Event 31 kill stage complete. Event finished.".postln;
     }).play;
-    "31 UPDATE 31.2: Event 31 fading out.".postln;
 }));
 
 // EVENT 33
@@ -384,14 +385,16 @@ e.put("e35", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    "35 UPDATE 35.0: Event 35 delay open 1.".yield;
+    "35 UPDATE 35.0: Event 35 delay open.".yield;
 
     // 3 open/close pairs
     synths[0].set(\gate, 0);
-    "35 UPDATE 35.1: Event 35 mic close 2.".yield;
+    "35 UPDATE 35.1: Event 35 mic close.".postln;
 
     // cleanup
     Routine({
+        4.wait;
+        "35 UPDATE 35.2: Event 35 fading out.".postln;
         synths_out.do({|item| item.set(\gate, 0)});
         1.5.wait;
         synths_out.do({|item| item.free});
@@ -399,7 +402,6 @@ e.put("e35", Routine({
         control.do({|item| item.free});
         "35 UPDATE 35.3: Event 35 kill stage complete. Event finished.".postln;
     }).play;
-    "35 UPDATE 35.1: Event 35 fading out.".postln;
 }));
 
 // EVENT 39 - FREEZE 1 NOTE
@@ -444,6 +446,8 @@ e.put("e39", Routine({
 
     // cleanup
     Routine({
+        1.5.wait;
+        "39 UPDATE 39.1: Event 39 fading out.".postln;
         synths_freeze.do({|item| item.set(\gate, 0)});
         freeze_release_time.wait;
         synths_out.do({|item| item.set(\gate, 0)});
@@ -454,7 +458,6 @@ e.put("e39", Routine({
         control.do({|item| item.free});
         "39 UPDATE 39.2: Event 39 kill stage complete. Event finished.".postln;
     }).play;
-    "39 UPDATE 39.1: Event 39 final realease.".postln;
 }));
 
 // EVENT 41

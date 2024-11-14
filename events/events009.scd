@@ -81,9 +81,8 @@ e.put("e9", Routine({
         1.wait;
         synths_freeze[4].set(\freeze, 1.0);
     }).play;
-    "9 UPDATE 9.6: Event 9, freeze 5 (B4).\nReady for release 3.".yield;
     synths_freeze[2].set(\gate, 0);
-    "9 UPDATE 9.7: Event 9 release 3 (C+5).".yield;
+    "9 UPDATE 9.6: Event 9, freeze 5 (B4), release 3 (C+5).".yield;
 
     // 6 freeze
     Routine({
@@ -92,9 +91,8 @@ e.put("e9", Routine({
         1.wait;
         synths_freeze[5].set(\freeze, 1.0);
     }).play;
-    "9 UPDATE 9.8: Event 9, freeze 6 (D+4).\nReady for release 4.".yield;
     synths_freeze[3].set(\gate, 0);
-    "9 UPDATE 9.9: Event 9 release 4 (D4).".yield;
+    "9 UPDATE 9.7: Event 9, freeze 6 (D+4), release 4 (D4).".yield;
 
     // 7 freeze
     Routine({
@@ -103,7 +101,7 @@ e.put("e9", Routine({
         1.wait;
         synths_freeze[6].set(\freeze, 1.0);
     }).play;
-    "9 UPDATE 9.10: Event 9 freeze 7 (F4).\nReady for final realeases.".yield;
+    "9 UPDATE 9.8: Event 9 freeze 7 (F4).\nReady for final realeases.".yield;
 
     // cleanup
     Routine({
@@ -115,9 +113,9 @@ e.put("e9", Routine({
         synths_freeze.do({|item| item.free});
         synths.do({|item| item.free});
         control.do({|item| item.free});
-        "9 UPDATE 9.12: Event 9 kill stage complete. Event finished.".postln;
+        "9 UPDATE 9.10: Event 9 kill stage complete. Event finished.".postln;
     }).play;
-    "9 UPDATE 9.11: Event 9 fading out.".postln;
+    "9 UPDATE 9.9: Event 9 fading out.".postln;
 }));
 
 // EVENT 14
@@ -218,7 +216,7 @@ e.put("e17", Routine({
         control.do({|item| item.free});
         "17 UPDATE 17.2: Event 17 kill stage complete. Event finished.".postln;
     }).play;
-    "17 UPDATE 17.3: Event 17 fading out.".postln;
+    "17 UPDATE 17.1: Event 17 fading out.".postln;
 }));
 
 

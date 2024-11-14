@@ -99,10 +99,9 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[6].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.7: Event 83, freeze 7 (G4).\nReady for release 5.".yield;
     synths_freeze[4].set(\gate, 0);
-    "83 UPDATE 83.8: Event 83 release 5.".yield;
-
+    "83 UPDATE 83.7: Event 83, freeze 7 (G4), release 5.".yield;
+    
     // 8 freeze
     Routine({
         synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][3], \pos, 1.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
@@ -110,11 +109,11 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[7].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.9: Event 83, freeze 8 (E5).\nReady for realease 6-8.".yield;
+    "83 UPDATE 83.8: Event 83, freeze 8 (E5).\nReady for realease 6-8.".yield;
     synths_freeze[5].set(\gate, 0);
     synths_freeze[6].set(\gate, 0);
     synths_freeze[7].set(\gate, 0);
-    "83 UPDATE 83.10: Event 83 release 6-8.".yield;
+    "83 UPDATE 83.9: Event 83 release 6-8.".yield;
 
     // 9 freeze
     Routine({
