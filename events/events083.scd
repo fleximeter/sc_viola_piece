@@ -319,7 +319,7 @@ e.put("e98", Routine({
 
     // cleanup
     Routine({
-        4.wait
+        4.wait;
         synths_out.do({|item| item.set(\gate, 0)});
         1.5.wait;
         synths_out.do({|item| item.free});

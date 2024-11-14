@@ -29,7 +29,7 @@ Server.supernova;
     r = Array.fill(2, {Recorder(s)});
 
     // gain can be adjusted here on a global level
-    ~global_gain = -12.dbamp;
+    ~global_gain = 0.dbamp;
 
     // Global buffers
     ~bufs = Array.fill(20, {Buffer.alloc(s, 20 * s.sampleRate)});    // buffers for sampling live audio

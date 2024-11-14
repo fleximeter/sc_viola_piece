@@ -442,7 +442,7 @@ e.put("e39", Routine({
         1.wait;
         synths_freeze[0].set(\freeze, 1.0);
     }).play;
-    "39 UPDATE 39.0: Event 39 freeze (C5).".yield;
+    "39 UPDATE 39.0: Event 39 freeze (C5).".postln;
 
     // cleanup
     Routine({

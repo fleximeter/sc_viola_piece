@@ -102,7 +102,7 @@ MIDIdef.noteOn("on", {
 
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
-    Synth(\sampler_out3, [\buf, ~samples["piece"][~measure_list[~piece_index]]["buffer"], \mul_sig, ~faderbus[7], \out, 0, \mul, 3.dbamp], ~grp[0], \addToTail);
+    Synth(\sampler_out3, [\buf, ~samples["piece"][~measure_list[~piece_index]]["buffer"], \mul_sig, ~faderbus[7], \out, 0, \mul, -6.dbamp], ~grp[0], \addToTail);
     (">> playing " ++ ~measure_list[~piece_index]).postln;
     ~piece_index = ~piece_index + 1;
     //("note number " ++ noteNumber ++ " was pressed").postln;
