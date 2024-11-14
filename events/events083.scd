@@ -122,7 +122,7 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[8].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.11: Event 83, freeze 9 (A5).".yield;
+    "83 UPDATE 83.10: Event 83, freeze 9 (A5).".yield;
 
     // 10 freeze
     Routine({
@@ -131,9 +131,9 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[9].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.12: Event 83, freeze 10 (E5).\nReady for realease 9.".yield;
+    "83 UPDATE 83.11: Event 83, freeze 10 (E5).\nReady for realease 9.".yield;
     synths_freeze[8].set(\gate, 0);
-    "83 UPDATE 83.13: Event 83 release 9.".yield;
+    "83 UPDATE 83.12: Event 83 release 9.".yield;
 
     // 11 freeze
     Routine({
@@ -142,7 +142,7 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[10].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.14: Event 83, freeze 11 (F5).".yield;
+    "83 UPDATE 83.13: Event 83, freeze 11 (F5).".yield;
 
     // 12 freeze
     Routine({
@@ -151,7 +151,7 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[11].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.15: Event 83 freeze 12 (G4).\nReady for realease 9-10.".yield;
+    "83 UPDATE 83.15: Event 83 freeze 12 (G4).\nReady for release 9-10.".yield;
     synths_freeze[9].set(\gate, 0);
     synths_freeze[10].set(\gate, 0);
     "83 UPDATE 83.16: Event 83 release 10-11. Ready for release 12".yield;
