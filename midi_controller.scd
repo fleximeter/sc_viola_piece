@@ -102,7 +102,7 @@ MIDIdef.noteOn("on", {
 
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
-    Synth(\sampler_out3, [\buf, ~samples["piece"][~measure_list[~piece_index]]["buffer"], \mul_sig, ~faderbus[7], \out, 0, \mul, -6.dbamp], ~grp[0], \addToTail);
+    Synth(\sampler_out3, [\buf, ~samples["piece"][~measure_list[~piece_index]]["buffer"], \mul_sig, ~faderbus[7], \out, 0, \mul, 0.dbamp], ~grp[0], \addToTail);
     (">> playing " ++ ~measure_list[~piece_index]).postln;
     ~piece_index = ~piece_index + 1;
     //("note number " ++ noteNumber ++ " was pressed").postln;
@@ -120,7 +120,6 @@ MIDIdef.noteOn("on", {
         r[1].record(PathName(~root_sample_dir ++ "samples/recording_" ++ ~record_num ++ "b.wav").fullPath, ~recordbus2, 2);
         "RECORDING...".postln;
     });
-    ~piece_index = ~piece_index + 1;
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }, 48).permanent = true;
 

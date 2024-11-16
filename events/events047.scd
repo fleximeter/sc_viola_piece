@@ -436,7 +436,7 @@ e.put("e64", Routine({
 // send this to a bus that 65b can read from
 // This event is made to be played
 e.put("e65a", Routine({
-    var control, control_specs,    synth_freeze, synths, synths_out;
+    var control, control_specs, synth_freeze, synths, synths_out;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [

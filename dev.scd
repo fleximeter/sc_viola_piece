@@ -45,11 +45,11 @@ e["octaves"].next;
 e["feedback"].next;
 
 ~samples["piece"][~piece_index]["path"]
-~piece_index = 40
+~piece_index = 0
 ~event_counter = 0;
-~reset_to_event.(105);
+~reset_to_event.(64);
 ~event_counter.postln;
-~global_gain = -12.dbamp;
+~global_gain = 6.dbamp;
 
 // check sound
 {PanAz.ar(8, SinOsc.ar(440, 0, 0.1, 0), 0.5, 1, 2.0)}.play;
