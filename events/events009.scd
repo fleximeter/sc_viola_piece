@@ -139,7 +139,7 @@ e.put("e14", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1]], ~grp[1], \addToTail));
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1], \mul, -30.dbamp], ~grp[1], \addToTail));
     synths.add(Synth(\pitchshift, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \ratio, 2/3], ~grp[2], \addToTail));
 
     // SENDS
@@ -202,10 +202,12 @@ e.put("e17", Routine({
         1.wait;
         synth_freeze.set(\freeze, 1.0);
     }).play;
-    "17 UPDATE 17.0: Event 17, freeze (F4).".yield;
+    "17 UPDATE 17.0: Event 17, freeze (F4).".postln;
 
     // cleanup
     Routine({
+		1.wait;
+		"17 UPDATE 17.1: Event 17 fading out.".postln;
         synth_freeze.set(\gate, 0);
         freeze_release_time.wait;
         synths_out.do({|item| item.set(\gate, 0)});
@@ -216,7 +218,6 @@ e.put("e17", Routine({
         control.do({|item| item.free});
         "17 UPDATE 17.2: Event 17 kill stage complete. Event finished.".postln;
     }).play;
-    "17 UPDATE 17.1: Event 17 fading out.".postln;
 }));
 
 

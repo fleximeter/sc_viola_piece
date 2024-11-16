@@ -45,9 +45,9 @@ e["octaves"].next;
 e["feedback"].next;
 
 ~samples["piece"][~piece_index]["path"]
-~piece_index = 0
+~piece_index = 6
 ~event_counter = 0;
-~reset_to_event.(64);
+~reset_to_event.(9);
 ~event_counter.postln;
 ~global_gain = 6.dbamp;
 

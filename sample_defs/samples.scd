@@ -1,62 +1,7 @@
 // This file loads samples.
 ~samples = Dictionary.new;
 (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "other_samples.scd").load;
+(PathName.new(thisProcess.nowExecutingPath).parentPath ++ "piece_recording.scd").load;
 (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "impulse_responses.scd").load;
 (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "viola.arco.scd").load;
 (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "viola.pizz.scd").load;
-
-// for the recording
-~samples.putPairs(["piece", Dictionary.newFrom([
-	"m1", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/1.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/1.wav").fullPath)]),
-	"m2", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/2.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/2.wav").fullPath)]),
-	"m3", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/3.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/3.wav").fullPath)]),
-	"m4", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/4.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/4.wav").fullPath)]),
-	"m5", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/5.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/5.wav").fullPath)]),
-	"m7", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/6.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/6.wav").fullPath)]),
-	"m9", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/7.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/7.wav").fullPath)]),
-	"m19", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/8.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/8.wav").fullPath)]),
-	"m21", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/9.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/9.wav").fullPath)]),
-	"m23", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/10.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/10.wav").fullPath)]),
-	"m25", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/11plus12.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/11plus12.wav").fullPath)]),
-	"m47", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/13plus14.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/13plus14.wav").fullPath)]),
-	"m62", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/15.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/15.wav").fullPath)]),
-	"m66", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/16.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/16.wav").fullPath)]),
-    "m67", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/16.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/16.wav").fullPath)]),
-	"m68", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/17.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/17.wav").fullPath)]),
-	"m69", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/18.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/18.wav").fullPath)]),
-	"m70", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/19.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/19.wav").fullPath)]),
-	"m72", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/20.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/20.wav").fullPath)]),
-	"m75a", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/21.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/21.wav").fullPath)]),
-	"m75b", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/22.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/22.wav").fullPath)]),
-	"m75c", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/23.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/23.wav").fullPath)]),
-	"m76", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/24.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/24.wav").fullPath)]),
-	"m78a", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/25.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/25.wav").fullPath)]),
-	"m78b", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/26.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/26.wav").fullPath)]),
-	"m78c", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/27.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/27.wav").fullPath)]),
-	"m78d", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/28.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/28.wav").fullPath)]),
-	"m78e", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/29.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/29.wav").fullPath)]),
-	"m79", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/30.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/30.wav").fullPath)]),
-	"m80", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/31.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/31.wav").fullPath)]),
-	"m82a", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/32.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/32.wav").fullPath)]),
-	"m82b", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/33.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/33.wav").fullPath)]),
-	"m82c", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/34.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/34.wav").fullPath)]),
-	"m82d", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/35.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/35.wav").fullPath)]),
-	"m82e", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/36.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/36.wav").fullPath)]),
-	"m82f", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/37.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/37.wav").fullPath)]),
-	"m82g", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/38.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/38.wav").fullPath)]),
-	"m82h", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/39.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/39.wav").fullPath)]),
-	"m83", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/40plus43.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/40plus43.wav").fullPath)]),
-	"m94", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/44plus47.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/44plus47.wav").fullPath)]),
-	"m101", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/48plus50.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/48plus50.wav").fullPath)]),
-	"m107", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/51.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/51.wav").fullPath)]),
-	"m108", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/52.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/52.wav").fullPath)]),
-	"m109", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/53.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/53.wav").fullPath)]),
-	"m115", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/54.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/54.wav").fullPath)]),
-	"m122", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/55.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/55.wav").fullPath)]),
-	"m123", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/56.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/56.wav").fullPath)]),
-	"m124", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/57.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/57.wav").fullPath)]),
-	"m125", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/58.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/58.wav").fullPath)]),
-	"m126", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/59.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/59.wav").fullPath)]),
-	"m128", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/60.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/60.wav").fullPath)]),
-	"m130", Dictionary.newFrom(["path", PathName(~root_sample_dir ++ "samples/recordings_of_piece/61.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/recordings_of_piece/61.wav").fullPath)]),
-])]);

@@ -10,20 +10,20 @@ e.put("e1", Routine({
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[4, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_above", "levels" -> #[30, 2, 2], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[4.0, 5.0, 5.0], "times" -> #[6, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[4.0, 5.0, 5.0], "times" -> #[4, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pitch_shift2", "levels" -> #[-12.0, -12.0, -12.0], "times" -> #[4, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_pos1", "levels" -> #[1.5, 1.25, 1.25], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[8, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_pos2", "levels" -> #[0.5, 0.75, 0.75], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[8, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_lpf", "levels" -> #[800, 800, 800], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.25, 0.5], "times" -> #[10, 100], "curves" -> #[2, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_pos1", "levels" -> #[1.5, 1.25, 1.25], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_pos2", "levels" -> #[0.5, 0.75, 0.75], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_lpf", "levels" -> #[800, 800, 800], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.25, 0.5], "times" -> #[4, 100], "curves" -> #[2, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.1, 0.1], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 0.9, 0.9], "times" -> #[4, 100], "curves" -> #[0, 0]],
     ];
-    
+
     control = Array.fill(control_specs.size, {
         | i |
         Synth(\ctrl_env, [\out, ~controlbus_grp1[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
@@ -62,7 +62,7 @@ e.put("e1", Routine({
 
     // cleanup
     Routine({
-		6.wait;
+		2.5.wait;
 		"1 UPDATE 1.1: Event 1 fading out.".postln;
         synth_freeze.do({|item| item.set(\gate, 0)});
         freeze_release_time.wait;
@@ -85,18 +85,18 @@ e.put("e1alt", Routine({
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[4, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_above", "levels" -> #[30, 2, 2], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[4.0, 5.0, 5.0], "times" -> #[6, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[4.0, 5.0, 5.0], "times" -> #[4, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pitch_shift2", "levels" -> #[-12.0, -12.0, -12.0], "times" -> #[4, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_pos1", "levels" -> #[1.5, 1.25, 1.25], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[8, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_pos2", "levels" -> #[0.5, 0.75, 0.75], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[8, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_lpf", "levels" -> #[800, 800, 800], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.25, 0.5], "times" -> #[10, 100], "curves" -> #[2, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_pos1", "levels" -> #[1.5, 1.25, 1.25], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_pos2", "levels" -> #[0.5, 0.75, 0.75], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_lpf", "levels" -> #[800, 800, 800], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.25, 0.5], "times" -> #[4, 100], "curves" -> #[2, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.1, 0.1], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 0.9, 0.9], "times" -> #[4, 100], "curves" -> #[0, 0]],
     ];
 
 
@@ -107,7 +107,7 @@ e.put("e1alt", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["74"]["buffer"]], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["74"]["buffer"]], ~grp[1], \addToTail));
 
     // freeze and mag below
 	synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[2][0], \above_frac, 0.2, \amp_fluctuation, 0.1, \release_time, 3], ~grp[1], \addToTail);
@@ -138,7 +138,7 @@ e.put("e1alt", Routine({
 
     // cleanup
     Routine({
-		6.wait;
+		2.5.wait;
 		"1 UPDATE 1.1: Event 1 fading out.".postln;
         synth_freeze.do({|item| item.set(\gate, 0)});
         freeze_release_time.wait;
@@ -160,18 +160,18 @@ e.put("e2", Routine({
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_below", "levels" -> #[30, 3, 3], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[5.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0, 0, -0.5, -0.5], "times" -> #[2, 8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_below", "levels" -> #[30, 3, 3], "times" -> #[5, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[5.0, 3.0, 3.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0, 0, -0.5, -0.5], "times" -> #[1, 4, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pan_pos1", "levels" -> #[1.0, 1.5, 1.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pan_pos2", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_lpf", "levels" -> #[10000, 440, 440], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_gain", "levels" -> #[0.25, 3.0, 4.0, 4.0], "times" -> #[6, 6, 100], "curves" -> #[2, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.0, 0.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_lpf", "levels" -> #[10000, 440, 440], "times" -> #[5, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_gain", "levels" -> #[0.25, 3.0, 4.0, 4.0], "times" -> #[3, 2, 100], "curves" -> #[2, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.0, 0.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 1.0, 1.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
     ];
 
     control = Array.fill(control_specs.size, {
@@ -212,7 +212,7 @@ e.put("e2", Routine({
 
     // cleanup
     Routine({
-		8.wait;
+		4.wait;
 		"2 UPDATE 2.1: Event 2 fading out.".postln;
         synth_freeze.do({|item| item.set(\gate, 0)});
         freeze_release_time.wait;
@@ -235,18 +235,18 @@ e.put("e2alt", Routine({
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_below", "levels" -> #[30, 3, 3], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[5.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0, 0, -0.5, -0.5], "times" -> #[2, 8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_below", "levels" -> #[30, 3, 3], "times" -> #[5, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[5.0, 3.0, 3.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0, 0, -0.5, -0.5], "times" -> #[1, 4, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pan_pos1", "levels" -> #[1.0, 1.5, 1.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_pan_pos2", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_lpf", "levels" -> #[10000, 440, 440], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_gain", "levels" -> #[0.25, 3.0, 4.0, 4.0], "times" -> #[6, 6, 100], "curves" -> #[2, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.0, 0.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_lpf", "levels" -> #[10000, 440, 440], "times" -> #[5, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_gain", "levels" -> #[0.25, 3.0, 4.0, 4.0], "times" -> #[3, 2, 100], "curves" -> #[2, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.0, 0.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 1.0, 1.0], "times" -> #[5, 100], "curves" -> #[0, 0]],
     ];
 
 
@@ -257,7 +257,7 @@ e.put("e2alt", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
 
     // freeze and mag below
     synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \above_frac, 0.2, \amp_fluctuation, 0.1, \release_time, freeze_release_time], ~grp[1], \addToTail);
@@ -266,10 +266,10 @@ e.put("e2alt", Routine({
     // pitch shift and independent panning
     synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[3][0], \semitones1, ~controlbus_grp2[3], \mul, -6.dbamp], ~grp[2], \addToTail));
     synths.add(Synth(\pitchshift1_et, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[3][1], \semitones1, ~controlbus_grp2[4], \mul, -12.dbamp], ~grp[2], \addToTail));
-    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp2[3][0], \out, ~audiobus_grp2[5][0], \pos, ~controlbus_grp2[5], \width, ~controlbus_grp2[6]], ~grp[3], \addToTail));
-    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp2[3][1], \out, ~audiobus_grp2[5][0], \pos, ~controlbus_grp2[7], \width, ~controlbus_grp2[8]], ~grp[3], \addToTail));
-    synths.add(Synth(\passthrough8, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[5][0]], ~grp[2], \addToTail));
-    //synths.add(Synth(\lpf8, [\in, ~audiobus_grp2[4][0], \out, ~audiobus_grp2[5][0], \freq, ~controlbus_grp2[9]], ~grp[4], \addToTail));
+    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp2[3][0], \out, ~audiobus_grp2[4][0], \pos, ~controlbus_grp2[5], \width, ~controlbus_grp2[6]], ~grp[3], \addToTail));
+    synths.add(Synth(\pan8to8ctrl, [\in, ~audiobus_grp2[3][1], \out, ~audiobus_grp2[4][0], \pos, ~controlbus_grp2[7], \width, ~controlbus_grp2[8]], ~grp[3], \addToTail));
+    synths.add(Synth(\passthrough8, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[4][0]], ~grp[2], \addToTail));
+    synths.add(Synth(\lpf8, [\in, ~audiobus_grp2[4][0], \out, ~audiobus_grp2[5][0], \freq, ~controlbus_grp2[9]], ~grp[4], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
@@ -288,7 +288,7 @@ e.put("e2alt", Routine({
 
     // cleanup
     Routine({
-		8.wait;
+		4.wait;
 		"2 UPDATE 2.1: Event 2 fading out.".postln;
         synth_freeze.do({|item| item.set(\gate, 0)});
         freeze_release_time.wait;
@@ -367,7 +367,7 @@ e.put("e3", Routine({
 
     // cleanup
     Routine({
-		10.wait;
+		5.wait;
 		"3 UPDATE 3.1: Event 3 fading out.".postln;
         synth_freeze.do({|item| item.set(\gate, 0)});
         freeze_release_time.wait;
@@ -388,18 +388,18 @@ e.put("e3alt", Routine({
 
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
-        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_above", "levels" -> #[0.1, 0.5, 20, 20], "times" -> #[4, 10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[7.0, 7.5, 7.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift2", "levels" -> #[-7.0, -7.5, -7.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_pos1", "levels" -> #[2.0, 1.25, 1.25], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[12, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_pos2", "levels" -> #[0.0, 0.75, 0.75], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[12, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.25, 0.25], "times" -> #[13, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_above", "levels" -> #[0.1, 0.5, 20, 20], "times" -> #[2, 6, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[7.0, 7.5, 7.5], "times" -> #[8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pitch_shift2", "levels" -> #[-7.0, -7.5, -7.5], "times" -> #[8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_pos1", "levels" -> #[2.0, 1.25, 1.25], "times" -> #[8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_pos2", "levels" -> #[0.0, 0.75, 0.75], "times" -> #[8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.25, 0.25], "times" -> #[8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.1, 0.1], "times" -> #[8, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 0.9, 0.9], "times" -> #[8, 100], "curves" -> #[0, 0]],
     ];
 
     control = Array.fill(control_specs.size, {
@@ -414,7 +414,7 @@ e.put("e3alt", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, 0.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
 
     // freeze and mag below
     synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above_frac, 0.2, \amp_fluctuation, 0.1, \release_time, freeze_release_time], ~grp[1], \addToTail);
@@ -445,7 +445,7 @@ e.put("e3alt", Routine({
 
     // cleanup
     Routine({
-		10.wait;
+		5.wait;
 		"3 UPDATE 3.1: Event 3 fading out.".postln;
         synth_freeze.do({|item| item.set(\gate, 0)});
         freeze_release_time.wait;
@@ -527,7 +527,7 @@ e.put("e5", Routine({
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths_out = List();
-    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus_grp1[1]], ~grp[1], \addToTail));
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus_grp1[1], \mul, -12.dbamp], ~grp[1], \addToTail));
     synths.add(Synth(\pitchshift, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \ratio, 0.5], ~grp[2], \addToTail));
     synths.add(Synth(\passthrough8, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[2][0], \attack_time, 0.1, \release_time, 1], ~grp[2], \addToTail));
 
