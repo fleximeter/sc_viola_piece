@@ -49,8 +49,6 @@ Server.supernova;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "synthdefs/synthdefs_fft.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "synthdefs/synthdefs_filter.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "synthdefs/synthdefs_general.scd").load;
-    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "synthdefs/synthdefs_granulation.scd").load;
-    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "synthdefs/synthdefs_live_buffer.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "synthdefs/synthdefs_pitchshift.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "synthdefs/synthdefs_reverb.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "synthdefs/synthdefs_sampler.scd").load;
