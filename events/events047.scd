@@ -34,7 +34,7 @@ e.put("e47", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[2][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[3], \attack_time, 0.01, \release_time, 4], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[2][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 4], ~grp[4], \addToTail));
     "47 UPDATE 47.0: Pitch shift in effect.".yield;
-    
+
     // cleanup
     Routine({
         synths_out.do({|item| item.set(\gate, 0)});
@@ -75,7 +75,7 @@ e.put("e48", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[0][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[0][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "48 UPDATE 48.0: Playing samples.".postln;
-    
+
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, -0.5, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["89"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
@@ -85,12 +85,12 @@ e.put("e48", Routine({
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.25, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["d"]["65"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     roll_time.wait;
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.5, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["c"]["53"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
-    
+
     1.5.wait;
 
     synths_out.do({|item| item.set(\gate, 0)});
     "48 UPDATE 48.1: Event 48 fading out.".postln;
-    
+
     1.wait;
     synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -127,7 +127,7 @@ e.put("e51", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[0][1], \out, ~gainbus, \mul_sig, ~controlbus_grp3[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[0][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "51 UPDATE 51.0: Playing samples.".postln;
-    
+
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.5, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["a"]["89"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
@@ -137,12 +137,12 @@ e.put("e51", Routine({
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, -0.25, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["d"]["65"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     roll_time.wait;
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, -0.5, \width, 2.0, \buf, ~samples["viola.pizz"]["ff"]["c"]["53"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
-    
+
     1.5.wait;
 
     synths_out.do({|item| item.set(\gate, 0)});
     "51 UPDATE 51.1: Event 51 fading out.".postln;
-    
+
     1.wait;
     synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -178,7 +178,7 @@ e.put("e54", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[0][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[0][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "54 UPDATE 54.0: Playing samples.".postln;
-    
+
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, -0.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
@@ -188,12 +188,12 @@ e.put("e54", Routine({
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.08, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
-    
+
     2.wait;
 
     synths_out.do({|item| item.set(\gate, 0)});
     "54 UPDATE 54.1: Event 54 fading out.".postln;
-    
+
     1.wait;
     synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -229,7 +229,7 @@ e.put("e58", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[0][1], \out, ~gainbus, \mul_sig, ~controlbus_grp3[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[0][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "58 UPDATE 58.0: Playing samples.".postln;
-    
+
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
@@ -239,12 +239,12 @@ e.put("e58", Routine({
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, -0.08, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, -0.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
-    
+
     2.wait;
 
     synths_out.do({|item| item.set(\gate, 0)});
     "58 UPDATE 58.1: Event 58 fading out.".postln;
-    
+
     1.wait;
     synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -312,8 +312,8 @@ e.put("e62", Routine({
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.7, 0.7, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.3, 0.3, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
     ];
 
     control = Array.fill(control_specs.size, {
@@ -329,15 +329,15 @@ e.put("e62", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[0][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[0][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "62 UPDATE 62.0: Playing sample.".postln;
-    
+
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));  
-    1.5.wait;
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"], \dur, 2, \release_time, 0.2], ~grp[1], \addToTail));
+    3.wait;
 
     synths_out.do({|item| item.set(\gate, 0)});
     "62 UPDATE 62.1: Event 62 fading out.".postln;
-    
+
     1.wait;
     synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -356,8 +356,8 @@ e.put("e63", Routine({
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.6, 0.6, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.4, 0.4, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
     ];
 
     control = Array.fill(control_specs.size, {
@@ -373,15 +373,15 @@ e.put("e63", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[0][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[0][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "63 UPDATE 63.0: Playing sample.".postln;
-    
+
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));  
-    1.5.wait;
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"], \dur, 2, \release_time, 0.2], ~grp[1], \addToTail));
+    3.wait;
 
     synths_out.do({|item| item.set(\gate, 0)});
     "63 UPDATE 63.1: Event 63 fading out.".postln;
-    
+
     1.wait;
     synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -399,8 +399,8 @@ e.put("e64", Routine({
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.5, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 0.5, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
     ];
 
     control = Array.fill(control_specs.size, {
@@ -416,15 +416,15 @@ e.put("e64", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[0][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[0][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "64 UPDATE 64.0: Playing sample.".postln;
-    
+
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));  
-    1.5.wait;
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.pizz"]["ff"]["a"]["74"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
+    8.wait;
 
     synths_out.do({|item| item.set(\gate, 0)});
     "64 UPDATE 64.1: Event 64 fading out.".postln;
-    
+
     1.wait;
     synths_out.do({|item| item.free});
     synths.do({|item| item.free});
@@ -465,7 +465,7 @@ e.put("e65a", Routine({
     synths = List();
     synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
     synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 1, \amp_fluctuation, 0.1], ~grp[1], \addToTail);
-    
+
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
@@ -473,7 +473,7 @@ e.put("e65a", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[1][1], \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[12], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    
+
     // freeze
     Routine({
         1.wait;
@@ -481,7 +481,7 @@ e.put("e65a", Routine({
     }).play;
     "65a UPDATE 65a.0: Event 65a freeze.".postln;
     3.wait;
-    
+
     // cleanup
     Routine({
         synth_freeze.set(\gate, 0);
@@ -532,7 +532,7 @@ e.put("e65b", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[5], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    
+
     Routine({
         4.wait;
         synths[1].set(\gate, 0);
@@ -542,7 +542,7 @@ e.put("e65b", Routine({
         "65b UPDATE 65b.1: Event 65b finished reading from previous event.".postln;
     }).play;
     "65b UPDATE 65b.0: Event 65b running.".yield;
-    
+
     // cleanup
     Routine({
         synths_out.do({|item| item.set(\gate, 0)});

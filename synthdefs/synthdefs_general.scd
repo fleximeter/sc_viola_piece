@@ -43,6 +43,17 @@ SynthDef(\from8to8, {
     Out.ar(\out.kr(0), sig);
 }).add;
 
+// mic
+SynthDef(\mic1mul, {
+    var sig, ctrl_mul, env;
+    ctrl_mul = In.kr(\mul_sig.kr(0), 1);
+    sig = SoundIn.ar(\in.kr(0), 1);
+	env = EnvGen.ar(Env.asr(\attack_time.kr(0.01), 1, \decay_time.kr(0.1), \curve.kr(-4.0)), \gate.kr(1.0));
+    sig = sig * ctrl_mul * env;
+    sig = sig.madd(\mul.kr(1), 0);
+    Out.ar(\out.kr(0), sig);
+}).add;
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 // PANNERS
 //////////////////////////////////////////////////////////////////////////////////////////////
