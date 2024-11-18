@@ -32,6 +32,7 @@ SynthDef(\from8to2, {
     sig = In.ar(\in.kr(0), 8);
        sig = [sig[5], sig[6], sig[7], sig[0], sig[1], sig[2], sig[3], sig[4]];
     sig = Splay.ar(sig);
+    sig = sig.madd(\mul.kr(1), 0);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -40,6 +41,7 @@ SynthDef(\from8to8, {
     var sig;
     sig = In.ar(\in.kr(0), 8);
        sig = [sig[0], sig[1], sig[7], sig[2], sig[6], sig[3], sig[5], sig[4]];
+    sig = sig.madd(\mul.kr(1), 0);
     Out.ar(\out.kr(0), sig);
 }).add;
 
@@ -87,6 +89,7 @@ SynthDef(\pan1to8, {
     width = In.kr(\width.kr(0), 1);
     env = EnvGen.ar(Env.asr(\attack_time.kr(0.01), 1, \decay_time.kr(0.5)), \gate.kr(1.0));
     sig = sig * env;
+    sig = sig.madd(\mul.kr(1), 0);
     sig = PanAz.ar(8, sig, pos, 1.0, width, 0.5);
     Out.ar(\out.kr(0), sig);
 }).add;

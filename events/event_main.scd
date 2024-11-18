@@ -36,7 +36,7 @@ e.put("main", Routine({
 	if(~out_channels == 8,
 		{
             synths.add(Synth(\from8to8, [\in, ~postprocessingbus[0], \out, 0], ~grp[~grp.size-1], \addToTail));
-            synths.add(Synth(\from8to2, [\in, ~postprocessingbus[0], \out, ~recordbus2], ~grp[~grp.size-1], \addToTail));
+            synths.add(Synth(\from8to2, [\in, ~postprocessingbus[0], \out, ~recordbus2, \mul, 8.dbamp], ~grp[~grp.size-1], \addToTail));
             
         },
 		{

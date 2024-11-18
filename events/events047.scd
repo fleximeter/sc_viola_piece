@@ -160,7 +160,7 @@ e.put("e54", Routine({
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.25, 0.25], "times" -> #[3, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
     ];
@@ -181,13 +181,13 @@ e.put("e54", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, -0.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, -0.25, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, -0.08, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, -0.08, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.08, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.08, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.25, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
 
     2.wait;
 
@@ -211,7 +211,7 @@ e.put("e58", Routine({
     control_specs = [
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.25, 0.25], "times" -> #[3, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
     ];
@@ -232,13 +232,13 @@ e.put("e58", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.25, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.08, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.08, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, -0.08, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, -0.08, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, -0.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, -0.25, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
 
     2.wait;
 
@@ -275,7 +275,7 @@ e.put("e60", Routine({
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1], \attack_time, 0.2, \release_time, 0.2], ~grp[1], \addToTail));
-    synths.add(Synth(\combdelay, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \delaytime, 1, \decaytime, 6], ~grp[1], \addToTail));
+    synths.add(Synth(\combdelay, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \delaytime, 1, \decaytime, 6, \mul, -12.dbamp], ~grp[1], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
@@ -480,7 +480,7 @@ e.put("e65a", Routine({
         synth_freeze.set(\freeze, 1.0);
     }).play;
     "65a UPDATE 65a.0: Event 65a freeze.".postln;
-    3.wait;
+    1.wait;
 
     // cleanup
     Routine({
@@ -520,7 +520,7 @@ e.put("e65b", Routine({
     synths = List();
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1]], ~grp[1], \addToTail));
     // pull in audio from previous event
-    synths.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp2[0][0], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 1], ~grp[1], \addToTail));
+    synths.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp2[0][0], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 1, \mul, 12.dbamp], ~grp[1], \addToTail));
 
     // add processing synths
     synths.add(Synth(\fb1, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8]], ~grp[2], \addToTail));

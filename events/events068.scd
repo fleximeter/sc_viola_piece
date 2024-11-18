@@ -34,7 +34,7 @@ e.put("e68", Routine({
         ], 3),
         \pos, Pwhite(-0.4, 0.4, inf),
         \out, ~audiobus_grp1[0][0],
-        \mul, 0.25,
+        \mul, -18.dbamp,
         \dur, Pseq([0.5], 3),
         \group, ~grp[1],
         \addAction, \addToTail,
@@ -47,7 +47,7 @@ e.put("e68", Routine({
         ], 3),
         \pos, Pwhite(-0.4, 0.4, inf),
         \out, ~audiobus_grp1[0][0],
-        \mul, 0.25,
+        \mul, -18.dbamp,
         \dur, Pseq([0.5], 3),
         \group, ~grp[1],
         \addAction, \addToTail,
@@ -115,7 +115,7 @@ e.put("e69", Routine({
         \pan_mode, 1,
         \pos, Pwhite(0.5, 1.5, inf),
         \out, ~audiobus_grp2[0][0],
-        \mul, 0.25,
+        \mul, -18.dbamp,
         \dur, Pseq([Rest(0.5), 0.5, 0.5], 1),
         \group, ~grp[1],
         \addAction, \addToTail,
@@ -130,7 +130,7 @@ e.put("e69", Routine({
         \pan_mode, 1,
         \pos, Pwhite(0.5, 1.5, inf),
         \out, ~audiobus_grp2[0][0],
-        \mul, 0.25,
+        \mul, -18.dbamp,
         \dur, Pseq([0.5], 3),
         \group, ~grp[1],
         \addAction, \addToTail,
@@ -197,7 +197,7 @@ e.put("e70", Routine({
         \pan_mode, 1,
         \pos, Pwhite(-0.4, 0.4, inf),
         \out, ~audiobus_grp1[0][0],
-        \mul, 0.25,
+        \mul, -18.dbamp,
         \dur, Pseq([Rest(0.5), Rest(0.5), 0.5], 1),
         \group, ~grp[1],
         \addAction, \addToTail,
@@ -211,7 +211,7 @@ e.put("e70", Routine({
         \pan_mode, 1,
         \pos, Pwhite(-0.4, 0.4, inf),
         \out, ~audiobus_grp1[0][0],
-        \mul, 0.25,
+        \mul, -18.dbamp,
         \dur, Pseq([0.5], 3),
         \group, ~grp[1],
         \addAction, \addToTail,
@@ -696,9 +696,62 @@ e.put("e82a", Routine({
     "82a UPDATE 82a.2: Event 82a kill stage complete. Event finished.".postln;
 }));
 
+
+// EVENT 82b - DELAY
+e.put("e82b", Routine({
+    var control, control_specs,    synth_freeze, synths, synths_out;
+    var freeze_release_time;
+    freeze_release_time = 2;
+
+    // CONTROLS ///////////////////////////////////////////////////////////////
+    control_specs = [
+        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_delay", "levels" -> #[0.5, 0.2, 0.5, 0.4, 0.6, 0.2, 0.1, 0.3, 0.5, 0.4, 0.4], "times" -> #[6, 6, 8, 4, 10, 8, 4, 10, 15, 100], "curves" -> #[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
+        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+    ];
+
+    control = Array.fill(control_specs.size, {
+        | i |
+        Synth(\ctrl_env, [\out, ~controlbus_grp2[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+    });
+
+    // SYNTHS ///////////////////////////////////////////////////////////////
+    synths = List();
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1], \attack_time, 0.2, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\varcombdelay, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \time, ~controlbus_grp2[2], \decaytime, 6, \mul, -12.dbamp], ~grp[1], \addToTail));
+
+    // SENDS
+    // Set attack and release time for this event here.
+    // Also set dry and wet reverb gain levels here.
+    synths_out = List();
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~faderbus[6], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[5], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    "82b UPDATE 82b.0: Event 82b delay open.".yield;
+
+    // 3 open/close pairs
+    synths[0].set(\gate, 0);
+    "82b UPDATE 82b.1: Event 82b mic close.".postln;
+
+    // cleanup
+    Routine({
+        4.wait;
+        "82b UPDATE 82b.2: Event 82b fading out.".postln;
+        synths_out.do({|item| item.set(\gate, 0)});
+        1.5.wait;
+        synths_out.do({|item| item.free});
+        synths.do({|item| item.free});
+        control.do({|item| item.free});
+        "82b UPDATE 82b.3: Event 82b kill stage complete. Event finished.".postln;
+    }).play;
+}));
+
 // Event: shifting pattern playing
 // This event is meant to be played automatically, not stepped through.
-e.put("e82b", Routine({
+e.put("e82c", Routine({
     var control, control_specs, transpose, pattern, synths, synths_out, tempo_clock;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
@@ -802,18 +855,18 @@ e.put("e82b", Routine({
     tempo_clock = TempoClock(96/60);
     pattern.play(tempo_clock, quant: 1);
 
-    "82b UPDATE 82b.0: Event 82b pattern start.".postln;
+    "82c UPDATE 82c.0: Event 82c pattern start.".postln;
     60.wait;
     pattern.stop;
 
     // SHUTDOWN ///////////////////////////////////////////////////////////////
     synths_out.do({|item| item.set(\gate, 0)});
-    "82b UPDATE 82b.1: Event 82b fading out.".postln;
+    "82c UPDATE 82c.1: Event 82c fading out.".postln;
     2.wait;
     tempo_clock.free;
     synths_out.do({|item| item.free});
     synths.do({|item| item.free});
     control.do({|item| item.free});
-    "82b UPDATE 82b.2: Event 82b kill stage complete. Event finished.".postln;
+    "82c UPDATE 82c.2: Event 82c kill stage complete. Event finished.".postln;
 }));
 )
