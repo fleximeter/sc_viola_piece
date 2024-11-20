@@ -46,11 +46,11 @@ e["feedback"].next;
 
 ~samples["piece"][~piece_index]["path"]
 ~piece_index = 13;
-~event_counter = 0;
-~reset_to_event.(65);
+~event_counter = 82;
+~reset_to_event.(9);
 ~event_counter.postln;
 ~global_gain = 6.dbamp;
-
+Env([0, 1, 0], [1, 1], [-1, 1]).plot
 // check sound
 {PanAz.ar(8, SinOsc.ar(440, 0, 0.1, 0), 0.5, 1, 2.0)}.play;
 

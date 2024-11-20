@@ -13,7 +13,7 @@ Server.default.options.sampleRate_(44100);
 Server.default.options.numAudioBusChannels_(2048);
 Server.default.options.numOutputBusChannels_(8);
 Server.default.options.numInputBusChannels_(16);
-Server.default.options.hardwareBufferSize_(128);
+Server.default.options.hardwareBufferSize_(256);
 Server.supernova;
 
 

@@ -23,10 +23,10 @@ e.put("main", Routine({
     // control mic gain with fader 3
     synth_mic = Synth(\mic1mul, [\in, ~mic_zero, \out, ~micbus, \mul_sig, ~faderbus[2]], ~grp[0], \addToTail);
 
-    synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[0], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["cathedral"]], ~grp[~grp.size-1], \addToTail));/*
+    synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[0], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["cathedral"]], ~grp[~grp.size-1], \addToTail));
     synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[1], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["wine_tank"]], ~grp[~grp.size-1], \addToTail));
     synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[2], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["chamber"]], ~grp[~grp.size-1], \addToTail));
-    synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[3], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["toilet"]], ~grp[~grp.size-1], \addToTail));*/
+    synth_reverb.add(Synth(\partconv8wet, [\in, ~reverbbus[3], \out, ~gainbus, \fft_size, ~partconv_size, \mul, 1.0, \irbuf, ~convolution_buffers["toilet"]], ~grp[~grp.size-1], \addToTail));
 
     // control the gain with fader 4
     synths.add(Synth(\gain8mul, [\in, ~gainbus, \out, ~postprocessingbus[0], \mul, ~global_gain, \mul_sig, ~faderbus[3], \limit, -6.dbamp], ~grp[~grp.size-1], \addToTail));

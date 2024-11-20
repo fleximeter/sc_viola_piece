@@ -752,7 +752,7 @@ e.put("e82b", Routine({
 // Event: shifting pattern playing
 // This event is meant to be played automatically, not stepped through.
 e.put("e82c", Routine({
-    var control, control_specs, transpose, pattern, synths, synths_out, tempo_clock;
+    var control, control_specs, transpose, pattern, samples, synths, synths_out, tempo_clock;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
@@ -782,35 +782,37 @@ e.put("e82c", Routine({
 
     synths = List();
     transpose = Array[1, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 1, 1, 1, 1, 1, 0.5.midiratio, 1, 1, 1, 1, 0.5.midiratio, 1];
+	samples = Array[
+        ~samples["viola.pizz"]["ff"]["c"]["55"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["59"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["69"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["65"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["64"]["buffer"], //+
+        ~samples["viola.pizz"]["ff"]["c"]["65"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["59"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["55"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["54"]["buffer"], //+
+        ~samples["viola.pizz"]["ff"]["c"]["57"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["64"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["65"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["54"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["57"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["61"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["68"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["72"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["71"]["buffer"], //+
+        ~samples["viola.pizz"]["ff"]["c"]["72"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["65"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"],
+        ~samples["viola.pizz"]["ff"]["c"]["61"]["buffer"], //+
+        ~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"]
+	];
+	samples = samples ++ samples.perfectShuffle ++ samples.perfectShuffle.perfectShuffle ++ samples.perfectShuffle.perfectShuffle.perfectShuffle;
 
     // microtonal pattern
     pattern = Pbind(\instrument, \sampler_asr_pbind,
-        \buf, Pseq([
-            ~samples["viola.pizz"]["ff"]["c"]["55"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["59"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["69"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["65"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["64"]["buffer"], //+
-            ~samples["viola.pizz"]["ff"]["c"]["65"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["59"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["55"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["54"]["buffer"], //+
-            ~samples["viola.pizz"]["ff"]["c"]["57"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["64"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["65"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["54"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["57"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["61"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["68"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["72"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["71"]["buffer"], //+
-            ~samples["viola.pizz"]["ff"]["c"]["72"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["65"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"],
-            ~samples["viola.pizz"]["ff"]["c"]["61"]["buffer"], //+
-            ~samples["viola.pizz"]["ff"]["c"]["62"]["buffer"]
-        ], inf),
+		\buf, Pseq(samples ++ samples.perfectShuffle, inf),
         \pan_mode, 1,
 		\legato, Pseq(Array.interpolation(40, 0.1, 2.0) ++ Array.interpolation(40, 2.0, 0.1), inf),
 		\out, ~audiobus_grp2[0][0],
@@ -818,17 +820,8 @@ e.put("e82c", Routine({
 			Pseq(Array.interpolation(30, 0, -0.5) ++ Array.interpolation(30, -0.5, 0), 4),
 			Pseq(Array.interpolation(30, 0, 0.5) ++ Array.interpolation(30, 0.5, 0), 4)
 		], Pseq([0, 1], inf)),
-		\mul, Pswitch1([
-			Pseq(Array.interpolation(20, 0.6, 0.1) ++ Array.interpolation(20, 0.1, 0.6), inf),
-			Pseq(Array.interpolation(20, 0.5, 0.05) ++ Array.interpolation(20, 0.05, 0.5), inf)
-		], Pseq([0, 1], inf)),
-		\dur, Pseq(Array.fill(200, {
-			|i|
-			var start, end;
-			start = 0.5;
-			end = 0.05;
-			(end - start) / 200 + start
-		}), 1),
+		\mul, Pseq(Array.interpolation(10, 1, 0.1) ++ Array.interpolation(10, 0.1, 1) ++ Array.interpolation(10, 1, 0.5) ++ Array.interpolation(10, 0.5, 1) ++ Array.interpolation(20, 1, 0.1) ++ Array.interpolation(20, 0.1, 1), inf),
+		\dur, Pseq(Array.interpolation(50, 0.4, 0.25) ++ Array.interpolation(20, 0.25, 0.6) ++ Array.interpolation(50, 0.6, 0.25) ++ Array.interpolation(100, 0.25, 0.1) ++ Array.interpolation(100, 0.1, 0.05) ++ Array.fill(100, {0.05}), 1),
         \group, ~grp[1],
         \addAction, \addToTail,
     );
@@ -840,7 +833,7 @@ e.put("e82c", Routine({
     synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \semitones, ~controlbus_grp2[5], \delayint, ~controlbus_grp2[6], \mul, ~controlbus_grp2[7]], ~grp[2], \addToTail));
     synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \semitones, ~controlbus_grp2[8], \delayint, ~controlbus_grp2[9], \mul, ~controlbus_grp2[10]], ~grp[2], \addToTail));
     synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \semitones, ~controlbus_grp2[11], \delayint, ~controlbus_grp2[12], \mul, ~controlbus_grp2[13]], ~grp[2], \addToTail));
-    //synth_fft = Synth(\fft_magbelow2, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \threshold, 0.2, \rmfreq, 200, \rmmul, 0.5, \lpf, 4000, \mul, 10], ~grp[2], \addToTail);
+	synths.add(Synth(\fft_magsmear_pbind, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[2][0]], ~grp[2], \addToTail));
     //synth_filter = Synth(\bpf8, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[2][0], \freq, ~controlbus_grp2[0], \mul, ~controlbus_grp2[1]], ~grp[2], \addToTail);
 
 
@@ -848,9 +841,9 @@ e.put("e82c", Routine({
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[14], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[15], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[16], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[2][1], \mul_sig, ~controlbus_grp2[14], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[2][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[15], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[2][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[16], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 
     tempo_clock = TempoClock(96/60);
     pattern.play(tempo_clock, quant: 1);

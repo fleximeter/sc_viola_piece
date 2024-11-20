@@ -104,6 +104,19 @@ SynthDef(\fft_magsmear, {
     Out.ar(\out.kr(0), sig);
 }).add;
 
+SynthDef(\fft_magsmear_pbind, {
+    var sig, env, env_mul, chain;
+    sig = In.ar(\in.kr(0), 8);
+    env = EnvGen.kr(Env([0, 20, 0, 40, 0, 60, 0, 20, 0], [6, 2, 6, 2, 10, 2, 10, 2]));
+    env_mul = EnvGen.kr(Env([1, 1.5, 1, 2, 1, 2.5, 1, 1.5, 1], [6, 2, 6, 2, 10, 2, 10, 2], [2, -2, 2, -2, 2, -2, 2, -2]));
+    chain = FFT({LocalBuf(~fft_size)}!8, sig);
+    chain = PV_MagSmear(chain, env);
+    sig = IFFT(chain);
+    sig = sig * env_mul;
+    sig = sig.madd(\mul.kr(1.0), 0);
+    Out.ar(\out.kr(0), sig);
+}).add;
+
 // get highest magnitude bins
 SynthDef(\fft_magabove, {
     var sig, chain, ctrl_above;
