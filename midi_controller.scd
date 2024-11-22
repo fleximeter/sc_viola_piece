@@ -110,6 +110,27 @@ MIDIdef.noteOn("on", {
 
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
+    Synth(\sampler_out3, [\buf, ~samples["piece"]["m82f"]["buffer"], \mul_sig, ~faderbus[7], \out, 0, \mul, 0.dbamp], ~grp[0], \addToTail);
+    (">> playing " ++ "m82f").postln;
+    //("note number " ++ noteNumber ++ " was pressed").postln;
+}, 40).permanent = true;
+
+MIDIdef.noteOn("on", {
+    arg velocity, noteNumber, channel, source;
+    Synth(\sampler_out3, [\buf, ~samples["piece"]["m82g"]["buffer"], \mul_sig, ~faderbus[7], \out, 0, \mul, 0.dbamp], ~grp[0], \addToTail);
+    (">> playing " ++ "m82g").postln;
+    //("note number " ++ noteNumber ++ " was pressed").postln;
+}, 41).permanent = true;
+
+MIDIdef.noteOn("on", {
+    arg velocity, noteNumber, channel, source;
+    Synth(\sampler_out3, [\buf, ~samples["piece"]["m82h"]["buffer"], \mul_sig, ~faderbus[7], \out, 0, \mul, 0.dbamp], ~grp[0], \addToTail);
+    (">> playing " ++ "m82h").postln;
+    //("note number " ++ noteNumber ++ " was pressed").postln;
+}, 42).permanent = true;
+
+MIDIdef.noteOn("on", {
+    arg velocity, noteNumber, channel, source;
     ~record_num = ~record_num + 1;
     if(r[0].isRecording, {
         r[0].stopRecording;
