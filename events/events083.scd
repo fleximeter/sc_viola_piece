@@ -35,7 +35,7 @@ e.put("e83", Routine({
 
     // 1 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 1.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 1.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[0].set(\freeze, 1.0);
@@ -44,7 +44,7 @@ e.put("e83", Routine({
 
     // 2 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 0.5, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["g"]["55"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 0.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["g"]["55"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][1], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[1].set(\freeze, 1.0);
@@ -53,7 +53,7 @@ e.put("e83", Routine({
 
     // 3 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 1.5, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 1.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][2], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[2].set(\freeze, 1.0);
@@ -62,7 +62,7 @@ e.put("e83", Routine({
 
     // 4 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][3], \pos, 0.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["72"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][3], \pos, 0.0, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["72"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][3], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[3].set(\freeze, 1.0);
@@ -76,7 +76,7 @@ e.put("e83", Routine({
 
     // 5 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.25, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["77"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["77"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[4].set(\freeze, 1.0);
@@ -85,7 +85,7 @@ e.put("e83", Routine({
 
     // 6 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 1.75, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 1.75, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][1], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[5].set(\freeze, 1.0);
@@ -94,17 +94,17 @@ e.put("e83", Routine({
 
     // 7 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 0.5, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["67"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 0.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["67"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][2], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[6].set(\freeze, 1.0);
     }).play;
     synths_freeze[4].set(\gate, 0);
     "83 UPDATE 83.7: Event 83, freeze 7 (G4), release 5.".yield;
-    
+
     // 8 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][3], \pos, 1.5, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][3], \pos, 1.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][3], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[7].set(\freeze, 1.0);
@@ -117,7 +117,7 @@ e.put("e83", Routine({
 
     // 9 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.75, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["81"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.75, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["81"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[8].set(\freeze, 1.0);
@@ -126,7 +126,7 @@ e.put("e83", Routine({
 
     // 10 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 1.25, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][1], \pos, 1.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][1], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[9].set(\freeze, 1.0);
@@ -137,7 +137,7 @@ e.put("e83", Routine({
 
     // 11 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 0.25, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["77"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][2], \pos, 0.25, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["77"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][2], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[10].set(\freeze, 1.0);
@@ -146,10 +146,10 @@ e.put("e83", Routine({
     synths_freeze[9].set(\gate, 0);
     synths_freeze[10].set(\gate, 0);
     "83 UPDATE 83.14: Event 83 release 10-11.".yield;
-    
+
     // 13 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][6], \pos, 1.5, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][6], \pos, 1.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][6], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[11].set(\freeze, 1.0);
@@ -158,7 +158,7 @@ e.put("e83", Routine({
 
     // 14 freeze
     Routine({
-        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][6], \pos, 0.5, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
+        synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][6], \pos, 0.5, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["76"]["buffer"], \mul, 0.5], ~grp[1], \addToTail));
         synths_freeze.add(Synth(\fft_freeze, [\in, ~audiobus_grp1[0][6], \out, ~audiobus_grp1[1][0], \above, 3, \release_time, freeze_release_time], ~grp[1], \addToTail));
         1.wait;
         synths_freeze[12].set(\freeze, 1.0);
@@ -206,15 +206,15 @@ e.put("e92", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp3[0][0], \pos, ~controlbus_grp3[0], \width, ~controlbus_grp3[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fb1, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8]], ~grp[2], \addToTail));
+    synths.add(Synth(\fb1, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 43.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][0], \out, ~audiobus_grp3[1][1], \mul_sig, ~controlbus_grp3[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp3[3], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~gainbus, \mul, -6.dbamp, \mul_sig, ~controlbus_grp3[3], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~reverbbus[3], \mul, -12.dbamp, \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
     "92 UPDATE 92.0: Event 99 running.".yield;
 
     // cleanup
@@ -260,7 +260,7 @@ e.put("e96", Routine({
     synths_out = List();
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[1], \mul, -24.dbamp, \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "96 UPDATE 96.0: Pitch shift in effect.".yield;
 
     synths[0].set(\gate, 0);
@@ -311,7 +311,7 @@ e.put("e98", Routine({
     synths_out = List();
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[1][1], \mul_sig, ~controlbus_grp1[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~reverbbus[1], \mul, -24.dbamp, \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "98 UPDATE 98.0: Pitch shift in effect.".yield;
 
     synths[0].set(\gate, 0);
@@ -354,15 +354,15 @@ e.put("e99", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp3[0][0], \pos, ~controlbus_grp3[0], \width, ~controlbus_grp3[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fb1, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8]], ~grp[2], \addToTail));
+    synths.add(Synth(\fb1, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 40.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][0], \out, ~audiobus_grp3[1][1], \mul_sig, ~controlbus_grp3[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp3[3], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~gainbus, \mul, -6.dbamp, \mul_sig, ~controlbus_grp3[3], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~reverbbus[3], \mul, -12.dbamp, \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
     "99 UPDATE 99.0: Event 99 running.".yield;
 
     // cleanup
@@ -458,7 +458,7 @@ e.put("e104", Routine({
     synths_out = List();
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[1][1], \mul_sig, ~controlbus_grp1[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp1[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~reverbbus[1], \mul, -24.dbamp, \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "104 UPDATE 104.0: Pitch shift in effect.".yield;
 
     synths[0].set(\gate, 0);

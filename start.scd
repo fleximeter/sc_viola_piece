@@ -39,7 +39,7 @@ Server.supernova;
     ~event_counter = 0;  // the event counter for executing in order
 
     // A global synth list. This is needed if an event is to be manually stopped after it is started.
-    // This is because some events cannot run for a specified time.
+	// This is because some events cannot run for a specified time.
     ~synths = List();
 
     // Specify file paths for other code to load automatically. Note that since the event code can be

@@ -13,8 +13,8 @@ e.put("e105", Routine({
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[8.0, 8.0, 8.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.8, 0.5, 0.8, 0.3], "times" -> #[10, 10, 10, 10], "curves" -> #[0, 0, 0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.2, 0.5, 0.2, 0.7], "times" -> #[10, 10, 10, 10], "curves" -> #[0, 0, 0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
     ];
 
     control = Array.fill(control_specs.size, {
