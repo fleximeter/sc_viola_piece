@@ -7,7 +7,7 @@
             "instrument_type", "viola", "path", PathName(~root_sample_dir ++ "samples/piece/sample_harmonics_trill1.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/piece/sample_harmonics_trill1.wav").fullPath)
         ]),
         "harmonics_trill2", Dictionary.newFrom([
-            "instrument_type", "viola", "path", PathName(~root_sample_dir ++ "samples/piece/sample_harmonics_trill2.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/piece/sample_harmonics_trill3.wav").fullPath)
+            "instrument_type", "viola", "path", PathName(~root_sample_dir ++ "samples/piece/sample_harmonics_trill2.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/piece/sample_harmonics_trill2.wav").fullPath)
         ]),
         "harmonics_trill3", Dictionary.newFrom([
             "instrument_type", "viola", "path", PathName(~root_sample_dir ++ "samples/piece/sample_harmonics_trill3.wav").fullPath, "buffer", Buffer.read(s, PathName(~root_sample_dir ++ "samples/piece/sample_harmonics_trill3.wav").fullPath)

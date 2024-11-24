@@ -161,8 +161,8 @@ e.put("e54", Routine({
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.25, 0.25], "times" -> #[3, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.1, 0.1], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.8, 0.8], "times" -> #[4, 100], "curves" -> #[0, 0]],
     ];
 
     control = Array.fill(control_specs.size, {
@@ -212,8 +212,8 @@ e.put("e58", Routine({
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 0.25, 0.25], "times" -> #[3, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.9, 0.9], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.1, 0.1], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.9, 0.1, 0.1], "times" -> #[4, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.1, 0.8, 0.8], "times" -> #[4, 100], "curves" -> #[0, 0]],
     ];
 
     control = Array.fill(control_specs.size, {
@@ -438,8 +438,8 @@ e.put("e65", Routine({
 
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
-        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[10, 40], "curves" -> #[0, 0]],
+        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.7, 1.3, 1.0, 1.0], "times" -> #[10, 10, 20], "curves" -> #[0, 0, 0]],
+        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 40], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_prev_input_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 40], "curves" -> #[0, 0]],

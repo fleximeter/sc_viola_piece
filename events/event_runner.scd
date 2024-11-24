@@ -121,15 +121,11 @@
     ["e104", "next"],
     ["e105", "next"],
     ["e107", "next"],
-    ["e105", "next"],
-    ["e105", "next"],
     ["e114", "play"],
-    ["e105", "next"],
     ["e105", "next"],
     ["e127", "play"],
     ["e129", "play"],
     ["e107", "next"],
-    ["e130", "play"],
 ];
 
 ~measure_list = [
