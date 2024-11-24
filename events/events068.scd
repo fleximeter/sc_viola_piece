@@ -450,7 +450,7 @@ e.put("e75", Routine({
         ], inf),
         \pos, Pwhite(0.8, 1.2, inf),
         \out, ~audiobus_grp2[0][0],
-        \mul, 0.25,
+        \mul, -18.dbamp,
         \dur, Pseq(Array.interpolation(12, 0.5, 0.125) ++ Array.interpolation(12, 0.125, 0.5), 3),
         \group, ~grp[1],
         \addAction, \addToTail,
@@ -517,7 +517,7 @@ e.put("e76", Routine({
         \pan_mode, 1,
         \pos, Pwhite(0.8, 1.2, inf),
         \out, ~audiobus_grp1[0][0],
-        \mul, 0.25,
+        \mul, -15.dbamp,
         \dur, Pseq(Array.interpolation(16, 0.5, 0.125) ++ Array.interpolation(16, 0.125, 0.5), 3),
         \group, ~grp[1],
         \addAction, \addToTail,
@@ -717,7 +717,7 @@ e.put("e82b", Routine({
         | i |
         Synth(\ctrl_env, [\out, ~controlbus_grp2[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
     });
-
+z
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1], \attack_time, 0.2, \release_time, 0.2], ~grp[1], \addToTail));
