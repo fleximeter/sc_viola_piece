@@ -13,8 +13,8 @@ e.put("e105", Routine({
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[8.0, 8.0, 8.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.5, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.5, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.2, 0.2, 0.2], "times" -> #[10, 100], "curves" -> #[0, 0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.8, 0.8, 0.8], "times" -> #[10, 100], "curves" -> #[0, 0]],
     ];
 
     control = Array.fill(control_specs.size, {
@@ -37,33 +37,12 @@ e.put("e105", Routine({
 
     // 1 freeze
     Routine({
-		synths.add("sampler" -> Synth(\sampler_pan, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.arco"]["ff"]["c"]["48"]["buffer"]], ~grp[1], \addToTail));
+		synths.add("sampler" -> Synth(\sampler_pan, [\out, ~audiobus_grp2[0][0], \pos, 0.0, \width, 2.0, \mul, 0.dbamp, \buf, ~samples["viola.arco"]["ff"]["c"]["48"]["buffer"]], ~grp[1], \addToTail));
         synth_freeze = Synth(\fft_freeze_level_adjust, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \above_frac, 0.1, \release_time, freeze_release_time, \mul, 0.5], ~grp[1], \addToTail);
         1.wait;
         synth_freeze.set(\freeze, 1.0);
     }).play;
     "105 UPDATE 105.1: Event 105, freeze (C3).".yield;
-
-    // go to mag below sound
-	synths.add("secondary_connector" -> Synth(\passthrough8, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[2][0], \attack_time, 5, \release_time, 5, \curve, -2], ~grp[2], \addToTail));
-	synths.add("secondary_ctrl" -> Synth(\ctrl_env, [\out, ~controlbus_grp2[10], \levels, #[40, 1, 1], \times, #[10, 20], \curves, #[-4, 0]], ~grp[0]));
-	synths.add("fft" -> Synth(\fft_magbelow, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[4][0], \below, ~controlbus_grp2[10]], ~grp[3], \addToTail));
-	synths["main_connector"].set(\gate, 0, \attack_time, 5, \curve, 2);
-    "105 UPDATE 105.2: Event 105, move to mag below.".yield;
-
-    // go back to the original sound
-	synths["main_connector"].set(\gate, 1, \curve, -2);  // open the gate to the original sound
-	synths["secondary_connector"].set(\gate, 0, \curve, 2);  // close the gate to the mag below sound
-    "105 UPDATE 105.3: Event 105, move to mag below.".yield;
-
-    // go to mag smear sound
-	synths["secondary_ctrl"].free;  // delete the previous control signal
-	synths["fft"].free;  // delete the previous FFT synth
-    synths["secondary_ctrl"] = Synth(\ctrl_env, [\out, ~controlbus_grp2[10], \levels, #[0, 30, 30], \times, #[20, 20], \curves, #[-4, 0]], ~grp[0]);
-	synths["fft"] = Synth(\fft_magsmear, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[4][0], \bins, ~controlbus_grp2[10]], ~grp[3], \addToTail);
-	synths["main_connector"].set(\gate, 0, \curve, 2);  // close the gate to the original sound
-	synths["secondary_connector"].set(\gate, 1, \curve, -2);  // open the gate to the mag below sound
-    "105 UPDATE 105.4: Event 105, move to mag below.".yield;
 
     // cleanup
     Routine({
@@ -75,9 +54,9 @@ e.put("e105", Routine({
         synth_freeze.free;
         synths.keysValuesDo({|key, val| val.free});
         control.do({|item| item.free});
-        "105 UPDATE 105.6: Event 105 kill stage complete. Event finished.".postln;
+        "105 UPDATE 105.3: Event 105 kill stage complete. Event finished.".postln;
     }).play;
-    "105 UPDATE 105.5: Event 105 final realease.".postln;
+    "105 UPDATE 105.2: Event 105 final realease.".postln;
 }));
 
 // Event 107: feedback

@@ -21,8 +21,8 @@ e["e35"].next;
 e["e45"].next;
 e["e18"].next;
 e["e18"].next;
-e["e18"].next;
-e["e18"].next;
+e["e65a"].play;
+e["e65b"].next;
 e["e68"].play;
 e["e69"].play;
 e["e70"].play;
@@ -45,9 +45,9 @@ e["octaves"].next;
 e["feedback"].next;
 
 ~samples["piece"][~piece_index]["path"]
-~piece_index = 5;
+~piece_index = 13;
 ~event_counter = 82;
-~reset_to_event.(7);
+~reset_to_event.(64);
 ~event_counter.postln;
 ~global_gain = 6.dbamp;
 Env([0, 1, 0], [1, 1], [-1, 1]).plot

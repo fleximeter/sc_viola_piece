@@ -777,7 +777,7 @@ e.put("e82c", Routine({
 
     control = Array.fill(control_specs.size, {
         | i |
-        Synth(\ctrl_env, [\out, ~controlbus_grp2[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
+        Synth(\ctrl_env, [\out, ~controlbus_grp3[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
     });
 
     synths = List();
@@ -815,7 +815,7 @@ e.put("e82c", Routine({
 		\buf, Pseq(samples ++ samples.perfectShuffle, inf),
         \pan_mode, 1,
 		\legato, Pseq(Array.interpolation(40, 0.1, 2.0) ++ Array.interpolation(40, 2.0, 0.1), inf),
-		\out, ~audiobus_grp2[0][0],
+		\out, ~audiobus_grp3[0][0],
 		\pos, Pswitch1([
 			Pseq(Array.interpolation(30, 0, -0.5) ++ Array.interpolation(30, -0.5, 0), 4),
 			Pseq(Array.interpolation(30, 0, 0.5) ++ Array.interpolation(30, 0.5, 0), 4)
@@ -828,12 +828,12 @@ e.put("e82c", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\passthrough8, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0]], ~grp[2], \addToTail));
-    synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \semitones, ~controlbus_grp2[2], \delayint, ~controlbus_grp2[3], \mul, ~controlbus_grp2[4]], ~grp[2], \addToTail));
-    synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \semitones, ~controlbus_grp2[5], \delayint, ~controlbus_grp2[6], \mul, ~controlbus_grp2[7]], ~grp[2], \addToTail));
-    synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \semitones, ~controlbus_grp2[8], \delayint, ~controlbus_grp2[9], \mul, ~controlbus_grp2[10]], ~grp[2], \addToTail));
-    synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \semitones, ~controlbus_grp2[11], \delayint, ~controlbus_grp2[12], \mul, ~controlbus_grp2[13]], ~grp[2], \addToTail));
-	synths.add(Synth(\fft_magsmear_pbind, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[2][0]], ~grp[2], \addToTail));
+    synths.add(Synth(\passthrough8, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0]], ~grp[2], \addToTail));
+    synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \semitones, ~controlbus_grp3[2], \delayint, ~controlbus_grp3[3], \mul, ~controlbus_grp3[4]], ~grp[2], \addToTail));
+    synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \semitones, ~controlbus_grp3[5], \delayint, ~controlbus_grp3[6], \mul, ~controlbus_grp3[7]], ~grp[2], \addToTail));
+    synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \semitones, ~controlbus_grp3[8], \delayint, ~controlbus_grp3[9], \mul, ~controlbus_grp3[10]], ~grp[2], \addToTail));
+    synths.add(Synth(\psdelay1ctrl_et, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \semitones, ~controlbus_grp3[11], \delayint, ~controlbus_grp3[12], \mul, ~controlbus_grp3[13]], ~grp[2], \addToTail));
+	synths.add(Synth(\fft_magsmear_pbind, [\in, ~audiobus_grp3[1][0], \out, ~audiobus_grp3[2][0]], ~grp[2], \addToTail));
     //synth_filter = Synth(\bpf8, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[2][0], \freq, ~controlbus_grp2[0], \mul, ~controlbus_grp2[1]], ~grp[2], \addToTail);
 
 
@@ -841,9 +841,9 @@ e.put("e82c", Routine({
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[2][0], \out, ~audiobus_grp2[2][1], \mul_sig, ~controlbus_grp2[14], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[2][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[15], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[2][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[16], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[2][0], \out, ~audiobus_grp3[2][1], \mul_sig, ~controlbus_grp3[14], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[2][1], \out, ~gainbus, \mul_sig, ~controlbus_grp3[15], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[2][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp3[16], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 
     tempo_clock = TempoClock(96/60);
     pattern.play(tempo_clock, quant: 1);
