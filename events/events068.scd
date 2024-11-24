@@ -580,8 +580,8 @@ e.put("e79", Routine({
         \pan_mode, 1,
         \pos, Pwhite(-0.2, 0.2, inf),
         \out, ~audiobus_grp2[0][0],
-        \mul, Pseq(Array.interpolation(10, 0.25, 0.1), 1),
-        \dur, Pseq([0.25], 10),
+        \mul, Pseq(Array.interpolation(20, 0.25, 0.0625), 1),
+        \dur, Pseq([0.25], 20),
         \group, ~grp[1],
         \addAction, \addToTail,
     );

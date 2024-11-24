@@ -432,74 +432,9 @@ e.put("e64", Routine({
     "64 UPDATE 64.2: Event 64 kill stage complete. Event finished.".postln;
 }));
 
-// event 65: freeze
-// send this to a bus that 65b can read from
-// This event is made to be played
-e.put("e65a", Routine({
+// Event 65: feedback
+e.put("e65", Routine({
     var control, control_specs, synth_freeze, synths, synths_out;
-
-    // CONTROLS ///////////////////////////////////////////////////////////////
-    control_specs = [
-        Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 4.0, 4.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_below", "levels" -> #[30, 3, 3], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift1", "levels" -> #[5.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pitch_shift2", "levels" -> #[0, -0.5, -0.5], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_pos1", "levels" -> #[2.0, 1.5, 1.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width1", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_pos2", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[5, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_pan_width2", "levels" -> #[2.0, 3.0, 3.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_lpf", "levels" -> #[10000, 440, 440], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[0.2, 0.2, 0.2], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.8, 0.8, 0.8], "times" -> #[10, 100], "curves" -> #[0, 0]],
-    ];
-
-
-    control = Array.fill(control_specs.size, {
-        | i |
-        Synth(\ctrl_env, [\out, ~controlbus_grp1[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
-    });
-
-    // SYNTHS ///////////////////////////////////////////////////////////////
-    synths = List();
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
-    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \above, 1, \amp_fluctuation, 0.1], ~grp[1], \addToTail);
-
-    // SENDS
-    // Set attack and release time for this event here.
-    // Also set dry and wet reverb gain levels here.
-    synths_out = List();
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[1][1], \mul_sig, ~controlbus_grp1[10], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~gainbus, \mul, 0.dbamp, \mul_sig, ~controlbus_grp1[11], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~reverbbus[0], \mul, 0.dbamp, \mul_sig, ~controlbus_grp1[12], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-
-    // freeze
-    Routine({
-        1.wait;
-        synth_freeze.set(\freeze, 1.0);
-    }).play;
-    "65a UPDATE 65a.0: Event 65a freeze.".postln;
-    3.wait;
-
-    // cleanup
-    Routine({
-        synth_freeze.set(\gate, 0);
-        1.wait;
-        synths_out.do({|item| item.set(\gate, 0)});
-        1.5.wait;
-        synths_out.do({|item| item.free});
-        synths.do({|item| item.free});
-        synth_freeze.free;
-        control.do({|item| item.free});
-    "65a UPDATE 65a.2: Event 65a kill stage complete. Event finished.".postln;
-    }).play;
-    "65a UPDATE 65a.1: Event 65a fading out.".postln;
-}));
-
-// Event 65b: feedback
-e.put("e65b", Routine({
-    var control, control_specs,    synths, synths_out;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
@@ -516,42 +451,46 @@ e.put("e65b", Routine({
         Synth(\ctrl_env, [\out, ~controlbus_grp2[i], \levels, control_specs[i]["levels"], \times, control_specs[i]["times"], \curves, control_specs[i]["curves"]], ~grp[0]);
     });
 
-    // SYNTHS ///////////////////////////////////////////////////////////////
-    synths = List();
-    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1]], ~grp[1], \addToTail));
-    // pull in audio from previous event
-    synths.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp2[0][0], \mul, 18.dbamp, \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 1, \mul, 12.dbamp], ~grp[1], \addToTail));
-
-    // add processing synths
-    synths.add(Synth(\fb1, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 50.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
-
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul, -6.dbamp, \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul, -6.dbamp, \mul_sig, ~controlbus_grp2[5], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul, 0.dbamp, \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul, 0.dbamp, \mul_sig, ~controlbus_grp2[5], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 
+    // SYNTHS ///////////////////////////////////////////////////////////////
+    synths = List();
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1]], ~grp[1], \addToTail));
+    
+    // seed the feedback
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp2[0][1], \pos, 0.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
+    synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp2[0][1], \out, ~audiobus_grp2[0][0], \above_frac, 0.2, \release_time, 2], ~grp[1], \addToTail);
+
+    // add processing synths
+    synths.add(Synth(\fb1, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 50.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
+
+    // freeze
     Routine({
-        4.wait;
-        synths[1].set(\gate, 0);
         1.wait;
-        synths[1].free;
-        synths.removeAt(1);
-        "65b UPDATE 65b.1: Event 65b finished reading from previous event.".postln;
+        "65 UPDATE 65.1: Event 65 freeze.".postln;
+        synth_freeze.set(\freeze, 1.0);
+        2.wait;
+        synth_freeze.set(\gate, 0);
+        "65 UPDATE 65.2: Event 65 freeze out.".postln;
     }).play;
-    "65b UPDATE 65b.0: Event 65b running.".yield;
+    "65 UPDATE 65.0: Event 65 running.".yield;
 
     // cleanup
     Routine({
         synths_out.do({|item| item.set(\gate, 0)});
         1.5.wait;
+        synth_freeze.free;
         synths_out.do({|item| item.free});
         synths.do({|item| item.free});
         control.do({|item| item.free});
-        "65b UPDATE 65b.3: Event 65b kill stage complete. Event finished.".postln;
+        "65 UPDATE 65.4: Event 65 kill stage complete. Event finished.".postln;
     }).play;
-    "65b UPDATE 65b.2: Event 65b fading out.".postln;
+    "65 UPDATE 65.3: Event 65 fading out.".postln;
 }));
 )

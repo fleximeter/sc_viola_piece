@@ -127,8 +127,8 @@ e.put("e114", Routine({
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp1[0][0], \pos, 0.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["harmonics_trill2"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
-    synths.add(Synth(\lpf8, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \freq, ~controlbus_grp1[2]], ~grp[1], \addToTail));
-
+    synths.add(Synth(\combdelay, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \delaytime, 0.5, \decaytime, 6, \mul, -12.dbamp], ~grp[1], \addToTail));
+    
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.

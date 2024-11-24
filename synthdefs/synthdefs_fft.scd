@@ -49,6 +49,38 @@ SynthDef(\fft_freeze, {
 
 // An adjusted FFT freeze that automatically calculates the amount of denoising to do.
 // This is useful because the input signal will vary in level.
+SynthDef(\fft_freeze2, {
+    var sig, chain, env, env2, mag, max;
+    sig = In.ar(\in.kr(0), 8);
+    chain = FFT({LocalBuf(~fft_size)}!8, sig);
+
+	// Perform the freeze before calculating the peak FFT value
+	chain = PV_Freeze(chain, \freeze.kr(0.0));
+
+	// Get the peak FFT value for each of the LocalBufs
+    mag = FFTPeak.kr(chain);
+	mag = [mag[0][1], mag[0][1], mag[0][1], mag[0][1], mag[0][1], mag[0][1], mag[0][1], mag[0][1]];
+	max = ArrayMax.kr(mag).lag(0.2);
+
+	// Remove bins below 10% of the peak value
+	chain = PV_MagAbove(chain, \above_frac.kr(0.1) * max[0]);
+    sig = IFFT(chain);
+
+    // shape volume
+    env2 = EnvGen.ar(Env(\levels.ir(#[0, 1, 1, 0]), \times.ir(#[0.01, 5, 0.01]), \lin));
+
+    env = EnvGen.ar(Env.asr(\attack_time.ir(0.01), 1.0, \release_time.ir(0.5), -2), \gate.kr(1.0));
+
+    // trick to make the sound feel alive
+	sig = sig * LFNoise1.ar(LFNoise1.kr(10).linlin(-1, 1, 2, 3)).linlin(-1, 1, 1 - \amp_fluctuation.ir(0.1), 1 + \amp_fluctuation.ir(0.1));
+
+    sig = sig * env * env2;
+    sig = sig.madd(\mul.kr(1.0), 0);
+    Out.ar(\out.kr(0), sig);
+}).add;
+
+// An adjusted FFT freeze that automatically calculates the amount of denoising to do.
+// This is useful because the input signal will vary in level.
 // This modified freeze has an additional level adjustment parameter with lag.
 SynthDef(\fft_freeze_level_adjust, {
     var sig, chain, env, mag, max;
