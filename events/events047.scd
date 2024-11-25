@@ -462,9 +462,9 @@ e.put("e65", Routine({
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1]], ~grp[1], \addToTail));
-    
+
     // seed the feedback
-    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp2[0][1], \pos, 0.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_pan, [\out, ~audiobus_grp2[0][1], \pos, 0.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["viola.arco"]["mf"]["a"]["74"]["buffer"]], ~grp[1], \addToTail));
     synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp2[0][1], \out, ~audiobus_grp2[0][0], \above_frac, 0.2, \release_time, 2], ~grp[1], \addToTail);
 
     // add processing synths
@@ -475,7 +475,7 @@ e.put("e65", Routine({
         1.wait;
         "65 UPDATE 65.1: Event 65 freeze.".postln;
         synth_freeze.set(\freeze, 1.0);
-        2.wait;
+        5.wait;
         synth_freeze.set(\gate, 0);
         "65 UPDATE 65.2: Event 65 freeze out.".postln;
     }).play;

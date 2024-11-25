@@ -44,9 +44,9 @@ e["octaves"].next;
 e["feedback"].next;
 
 ~samples["piece"][~piece_index]["path"]
-~piece_index = 25;
+~piece_index = 11;
 ~event_counter = 82;
-~reset_to_event.(83);
+~reset_to_event.(47);
 ~event_counter.postln;
 ~global_gain = 6.dbamp;
 Env([0, 1, 0], [1, 1], [-1, 1]).plot
