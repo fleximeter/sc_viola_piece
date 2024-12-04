@@ -7,8 +7,10 @@
 // Set important server things here.
 Server.default.options.memSize_(1024*1024);
 Server.default.options.numBuffers_(8192);
-Server.default.options.inDevice_("Fireface UFX (23703107)");
-Server.default.options.outDevice_("Fireface UFX (23703107)");
+//Server.default.options.inDevice_("Fireface UFX (23703107)");
+//Server.default.options.outDevice_("Fireface UFX (23703107)");
+Server.default.options.inDevice_("Fireface UFX III (24134250)");
+Server.default.options.outDevice_("Fireface UFX III (24134250)");
 Server.default.options.sampleRate_(44100);
 Server.default.options.numAudioBusChannels_(2048);
 Server.default.options.numOutputBusChannels_(8);
