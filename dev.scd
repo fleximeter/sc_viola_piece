@@ -24,5 +24,7 @@ x.free;
 Synth(\fb1, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 50.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
 
 
-z = Synth(\fbx, [\in, ~micbus, \out, ~gainbus, \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 50.midicps, \high_freq, 108.midicps], ~grp[2]);
+(
+z = Synth(\fbx, [\in, ~micbus, \out, ~gainbus, \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 40.midicps, \high_freq, 80.midicps, \feedback_scaler, 2], ~grp[2]);
+)
 z.free;

@@ -275,7 +275,7 @@ e.put("e31", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1]], ~grp[1], \addToTail));
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1], \mul, -6.dbamp], ~grp[1], \addToTail));
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 1.5, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["g"]["55"]["buffer"], \dur, 60/108, \release_time, 0.2], ~grp[1], \addToTail));
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 1.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["64"]["buffer"], \dur, 60/108, \release_time, 0.2], ~grp[1], \addToTail));
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[2][0], \pos, 0.5, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["viola.arco"]["mf"]["d"]["65"]["buffer"], \dur, 60/108, \release_time, 0.2], ~grp[1], \addToTail));
@@ -330,7 +330,7 @@ e.put("e33", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus_grp1[1]], ~grp[1], \addToTail));
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus_grp1[1], \mul, -6.dbamp], ~grp[1], \addToTail));
     synths.add(Synth(\pitchshift, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[2][0], \ratio, 2], ~grp[2], \addToTail));
 
     // SENDS
@@ -529,7 +529,7 @@ e.put("e42", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp1[0][0], \pos, 1.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["ede"]["buffer"], \dur, 2, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp1[0][0], \pos, 1.0, \width, 2.0, \mul, -8.dbamp, \buf, ~samples["other"]["ede"]["buffer"], \dur, 2, \release_time, 0.2], ~grp[1], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
@@ -572,7 +572,7 @@ e.put("e43", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 1.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["ede"]["buffer"], \dur, 2, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 1.0, \width, 2.0, \mul, -6.dbamp, \buf, ~samples["other"]["ede"]["buffer"], \dur, 2, \release_time, 0.2], ~grp[1], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
@@ -615,7 +615,7 @@ e.put("e44", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp1[0][0], \pos, 1.0, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["ede"]["buffer"], \dur, 2, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp1[0][0], \pos, 1.0, \width, 2.0, \mul, -5.dbamp, \buf, ~samples["other"]["ede"]["buffer"], \dur, 2, \release_time, 0.2], ~grp[1], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
@@ -660,7 +660,7 @@ e.put("e45", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fb1, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 52.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
+    synths.add(Synth(\fbx, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \feedback_scaler, 2, \freq, ~faderbus[8], \low_freq, 36.midicps, \high_freq, 96.midicps], ~grp[2], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.

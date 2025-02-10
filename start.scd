@@ -62,8 +62,8 @@ Server.supernova;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events025.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events047.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events068.scd").load;
-    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events083.scd").load;
-    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events105.scd").load;
+    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events084.scd").load;
+    (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/events106.scd").load;
     (PathName.new(thisProcess.nowExecutingPath).parentPath ++ "events/event_runner.scd").load;
 };
 

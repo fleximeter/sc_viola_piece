@@ -1,9 +1,9 @@
-// File: events083.scd
-// This file contains individual events starting at measure 83.
+// File: events084.scd
+// This file contains individual events starting at measure 84.
 
 (
-// EVENT 83
-e.put("e83", Routine({
+// EVENT 84
+e.put("e84", Routine({
     var control, control_specs,    synths_freeze, synths, synths_out;
     var freeze_release_time;
     freeze_release_time = 2;
@@ -40,7 +40,7 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[0].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.0: Event 83, freeze 1 (D5).".yield;
+    "84 UPDATE 84.0: Event 84, freeze 1 (D5).".yield;
 
     // 2 freeze
     Routine({
@@ -49,7 +49,7 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[1].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.1: Event 83, freeze 2 (G3).".yield;
+    "84 UPDATE 84.1: Event 84, freeze 2 (G3).".yield;
 
     // 3 freeze
     Routine({
@@ -58,7 +58,7 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[2].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.2: Event 83, freeze 3 (F4).".yield;
+    "84 UPDATE 84.2: Event 84, freeze 3 (F4).".yield;
 
     // 4 freeze
     Routine({
@@ -67,12 +67,12 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[3].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.3: Event 83, freeze 4 (C5).\nReady for release 1-4.".yield;
+    "84 UPDATE 84.3: Event 84, freeze 4 (C5).\nReady for release 1-4.".yield;
     synths_freeze[0].set(\gate, 0);
     synths_freeze[1].set(\gate, 0);
     synths_freeze[2].set(\gate, 0);
     synths_freeze[3].set(\gate, 0);
-    "83 UPDATE 83.4: Event 83 release 1-4.".yield;
+    "84 UPDATE 84.4: Event 84 release 1-4.".yield;
 
     // 5 freeze
     Routine({
@@ -81,7 +81,7 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[4].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.5: Event 83, freeze 5 (F5).".yield;
+    "84 UPDATE 84.5: Event 84, freeze 5 (F5).".yield;
 
     // 6 freeze
     Routine({
@@ -90,7 +90,7 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[5].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.6: Event 83, freeze 6 (D5).".yield;
+    "84 UPDATE 84.6: Event 84, freeze 6 (D5).".yield;
 
     // 7 freeze
     Routine({
@@ -100,7 +100,7 @@ e.put("e83", Routine({
         synths_freeze[6].set(\freeze, 1.0);
     }).play;
     synths_freeze[4].set(\gate, 0);
-    "83 UPDATE 83.7: Event 83, freeze 7 (G4), release 5.".yield;
+    "84 UPDATE 84.7: Event 84, freeze 7 (G4), release 5.".yield;
 
     // 8 freeze
     Routine({
@@ -109,11 +109,11 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[7].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.8: Event 83, freeze 8 (E5).\nReady for release 6-8.".yield;
+    "84 UPDATE 84.8: Event 84, freeze 8 (E5).\nReady for release 6-8.".yield;
     synths_freeze[5].set(\gate, 0);
     synths_freeze[6].set(\gate, 0);
     synths_freeze[7].set(\gate, 0);
-    "83 UPDATE 83.9: Event 83 release 6-8.".yield;
+    "84 UPDATE 84.9: Event 84 release 6-8.".yield;
 
     // 9 freeze
     Routine({
@@ -122,7 +122,7 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[8].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.10: Event 83, freeze 9 (A5).".yield;
+    "84 UPDATE 84.10: Event 84, freeze 9 (A5).".yield;
 
     // 10 freeze
     Routine({
@@ -131,9 +131,9 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[9].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.11: Event 83, freeze 10 (E5).\nReady for release 9.".yield;
+    "84 UPDATE 84.11: Event 84, freeze 10 (E5).\nReady for release 9.".yield;
     synths_freeze[8].set(\gate, 0);
-    "83 UPDATE 83.12: Event 83 release 9.".yield;
+    "84 UPDATE 84.12: Event 84 release 9.".yield;
 
     // 11 freeze
     Routine({
@@ -142,10 +142,10 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[10].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.13: Event 83, freeze 11 (F5).\nReady for release 10-11.".yield;
+    "84 UPDATE 84.13: Event 84, freeze 11 (F5).\nReady for release 10-11.".yield;
     synths_freeze[9].set(\gate, 0);
     synths_freeze[10].set(\gate, 0);
-    "83 UPDATE 83.14: Event 83 release 10-11.".yield;
+    "84 UPDATE 84.14: Event 84 release 10-11.".yield;
 
     // 13 freeze
     Routine({
@@ -154,7 +154,7 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[11].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.15: Event 83, freeze 12 (D5).".yield;
+    "84 UPDATE 84.15: Event 84, freeze 12 (D5).".yield;
 
     // 14 freeze
     Routine({
@@ -163,9 +163,9 @@ e.put("e83", Routine({
         1.wait;
         synths_freeze[12].set(\freeze, 1.0);
     }).play;
-    "83 UPDATE 83.16: Event 83, freeze 13 (E5).\nReady for release 12.".yield;
+    "84 UPDATE 84.16: Event 84, freeze 13 (E5).\nReady for release 12.".yield;
     synths_freeze[11].set(\gate, 0);
-    "83 UPDATE 83.17: Event 83, release 12. Ready for release 13 (final).".yield;
+    "84 UPDATE 84.17: Event 84, release 12. Ready for release 13 (final).".yield;
 
     // cleanup
     Routine({
@@ -177,14 +177,14 @@ e.put("e83", Routine({
         synths_freeze.do({|item| item.free});
         synths.do({|item| item.free});
         control.do({|item| item.free});
-        "83 UPDATE 83.19: Event 83 kill stage complete. Event finished.".postln;
+        "84 UPDATE 84.19: Event 84 kill stage complete. Event finished.".postln;
     }).play;
-    "83 UPDATE 83.18: Event 83 fading out.".postln;
+    "84 UPDATE 84.18: Event 84 fading out.".postln;
 }));
 
 
-// Event 92: feedback
-e.put("e92", Routine({
+// Event 93: feedback
+e.put("e93", Routine({
     var control, control_specs,    synths, synths_out;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
@@ -206,7 +206,7 @@ e.put("e92", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp3[0][0], \pos, ~controlbus_grp3[0], \width, ~controlbus_grp3[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fb1, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 43.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
+    synths.add(Synth(\fbx, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \feedback_scaler, 2, \freq, ~faderbus[8], \low_freq, 43.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
@@ -215,7 +215,7 @@ e.put("e92", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][0], \out, ~audiobus_grp3[1][1], \mul_sig, ~controlbus_grp3[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~gainbus, \mul, -12.dbamp, \mul_sig, ~controlbus_grp3[3], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~reverbbus[3], \mul, -12.dbamp, \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
-    "92 UPDATE 92.0: Event 99 running.".yield;
+    "93 UPDATE 93.0: Event 93 running.".yield;
 
     // cleanup
     Routine({
@@ -224,14 +224,14 @@ e.put("e92", Routine({
         synths_out.do({|item| item.free});
         synths.do({|item| item.free});
         control.do({|item| item.free});
-        "92 UPDATE 92.2: Event 92 kill stage complete. Event finished.".postln;
+        "93 UPDATE 93.2: Event 93 kill stage complete. Event finished.".postln;
     }).play;
-    "92 UPDATE 92.1: Event 92 fading out.".postln;
+    "93 UPDATE 93.1: Event 93 fading out.".postln;
 }));
 
-// EVENT 96
+// EVENT 97
 // PS DELAY
-e.put("e96", Routine({
+e.put("e97", Routine({
     var control, control_specs,    synths, synths_out;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
@@ -261,10 +261,10 @@ e.put("e96", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul, -12.dbamp, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[1], \mul, -30.dbamp, \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    "96 UPDATE 96.0: Pitch shift in effect.".yield;
+    "97 UPDATE 97.0: Pitch shift in effect.".yield;
 
     synths[0].set(\gate, 0);
-    "96 UPDATE 96.1: Mic closed.".postln;
+    "97 UPDATE 97.1: Mic closed.".postln;
 
     // cleanup
     Routine({
@@ -274,15 +274,15 @@ e.put("e96", Routine({
         synths_out.do({|item| item.free});
         synths.do({|item| item.free});
         control.do({|item| item.free});
-        "96 UPDATE 96.3: Event 96 kill stage complete. Event finished.".postln;
+        "97 UPDATE 97.3: Event 97 kill stage complete. Event finished.".postln;
     }).play;
-    "96 UPDATE 96.2: Event 96 fading out.".postln;
+    "97 UPDATE 97.2: Event 97 fading out.".postln;
 }));
 
 
-// EVENT 98
+// EVENT 99
 // PS DELAY
-e.put("e98", Routine({
+e.put("e99", Routine({
     var control, control_specs, synths, synths_out;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
@@ -312,10 +312,10 @@ e.put("e98", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[1][1], \mul_sig, ~controlbus_grp1[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~gainbus, \mul, -12.dbamp, \mul_sig, ~controlbus_grp1[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~reverbbus[1], \mul, -30.dbamp, \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    "98 UPDATE 98.0: Pitch shift in effect.".yield;
+    "99 UPDATE 99.0: Pitch shift in effect.".yield;
 
     synths[0].set(\gate, 0);
-    "98 UPDATE 98.1: Mic closed.".postln;
+    "99 UPDATE 99.1: Mic closed.".postln;
 
     // cleanup
     Routine({
@@ -325,14 +325,14 @@ e.put("e98", Routine({
         synths_out.do({|item| item.free});
         synths.do({|item| item.free});
         control.do({|item| item.free});
-        "98 UPDATE 98.3: Event 98 kill stage complete. Event finished.".postln;
+        "99 UPDATE 99.3: Event 99 kill stage complete. Event finished.".postln;
     }).play;
-    "98 UPDATE 98.2: Event 98 fading out.".postln;
+    "99 UPDATE 99.2: Event 99 fading out.".postln;
 }));
 
 
-// Event 99: feedback
-e.put("e99", Routine({
+// Event 100: feedback
+e.put("e100", Routine({
     var control, control_specs,    synths, synths_out;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
@@ -354,7 +354,7 @@ e.put("e99", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp3[0][0], \pos, ~controlbus_grp3[0], \width, ~controlbus_grp3[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fb1, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 40.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
+    synths.add(Synth(\fbx, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \feedback_scaler, 2, \freq, ~faderbus[8], \low_freq, 40.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
@@ -363,7 +363,7 @@ e.put("e99", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][0], \out, ~audiobus_grp3[1][1], \mul_sig, ~controlbus_grp3[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~gainbus, \mul, -12.dbamp, \mul_sig, ~controlbus_grp3[3], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~reverbbus[3], \mul, -12.dbamp, \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 2], ~grp[4], \addToTail));
-    "99 UPDATE 99.0: Event 99 running.".yield;
+    "100 UPDATE 100.0: Event 100 running.".yield;
 
     // cleanup
     Routine({
@@ -372,14 +372,14 @@ e.put("e99", Routine({
         synths_out.do({|item| item.free});
         synths.do({|item| item.free});
         control.do({|item| item.free});
-        "99 UPDATE 99.3: Event 99 kill stage complete. Event finished.".postln;
+        "100 UPDATE 100.3: Event 100 kill stage complete. Event finished.".postln;
     }).play;
-    "99 UPDATE 99.2: Event 99 fading out.".postln;
+    "100 UPDATE 100.2: Event 100 fading out.".postln;
 }));
 
-// EVENT 101
+// EVENT 102
 // PS 8ve down
-e.put("e101", Routine({
+e.put("e102", Routine({
     var control, control_specs,    synths, synths_out;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
@@ -409,10 +409,10 @@ e.put("e101", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    "101 UPDATE 101.0: Pitch shift in effect.".yield;
+    "102 UPDATE 102.0: Pitch shift in effect.".yield;
 
     synths[0].set(\gate, 0);
-    "101 UPDATE 101.1: Mic closed.".postln;
+    "102 UPDATE 102.1: Mic closed.".postln;
 
     // cleanup
     Routine({
@@ -422,14 +422,14 @@ e.put("e101", Routine({
         synths_out.do({|item| item.free});
         synths.do({|item| item.free});
         control.do({|item| item.free});
-    "101 UPDATE 101.3: Event 101 kill stage complete. Event finished.".postln;
+    "102 UPDATE 102.3: Event 102 kill stage complete. Event finished.".postln;
     }).play;
-    "101 UPDATE 101.2: Event 101 fading out.".postln;
+    "102 UPDATE 102.2: Event 102 fading out.".postln;
 }));
 
-// EVENT 104
+// EVENT 105
 // PS DELAY
-e.put("e104", Routine({
+e.put("e105", Routine({
     var control, control_specs,    synths, synths_out;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
@@ -459,10 +459,10 @@ e.put("e104", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[1][1], \mul_sig, ~controlbus_grp1[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~gainbus, \mul, -12.dbamp, \mul_sig, ~controlbus_grp1[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
 	synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~reverbbus[1], \mul, -30.dbamp, \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    "104 UPDATE 104.0: Pitch shift in effect.".yield;
+    "105 UPDATE 105.0: Pitch shift in effect.".yield;
 
     synths[0].set(\gate, 0);
-    "104 UPDATE 104.1: Mic closed.".postln;
+    "105 UPDATE 105.1: Mic closed.".postln;
 
     // cleanup
     Routine({
@@ -472,8 +472,8 @@ e.put("e104", Routine({
         synths_out.do({|item| item.free});
         synths.do({|item| item.free});
         control.do({|item| item.free});
-        "104 UPDATE 104.3: Event 104 kill stage complete. Event finished.".postln;
+        "105 UPDATE 105.3: Event 105 kill stage complete. Event finished.".postln;
     }).play;
-    "104 UPDATE 104.2: Event 104 fading out.".postln;
+    "105 UPDATE 105.2: Event 105 fading out.".postln;
 }));
 )

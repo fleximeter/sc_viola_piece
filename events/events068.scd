@@ -751,7 +751,7 @@ e.put("e82b", Routine({
 
 // Event: shifting pattern playing
 // This event is meant to be played automatically, not stepped through.
-e.put("e82c", Routine({
+e.put("e83", Routine({
     var control, control_specs, transpose, pattern, samples, synths, synths_out, tempo_clock;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
@@ -848,18 +848,18 @@ e.put("e82c", Routine({
     tempo_clock = TempoClock(96/60);
     pattern.play(tempo_clock, quant: 1);
 
-    "82c UPDATE 82c.0: Event 82c pattern start.".postln;
+    "83 UPDATE 83.0: Event 83 pattern start.".postln;
     60.wait;
     pattern.stop;
 
     // SHUTDOWN ///////////////////////////////////////////////////////////////
     synths_out.do({|item| item.set(\gate, 0)});
-    "82c UPDATE 82c.1: Event 82c fading out.".postln;
+    "83 UPDATE 83.1: Event 83 fading out.".postln;
     2.wait;
     tempo_clock.free;
     synths_out.do({|item| item.free});
     synths.do({|item| item.free});
     control.do({|item| item.free});
-    "82c UPDATE 82c.2: Event 82c kill stage complete. Event finished.".postln;
+    "83 UPDATE 83.2: Event 83 kill stage complete. Event finished.".postln;
 }));
 )

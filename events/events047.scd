@@ -23,7 +23,7 @@ e.put("e47", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus_grp1[1]], ~grp[1], \addToTail));
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus_grp1[1], \mul, -6.dbamp], ~grp[1], \addToTail));
     synths.add(Synth(\pitchshift, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[2][0], \ratio, 0.5], ~grp[2], \addToTail));
 
     // SENDS
@@ -183,11 +183,11 @@ e.put("e54", Routine({
     synths = List();
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, -0.25, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, -0.08, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, -0.08, \width, 2.0, \mul, -15.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.08, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.08, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.25, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp2[0][0], \pos, 0.25, \width, 2.0, \mul, -21.dbamp, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
 
     2.wait;
 
@@ -234,11 +234,11 @@ e.put("e58", Routine({
     synths = List();
     synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.25, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.08, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, 0.08, \width, 2.0, \mul, -15.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, -0.08, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, -0.08, \width, 2.0, \mul, -18.dbamp, \buf, ~samples["other"]["eee_loop"]["buffer"], \dur, 1, \release_time, 0.2], ~grp[1], \addToTail));
     between_time.wait;
-    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, -0.25, \width, 2.0, \mul, -12.dbamp, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
+    synths.add(Synth(\sampler_env, [\out, ~audiobus_grp3[0][0], \pos, -0.25, \width, 2.0, \mul, -21.dbamp, \buf, ~samples["other"]["eee"]["buffer"], \dur, 3, \release_time, 0.2], ~grp[1], \addToTail));
 
     2.wait;
 
@@ -468,7 +468,7 @@ e.put("e65", Routine({
     synth_freeze = Synth(\fft_freeze, [\in, ~audiobus_grp2[0][1], \out, ~audiobus_grp2[0][0], \above_frac, 0.2, \release_time, 2], ~grp[1], \addToTail);
 
     // add processing synths
-    synths.add(Synth(\fb1, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 50.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
+    synths.add(Synth(\fbx, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \feedback_scaler, 2, \freq, ~faderbus[8], \low_freq, 50.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
 
     // freeze
     Routine({

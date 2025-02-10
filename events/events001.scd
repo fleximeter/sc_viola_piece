@@ -484,7 +484,7 @@ e.put("e4", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fb1, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 62.midicps, \high_freq, 96.midicps], ~grp[2], \addToTail));
+    synths.add(Synth(\fbx, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \feedback_scaler, 2, \freq, ~faderbus[8], \low_freq, 62.midicps, \high_freq, 96.midicps], ~grp[2], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
@@ -559,7 +559,7 @@ e.put("e5", Routine({
 
 // Event 6: feedback
 e.put("e6", Routine({
-    var control, control_specs,    synths, synths_out;
+    var control, control_specs, synths, synths_out;
 
     // CONTROLS ///////////////////////////////////////////////////////////////
     control_specs = [
@@ -580,15 +580,15 @@ e.put("e6", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fb1, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 62.midicps, \high_freq, 96.midicps], ~grp[2], \addToTail));
+    synths.add(Synth(\fbx, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \feedback_scaler, 2, \freq, ~faderbus[8], \low_freq, 62.midicps, \high_freq, 96.midicps], ~grp[2], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
     synths_out = List();
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 1.5], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul, -6.dbamp, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 1.5], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[3], \mul, -18.dbamp, \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 1.5], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 3], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul, -6.dbamp, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 3], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[3], \mul, -18.dbamp, \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 3], ~grp[4], \addToTail));
     "6 UPDATE 6.0: Event 6 running.".yield;
 
     // cleanup
@@ -626,7 +626,7 @@ e.put("e7", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp3[0][0], \pos, ~controlbus_grp3[0], \width, ~controlbus_grp3[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fb1, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \freq, ~faderbus[8], \low_freq, 50.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
+    synths.add(Synth(\fbx, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \feedback_scaler, 2, \freq, ~faderbus[8], \low_freq, 40.midicps, \high_freq, 80.midicps], ~grp[2], \addToTail));
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.
