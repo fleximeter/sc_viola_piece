@@ -24,7 +24,7 @@ Server.supernova;
     // Basic useful constants
     ~partconv_size = 512;  // project-wide STFT window size for convolution
     ~fft_size = 4096;  // project-wide STFT window size
-    ~mic_zero = 8;     // the zero mic - NOTE on the RME in the studio it is 8!
+    ~mic_zero = 9;     // the zero mic - NOTE on the RME in the studio it is 8!
 	~out_channels = 8;  // the number of out channels
     ~root_sample_dir = PathName(thisProcess.nowExecutingPath).parentPath;
     ~record_num = -1;

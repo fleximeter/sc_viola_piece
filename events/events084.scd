@@ -354,7 +354,7 @@ e.put("e100", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp3[0][0], \pos, ~controlbus_grp3[0], \width, ~controlbus_grp3[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fbx, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \feedback_scaler, 2, \freq, ~faderbus[8], \low_freq, 40.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
+    synths.add(Synth(\fbx, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \feedback_scaler, 1, \freq, ~faderbus[8], \low_freq, 40.midicps, \high_freq, 108.midicps], ~grp[2], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.
