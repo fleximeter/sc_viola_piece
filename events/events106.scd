@@ -82,7 +82,18 @@ e.put("e108", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp3[0][0], \pos, ~controlbus_grp3[0], \width, ~controlbus_grp3[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fbx, [\in, ~audiobus_grp3[0][0], \out, ~audiobus_grp3[1][0], \mul_sig, ~faderbus[4], \feedback, ~faderbus[5], \feedback_scaler, 2, \freq, ~faderbus[8], \low_freq, 62.midicps, \high_freq, 96.midicps], ~grp[2], \addToTail));
+    synths.add(Synth(\fbx2, [
+		\in, ~audiobus_grp2[0][0],
+		\out, ~audiobus_grp2[1][0],
+		\mul_sig, ~faderbus[4],
+		\mul, -6.dbamp,
+		\feedback, ~faderbus[5],
+		\feedback_scaler, 2,
+		\freq, ~faderbus[8],
+		\low_freq, 36.midicps,
+		\high_freq, 72.midicps,
+	], ~grp[2], \addToTail));
+
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.

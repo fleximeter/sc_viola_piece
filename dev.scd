@@ -1,6 +1,6 @@
 e["e70"].play;
 
-~reset_to_event.(97);
+~reset_to_event.(4);
 ~event_counter.postln;
 
 // check sound
