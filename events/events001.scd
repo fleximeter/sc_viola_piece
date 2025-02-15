@@ -263,7 +263,7 @@ e.put("e4", Routine({
 		\mul_sig, ~faderbus[4],
 		\mul, -6.dbamp,
 		\feedback, ~faderbus[5],
-		\feedback_scaler, 2,
+		\feedback_scaler, ~feedback_scaler,
 		\freq, ~faderbus[8],
 		\low_freq, 36.midicps,
 		\high_freq, 72.midicps,
@@ -369,7 +369,7 @@ e.put("e6", Routine({
 		\mul_sig, ~faderbus[4],
 		\mul, -6.dbamp,
 		\feedback, ~faderbus[5],
-		\feedback_scaler, 2,
+		\feedback_scaler, ~feedback_scaler,
 		\freq, ~faderbus[8],
 		\low_freq, 36.midicps,
 		\high_freq, 72.midicps,
@@ -420,17 +420,17 @@ e.put("e7", Routine({
 
     // add processing synths
     synths.add(Synth(\fbx2, [
-		\in, ~audiobus_grp2[0][0],
-		\out, ~audiobus_grp2[1][0],
+		\in, ~audiobus_grp3[0][0],
+		\out, ~audiobus_grp3[1][0],
 		\mul_sig, ~faderbus[4],
 		\mul, -6.dbamp,
 		\feedback, ~faderbus[5],
-		\feedback_scaler, 2,
+		\feedback_scaler, ~feedback_scaler,
 		\freq, ~faderbus[8],
 		\low_freq, 36.midicps,
 		\high_freq, 72.midicps,
 	], ~grp[2], \addToTail));
-    
+
     // SENDS
     // Set attack and release time for this event here.
     // Also set dry and wet reverb gain levels here.

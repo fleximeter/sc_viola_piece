@@ -474,7 +474,7 @@ e.put("e65", Routine({
 		\mul_sig, ~faderbus[4],
 		\mul, -6.dbamp,
 		\feedback, ~faderbus[5],
-		\feedback_scaler, 2,
+		\feedback_scaler, ~feedback_scaler,
 		\freq, ~faderbus[8],
 		\low_freq, 36.midicps,
 		\high_freq, 72.midicps,

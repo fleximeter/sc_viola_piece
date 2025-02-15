@@ -451,7 +451,7 @@ e.put("e75", Routine({
         \pos, Pwhite(0.8, 1.2, inf),
         \out, ~audiobus_grp2[0][0],
         \mul, -18.dbamp,
-        \dur, Pseq(Array.interpolation(12, 0.5, 0.125) ++ Array.interpolation(12, 0.125, 0.5), 3),
+        \dur, Pseq(Array.interpolation(12, 0.5, 0.125) ++ Array.interpolation(12, 0.125, 0.5), 2),
         \group, ~grp[1],
         \addAction, \addToTail,
     );
@@ -518,7 +518,7 @@ e.put("e76", Routine({
         \pos, Pwhite(0.8, 1.2, inf),
         \out, ~audiobus_grp1[0][0],
         \mul, -15.dbamp,
-        \dur, Pseq(Array.interpolation(16, 0.5, 0.125) ++ Array.interpolation(16, 0.125, 0.5), 3),
+        \dur, Pseq(Array.interpolation(16, 0.5, 0.125) ++ Array.interpolation(16, 0.125, 0.5), 2),
         \group, ~grp[1],
         \addAction, \addToTail,
     );
