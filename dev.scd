@@ -1,6 +1,6 @@
 e["e70"].play;
 
-~reset_to_event.(4);
+~reset_to_event.(47);
 ~event_counter.postln;
 
 ~feedback_scaler = 3;

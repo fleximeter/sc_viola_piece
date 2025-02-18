@@ -451,7 +451,7 @@ e.put("e75", Routine({
         \pos, Pwhite(0.8, 1.2, inf),
         \out, ~audiobus_grp2[0][0],
         \mul, -18.dbamp,
-        \dur, Pseq(Array.interpolation(12, 0.5, 0.125) ++ Array.interpolation(12, 0.125, 0.5), 2),
+        \dur, Pseq(Array.interpolation(18, 0.5, 0.125) ++ Array.interpolation(18, 0.125, 0.5), 2),
         \group, ~grp[1],
         \addAction, \addToTail,
     );
@@ -518,7 +518,7 @@ e.put("e76", Routine({
         \pos, Pwhite(0.8, 1.2, inf),
         \out, ~audiobus_grp1[0][0],
         \mul, -15.dbamp,
-        \dur, Pseq(Array.interpolation(16, 0.5, 0.125) ++ Array.interpolation(16, 0.125, 0.5), 2),
+        \dur, Pseq(Array.interpolation(20, 0.5, 0.125) ++ Array.interpolation(20, 0.125, 0.5), 2),
         \group, ~grp[1],
         \addAction, \addToTail,
     );
@@ -721,7 +721,7 @@ e.put("e82b", Routine({
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1], \attack_time, 0.2, \release_time, 0.2], ~grp[1], \addToTail));
-    synths.add(Synth(\varcombdelay, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \time, ~controlbus_grp2[2], \decaytime, 6, \mul, -12.dbamp], ~grp[1], \addToTail));
+    synths.add(Synth(\varcombdelay, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \time, ~controlbus_grp2[2], \decaytime, 6, \mul, 0.dbamp], ~grp[1], \addToTail));
 
     // SENDS
     // Set attack and release time for this event here.

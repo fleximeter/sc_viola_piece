@@ -274,7 +274,7 @@ e.put("e4", Routine({
 		\in, ~audiobus_grp2[0][0],
 		\out, ~audiobus_grp2[1][0],
 		\mul_sig, ~faderbus[4],
-		\mul, -6.dbamp,
+		\mul, 6.dbamp,
 		\feedback, ~faderbus[5],
 		\feedback_scaler, ~feedback_scaler,
 		\midinote, ~notebus,
@@ -323,7 +323,7 @@ e.put("e5", Routine({
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
     synths_out = List();
-    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus_grp1[1], \mul, -12.dbamp], ~grp[1], \addToTail));
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus_grp1[1], \mul, 0.dbamp], ~grp[1], \addToTail));
     synths.add(Synth(\pitchshift, [\in, ~audiobus_grp1[0][0], \out, ~audiobus_grp1[1][0], \ratio, 0.5], ~grp[2], \addToTail));
     synths.add(Synth(\passthrough8, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[2][0], \attack_time, 0.1, \release_time, 1], ~grp[2], \addToTail));
 
@@ -378,7 +378,7 @@ e.put("e6", Routine({
 		\in, ~audiobus_grp2[0][0],
 		\out, ~audiobus_grp2[1][0],
 		\mul_sig, ~faderbus[4],
-		\mul, -6.dbamp,
+		\mul, 0.dbamp,
 		\feedback, ~faderbus[5],
 		\feedback_scaler, ~feedback_scaler,
 		\midinote, ~notebus,
@@ -390,7 +390,7 @@ e.put("e6", Routine({
     synths_out = List();
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][0], \out, ~audiobus_grp2[1][1], \mul_sig, ~controlbus_grp2[2], \attack_time, 0.01, \release_time, 3], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~gainbus, \mul, -6.dbamp, \mul_sig, ~controlbus_grp2[3], \attack_time, 0.01, \release_time, 3], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[3], \mul, -18.dbamp, \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 3], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp2[1][1], \out, ~reverbbus[0], \mul, -18.dbamp, \mul_sig, ~controlbus_grp2[4], \attack_time, 0.01, \release_time, 3], ~grp[4], \addToTail));
     "6 UPDATE 6.0: Event 6 running.".yield;
 
     // cleanup
@@ -432,7 +432,7 @@ e.put("e7", Routine({
 		\in, ~audiobus_grp3[0][0],
 		\out, ~audiobus_grp3[1][0],
 		\mul_sig, ~faderbus[4],
-		\mul, -6.dbamp,
+		\mul, -3.dbamp,
 		\feedback, ~faderbus[5],
 		\feedback_scaler, ~feedback_scaler,
 		\midinote, ~notebus,
@@ -445,7 +445,7 @@ e.put("e7", Routine({
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][0], \out, ~audiobus_grp3[1][1], \mul_sig, ~controlbus_grp3[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~gainbus, \mul, -12.dbamp, \mul_sig, ~controlbus_grp3[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~reverbbus[0], \mul, -18.dbamp, \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~reverbbus[2], \mul, -24.dbamp, \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp3[1][1], \out, ~reverbbus[0], \mul, -24.dbamp, \mul_sig, ~controlbus_grp3[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "7 UPDATE 7.0: Event 7 running.".yield;
 
     // cleanup

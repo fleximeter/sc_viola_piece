@@ -140,7 +140,7 @@ e.put("e14", Routine({
 
     // SYNTHS ///////////////////////////////////////////////////////////////
     synths = List();
-    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1], \mul, -12.dbamp], ~grp[1], \addToTail));
+    synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1], \mul, 0.dbamp], ~grp[1], \addToTail));
     synths.add(Synth(\pitchshift, [\in, ~audiobus_grp2[0][0], \out, ~audiobus_grp2[1][0], \ratio, 2/3], ~grp[2], \addToTail));
 
     // SENDS
@@ -308,7 +308,7 @@ e.put("e24", Routine({
 		\in, ~audiobus_grp1[0][0],
 		\out, ~audiobus_grp1[1][0],
 		\mul_sig, ~faderbus[4],
-		\mul, -6.dbamp,
+		\mul, 0.dbamp,
 		\feedback, ~faderbus[5],
 		\feedback_scaler, ~feedback_scaler,
 		\midinote, ~notebus,
