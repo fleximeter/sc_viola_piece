@@ -80,9 +80,10 @@ Server.supernova;
     ~controlbus_grp2 = Array.fill(20, {Bus.control(s, 1)});
     ~controlbus_grp3 = Array.fill(20, {Bus.control(s, 1)});
 
-    // Buses for the MIDI controller
+    // Buses for the MIDI controllers
     ~faderbus = Array.fill(9, {Bus.control(s, 1)});
     ~knobbus = Array.fill(2, {Bus.control(s, 1)});
+	~notebus = Bus.control(s, 1);
 
     // Buses for the main event that manages the mic and the reverb
     ~micbus = Bus.audio(s, 1);

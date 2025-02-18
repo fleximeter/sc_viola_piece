@@ -1,7 +1,8 @@
 // File: synthdefs_feedback.scd
 // SynthDefs for feedback
 
-// A more complex feedback synth that brings in mag smoothing and filtering
+// An automatic limiting feedback synth. Uses a modified hyperbolic secant function
+// to limit the feedback coefficient and prevent blowup.
 SynthDef(\fbx, {
     var sig, chain, local, ndelay, ctrl_fb, ctrl_mul, magsmooth, band_freq, current_amp, feedback_limiter;
     ndelay = 4;
@@ -42,8 +43,9 @@ SynthDef(\fbx, {
     Out.ar(\out.kr(0), local);
 }).add;
 
-
-// A more complex feedback synth that brings in mag smoothing and filtering
+// An automatic limiting feedback synth. Uses a modified hyperbolic secant function
+// to limit the feedback coefficient and prevent blowup.
+// This variant quantizes the bandpass frequency to a MIDI frequency.
 SynthDef(\fbx2, {
     var sig, chain, local, ndelay, ctrl_fb, ctrl_mul, magsmooth, current_amp, feedback_limiter, band_freq;
     ndelay = 8;
@@ -88,6 +90,51 @@ SynthDef(\fbx2, {
 		band_freq,
 		0.3
 	);
+
+    // make the feedback happen. The feedback can be adjusted manually if it needs to be scaled.
+	LocalOut.ar(local * ctrl_fb * \feedback_scaler.kr(1.5) * feedback_limiter);
+    local = local.madd(\mul.kr(1) * ctrl_mul, 0);
+    Out.ar(\out.kr(0), local);
+}).add;
+
+
+// An automatic limiting feedback synth. Uses a modified hyperbolic secant function
+// to limit the feedback coefficient and prevent blowup.
+// This version allows the BPF frequency to be controlled by a MIDI keyboard.
+SynthDef(\fbx3, {
+    var sig, chain, local, ndelay, ctrl_fb, ctrl_mul, magsmooth, current_amp, feedback_limiter, band_midi;
+    ndelay = 8;
+
+    // Explicit MIDI control of mul and feedback values
+    ctrl_mul = In.kr(\mul_sig.kr(0));
+    ctrl_fb = In.kr(\feedback.kr(0));
+	band_midi = In.kr(\midinote.kr(0));
+
+    // Read the mic
+    sig = In.ar(\in.kr(0), 8);
+
+    // Fill the feedback path with delays
+    local = LocalIn.ar(8) + sig;
+    local = Mix(Array.fill(ndelay, { |i|
+        DelayL.ar(local, 1, (i+1)/(2*ndelay) + LFNoise1.kr(0.5).linlin(-1, 1, -0.001, 0.001), 2/ndelay)
+    }));
+
+	// AUTOMATIC FEEDBACK LIMITER
+	// Tracks the amplitude of the feedback path and dumps it into a
+	// modified hyperbolic secant function to automatically lower the feedback coefficient.
+	current_amp = Amplitude.kr(local, 0.5, 0.5);
+	feedback_limiter = 1 / ((6 * current_amp).exp + (-6 * current_amp).exp);
+
+    // Spectral processing
+    chain = FFT({LocalBuf(~fft_size)}!8, local);
+    chain = PV_MagSmooth(chain, 0.5);
+    local = IFFT(chain);
+
+	// Get rid of very low frequencies to avoid annoying rumbles
+    local = HPF.ar(local, 100);
+
+	// apply BPF
+	local = BPF.ar(local, band_midi.midicps, 0.3);
 
     // make the feedback happen. The feedback can be adjusted manually if it needs to be scaled.
 	LocalOut.ar(local * ctrl_fb * \feedback_scaler.kr(1.5) * feedback_limiter);

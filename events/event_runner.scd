@@ -3,9 +3,9 @@
 
 // reset the events
 ~event_order_list = [
-    ["e1alt", "play"],
-    ["e2alt", "play"],
-    ["e3alt", "play"],
+    ["e1", "play"],
+    ["e2", "play"],
+    ["e3", "play"],
     ["e4", "next"],
     ["e4", "next"],
     ["e5", "next"],

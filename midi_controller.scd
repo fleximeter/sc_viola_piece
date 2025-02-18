@@ -56,20 +56,21 @@ SynthDef(\buschange, {
 
 ~piece_index = 0;
 
+// BPF frequency MIDI keyboard reader
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
-    // Synth(\sampler_out3, [\buf, ~samples["piece"][~measure_list[~piece_index]]["buffer"], \mul_sig, ~faderbus[7], \out, 0, \mul, 0.dbamp], ~grp[0], \addToTail);
-    // (">> playing " ++ ~measure_list[~piece_index]).postln;
-    // ~piece_index = ~piece_index + 1;
+    Synth(\buschange, [\start, ~notebus.getSynchronous, \end, noteNumber, \bus, ~notebus]);
     ("note number " ++ noteNumber ++ " was pressed on device v25").postln;
 }, srcID: ~midi_sources["v25"].uid).permanent = true;
 
+// Tester to verify that the QuNeo controller works
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
     "Test QuNeo MIDI controller".postln;
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }, 19, srcID: ~midi_sources["quneo"].uid).permanent = true;
 
+// Event player - starts the next event
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
     if(~event_counter < ~event_order_list.size, {
@@ -85,6 +86,8 @@ MIDIdef.noteOn("on", {
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }, 36, srcID: ~midi_sources["quneo"].uid).permanent = true;
 
+/*
+// Piece sample player - for use with prerecorded recordings of the piece
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
     Synth(\sampler_out3, [\buf, ~samples["piece"][~measure_list[~piece_index]]["buffer"], \mul_sig, ~faderbus[7], \out, 0, \mul, 0.dbamp], ~grp[0], \addToTail);
@@ -93,6 +96,7 @@ MIDIdef.noteOn("on", {
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }, 37, srcID: ~midi_sources["quneo"].uid).permanent = true;
 
+// Sample player for use with prerecorded recordings of the piece
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
     Synth(\sampler_out3, [\buf, ~samples["piece"]["m82f"]["buffer"], \mul_sig, ~faderbus[7], \out, 0, \mul, 0.dbamp], ~grp[0], \addToTail);
@@ -113,7 +117,9 @@ MIDIdef.noteOn("on", {
     (">> playing " ++ "m82h").postln;
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }, 42, srcID: ~midi_sources["quneo"].uid).permanent = true;
+*/
 
+// Records the output
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
     ~record_num = ~record_num + 1;
@@ -129,24 +135,28 @@ MIDIdef.noteOn("on", {
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }, 48, srcID: ~midi_sources["quneo"].uid).permanent = true;
 
+// Resets the event counter
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
     ~event_counter_reset.();
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }, 49, srcID: ~midi_sources["quneo"].uid).permanent = true;
 
+// Performs a partial reset
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
     ~partial_reset.();
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }, 50, srcID: ~midi_sources["quneo"].uid).permanent = true;
 
+// Performs a full reset
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
     ~full_reset.();
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }, 51, srcID: ~midi_sources["quneo"].uid).permanent = true;
 
+// FADER BUSES ////////////////////////////////////////////
 MIDIdef.cc("fader1", {
     arg val, idx;
     var current, target;
@@ -228,6 +238,8 @@ MIDIdef.cc("fader9", {
     //("fader bus 8: " ++ target).postln;
 }, ~midimap["fader9"]).permanent = true;
 
+// KNOB BUSES /////////////////////////////////////////////
+
 MIDIdef.cc("knob1", {
     arg val, idx;
     var current, target;
@@ -245,23 +257,3 @@ MIDIdef.cc("knob2", {
     Synth(\buschange, [\start, current, \end, target, \bus, ~knobbus[1]]);
     //("knob bus 2: " ++ target).postln;
 }, ~midimap["knob2"]).permanent = true;
-
-MIDIdef.cc("stop", {
-    arg val, idx;
-    //val.postln;
-}, ~midimap["stop"]).permanent = true;
-
-MIDIdef.cc("pause", {
-    arg val, idx;
-    //val.postln;
-}, ~midimap["pause"]).permanent = true;
-
-MIDIdef.cc("play", {
-    arg val, idx;
-    //val.postln;
-}, ~midimap["play"]).permanent = true;
-
-MIDIdef.cc("test", {
-    arg val, idx;
-    //"test midi controller".postln;
-}, ~midimap["test"]).permanent = true;

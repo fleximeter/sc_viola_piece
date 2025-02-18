@@ -2,8 +2,8 @@
 // This file contains individual events starting at measure 1.
 
 (
-// this alternate event 1 uses a sampler, not live audio
-e.put("e1alt", Routine({
+// freeze accompaniment
+e.put("e1", Routine({
     var control, control_specs, freeze_release_time, synth_freeze, synths, synths_out;
     freeze_release_time = 2;
 
@@ -77,8 +77,8 @@ e.put("e1alt", Routine({
     }).play;
 }));
 
-// this alternate event 2 uses a sampler, not live audio
-e.put("e2alt", Routine({
+// freeze accompaniment
+e.put("e2", Routine({
     var control, control_specs, freeze_release_time, synth_freeze, synths, synths_out;
     freeze_release_time = 2;
 
@@ -154,9 +154,8 @@ e.put("e2alt", Routine({
 
 }));
 
-
-// this alternate event 3 uses a sampler, not live audio
-e.put("e3alt", Routine({
+// freeze accompaniment
+e.put("e3", Routine({
     var control, control_osc, control_specs, freeze_release_time, synth_freeze, synths, synths_out;
     freeze_release_time = 3;
 
@@ -257,6 +256,7 @@ e.put("e4", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp2[0][0], \pos, ~controlbus_grp2[0], \width, ~controlbus_grp2[1]], ~grp[1], \addToTail));
 
     // add processing synths
+	/*
 	synths.add(Synth(\fbx2, [
 		\in, ~audiobus_grp2[0][0],
 		\out, ~audiobus_grp2[1][0],
@@ -267,6 +267,17 @@ e.put("e4", Routine({
 		\freq, ~faderbus[8],
 		\low_freq, 36.midicps,
 		\high_freq, 72.midicps,
+	], ~grp[2], \addToTail));
+	*/
+
+	synths.add(Synth(\fbx3, [
+		\in, ~audiobus_grp2[0][0],
+		\out, ~audiobus_grp2[1][0],
+		\mul_sig, ~faderbus[4],
+		\mul, -6.dbamp,
+		\feedback, ~faderbus[5],
+		\feedback_scaler, ~feedback_scaler,
+		\midinote, ~notebus,
 	], ~grp[2], \addToTail));
 
     // SENDS
