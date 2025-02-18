@@ -213,6 +213,9 @@ s.waitForBoot({
     ~bus_maker.();
     ~file_loader.();
     s.sync;
+
+	// set the note bus to 60 so that we don't get a low initial BPF setting
+	~notebus.setSynchronous(60.0);
     ~group_maker.();
     ~convolution_setup.();
     s.sync;

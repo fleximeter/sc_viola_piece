@@ -59,8 +59,8 @@ SynthDef(\buschange, {
 // BPF frequency MIDI keyboard reader
 MIDIdef.noteOn("on", {
     arg velocity, noteNumber, channel, source;
-    Synth(\buschange, [\start, ~notebus.getSynchronous, \end, noteNumber, \bus, ~notebus]);
-    ("note number " ++ noteNumber ++ " was pressed on device v25").postln;
+    Synth(\buschange, [\start, ~notebus.getSynchronous, \end, noteNumber, \bus, ~notebus, \dur, 0.5]);
+    //("note number " ++ noteNumber ++ " was pressed on device v25").postln;
 }, srcID: ~midi_sources["v25"].uid).permanent = true;
 
 // Tester to verify that the QuNeo controller works
@@ -163,7 +163,7 @@ MIDIdef.cc("fader1", {
     current = ~faderbus[0].getSynchronous;
     target = val.linlin(0, 127, 0.0, 1.0);
     Synth(\buschange, [\start, current, \end, target, \bus, ~faderbus[0]]);
-    //("fader bus 1: " ++ target).postln;
+    //("fader bus 0: " ++ target).postln;
 }, ~midimap["fader1"]).permanent = true;
 
 MIDIdef.cc("fader2", {
@@ -231,10 +231,7 @@ MIDIdef.cc("fader8", {
 
 MIDIdef.cc("fader9", {
     arg val, idx;
-    var current, target;
-    current = ~faderbus[8].getSynchronous;
-    target = val.linlin(0, 127, 0.0, 1.0);
-    Synth(\buschange, [\start, current, \end, target, \bus, ~faderbus[8]]);
+    Synth(\buschange, [\start, ~notebus.getSynchronous, \end, val, \bus, ~notebus]);
     //("fader bus 8: " ++ target).postln;
 }, ~midimap["fader9"]).permanent = true;
 

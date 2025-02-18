@@ -290,8 +290,8 @@ e.put("e24", Routine({
         Dictionary["name" -> "sound_pan_pos", "levels" -> #[0.0, 0.0, 0.0], "times" -> #[20, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_sound_pan_width", "levels" -> #[2.0, 6.0, 6.0], "times" -> #[6, 100], "curves" -> #[0, 0]],
         Dictionary["name" -> "control_gain", "levels" -> #[1.0, 1.0, 1.0], "times" -> #[10, 100], "curves" -> #[0, 0]],
-        Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5], "times" -> #[10], "curves" -> #[0]],
-        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5], "times" -> #[10], "curves" -> #[0]],
+        Dictionary["name" -> "control_dry_gain", "levels" -> #[1.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0]],
+        Dictionary["name" -> "control_wet_gain", "levels" -> #[0.0, 0.5, 0.5], "times" -> #[10, 100], "curves" -> #[0]],
     ];
 
     control = Array.fill(control_specs.size, {
@@ -304,16 +304,14 @@ e.put("e24", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp1[0][0], \pos, ~controlbus_grp1[0], \width, ~controlbus_grp1[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fbx2, [
+    synths.add(Synth(\fbx3, [
 		\in, ~audiobus_grp1[0][0],
 		\out, ~audiobus_grp1[1][0],
 		\mul_sig, ~faderbus[4],
 		\mul, -6.dbamp,
 		\feedback, ~faderbus[5],
 		\feedback_scaler, ~feedback_scaler,
-		\freq, ~faderbus[8],
-		\low_freq, 36.midicps,
-		\high_freq, 72.midicps,
+		\midinote, ~notebus,
 	], ~grp[2], \addToTail));
 
     // SENDS
@@ -322,7 +320,7 @@ e.put("e24", Routine({
     synths_out = List();
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][0], \out, ~audiobus_grp1[1][1], \mul_sig, ~controlbus_grp1[2], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~gainbus, \mul, -12.dbamp, \mul_sig, ~controlbus_grp1[3], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
-    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~reverbbus[3], \mul, -12.dbamp, \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
+    synths_out.add(Synth(\passthrough8mul, [\in, ~audiobus_grp1[1][1], \out, ~reverbbus[0], \mul, -12.dbamp, \mul_sig, ~controlbus_grp1[4], \attack_time, 0.01, \release_time, 0.1], ~grp[4], \addToTail));
     "24 UPDATE 24.0: Event 24 running.".yield;
 
     // cleanup

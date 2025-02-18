@@ -206,16 +206,14 @@ e.put("e93", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp3[0][0], \pos, ~controlbus_grp3[0], \width, ~controlbus_grp3[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fbx2, [
+    synths.add(Synth(\fbx3, [
 		\in, ~audiobus_grp3[0][0],
 		\out, ~audiobus_grp3[1][0],
 		\mul_sig, ~faderbus[4],
 		\mul, -6.dbamp,
 		\feedback, ~faderbus[5],
 		\feedback_scaler, ~feedback_scaler,
-		\freq, ~faderbus[8],
-		\low_freq, 36.midicps,
-		\high_freq, 72.midicps,
+		\midinote, ~notebus,
 	], ~grp[2], \addToTail));
 
     // SENDS
@@ -364,16 +362,14 @@ e.put("e100", Routine({
     synths.add(Synth(\pan1to8, [\in, ~micbus, \out, ~audiobus_grp3[0][0], \pos, ~controlbus_grp3[0], \width, ~controlbus_grp3[1]], ~grp[1], \addToTail));
 
     // add processing synths
-    synths.add(Synth(\fbx2, [
+    synths.add(Synth(\fbx3, [
 		\in, ~audiobus_grp3[0][0],
 		\out, ~audiobus_grp3[1][0],
 		\mul_sig, ~faderbus[4],
 		\mul, -6.dbamp,
 		\feedback, ~faderbus[5],
 		\feedback_scaler, ~feedback_scaler,
-		\freq, ~faderbus[8],
-		\low_freq, 36.midicps,
-		\high_freq, 72.midicps,
+		\midinote, ~notebus,
 	], ~grp[2], \addToTail));
 
     // SENDS
