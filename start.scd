@@ -28,7 +28,7 @@ Server.supernova;
 	~out_channels = 8;  // the number of out channels
     ~root_sample_dir = PathName(thisProcess.nowExecutingPath).parentPath;
     ~record_num = -1;
-	~feedback_scaler = 3;
+	~feedback_scaler = 4;
     r = Array.fill(2, {Recorder(s)});
 
     // gain can be adjusted here on a global level

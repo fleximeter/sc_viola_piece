@@ -1,9 +1,9 @@
 e["e70"].play;
 
-~reset_to_event.(47);
+~reset_to_event.(14);
 ~event_counter.postln;
 
-~feedback_scaler = 3;
+~feedback_scaler = 4.5;
 
 // check sound
 {PanAz.ar(8, SinOsc.ar(440, 0, 0.1, 0), 0.5, 1, 2.0)}.play;
