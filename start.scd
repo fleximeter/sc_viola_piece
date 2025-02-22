@@ -29,7 +29,7 @@ Server.supernova;
     ~root_sample_dir = PathName(thisProcess.nowExecutingPath).parentPath;
     ~record_num = -1;
 	~feedback_scaler = 4;
-    r = Array.fill(2, {Recorder(s)});
+    r = Array.fill(10, {Recorder(s)});
 
     // gain can be adjusted here on a global level
     ~global_gain = 0.dbamp;
@@ -122,6 +122,7 @@ Server.supernova;
     ~recordbus1 = Bus.audio(s, 1);
     ~recordbus2 = Bus.audio(s, 2);
     ~recordbus8 = Bus.audio(s, 8);
+	~recordbus_mono = Array.fill(10, {Bus.audio(s, 1)});
 };
 
 // Make groups
@@ -147,6 +148,12 @@ Server.supernova;
 // Performs a Cmd+., resets all events, and recreates groups.
 ~full_reset = {
     Routine({
+		// terminate any recordings that may be occurring
+		if(r[0].isRecording, {
+			r.do(|recorder| {recorder.stopRecording});
+			"STOPPED RECORDING".postln;
+		});
+		0.1.wait;
         CmdPeriod.run;
         0.1.wait;
         e.keysValuesDo({|key, val| val.reset});  // reset all events including main
@@ -196,6 +203,31 @@ Server.supernova;
         ~event_counter = ~event_counter + 1;
         i = i + 1;
     });
+
+	// RESET RECORDING
+
+	// terminate any recordings that may be occurring
+    if(r[0].isRecording, {
+		r.do(|recorder| {recorder.stopRecording});
+        "STOPPED RECORDING".postln;
+	});
+
+	// get the current date and time to tag the recordings
+	date = Date.getDate;
+	dateTag = "_" ++ date.year ++ "_" ++ date.month ++ "_" ++ date.day ++ "_" ++ date.hour ++ "_" ++ date.minute ++ "_" ++ date.second;
+
+	// record the outputs
+	r[0].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_mic_reset_to_event.wav").fullPath, ~recordbus_mono[0], 1);
+	r[1].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch1_reset_to_event.wav").fullPath, ~recordbus_mono[1], 1);
+	r[2].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch2_reset_to_event.wav").fullPath, ~recordbus_mono[2], 1);
+	r[3].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch3_reset_to_event.wav").fullPath, ~recordbus_mono[3], 1);
+	r[4].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch4_reset_to_event.wav").fullPath, ~recordbus_mono[4], 1);
+	r[5].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch5_reset_to_event.wav").fullPath, ~recordbus_mono[5], 1);
+	r[6].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch6_reset_to_event.wav").fullPath, ~recordbus_mono[6], 1);
+	r[7].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch7_reset_to_event.wav").fullPath, ~recordbus_mono[7], 1);
+	r[8].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch8_reset_to_event.wav").fullPath, ~recordbus_mono[8], 1);
+
+	// output status
     ("--------------------------------------\nReset to measure " ++ num ++ ".\n--------------------------------------").postln;
     nil
 };
