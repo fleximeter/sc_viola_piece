@@ -50,20 +50,20 @@ SynthDef(\record_map, {
     var mic_sig, electronics_sig;
 	mic_sig = In.ar(\mic.kr(0), 1);
     electronics_sig = In.ar(\electronics.kr(0), 8);
-	mic_sig = sig.madd(\mul_mic.kr(1), 0);
-    electronics_sig = sig.madd(\mul_electronics.kr(1), 0);
+	mic_sig = mic_sig.madd(\mul_mic.kr(1), 0);
+    electronics_sig = electronics_sig.madd(\mul_electronics.kr(1), 0);
 
 	// output the mic
 	Out.ar(\out_mic.kr(0), mic_sig);
 	// output the electronics
 	Out.ar(\out_electronics1.kr(0), electronics_sig[0]);
-	Out.ar(\out_electronics1.kr(0), electronics_sig[1]);
-	Out.ar(\out_electronics1.kr(0), electronics_sig[2]);
-	Out.ar(\out_electronics1.kr(0), electronics_sig[3]);
-	Out.ar(\out_electronics1.kr(0), electronics_sig[4]);
-	Out.ar(\out_electronics1.kr(0), electronics_sig[5]);
-	Out.ar(\out_electronics1.kr(0), electronics_sig[6]);
-	Out.ar(\out_electronics1.kr(0), electronics_sig[7]);
+	Out.ar(\out_electronics2.kr(0), electronics_sig[1]);
+	Out.ar(\out_electronics3.kr(0), electronics_sig[2]);
+	Out.ar(\out_electronics4.kr(0), electronics_sig[3]);
+	Out.ar(\out_electronics5.kr(0), electronics_sig[4]);
+	Out.ar(\out_electronics6.kr(0), electronics_sig[5]);
+	Out.ar(\out_electronics7.kr(0), electronics_sig[6]);
+	Out.ar(\out_electronics8.kr(0), electronics_sig[7]);
 }).add;
 
 // mic

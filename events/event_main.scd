@@ -61,7 +61,7 @@ e.put("main", Routine({
 
 // A variant for the video recording
 e.put("main_02_23_25", Routine({
-    var synth_mic, synth_reverb, synths;
+    var synth_mic, synth_reverb, synths, date, dateTag;
     synth_reverb = List();
     synths = List();
 
@@ -80,6 +80,8 @@ e.put("main_02_23_25", Routine({
 	synths.add(Synth(\record_map, [
 		\mic, ~micbus,
 		\electronics, ~postprocessingbus[0],
+		\mul_mic, -12.dbamp,
+		\mul_electronics, -12.dbamp,
 		\out_mic, ~recordbus_mono[0],
 		\out_electronics1, ~recordbus_mono[1],
 		\out_electronics2, ~recordbus_mono[2],
@@ -93,7 +95,7 @@ e.put("main_02_23_25", Routine({
 
 	// terminate any recordings that may be occurring
     if(r[0].isRecording, {
-		r.do(|recorder| {recorder.stopRecording});
+		r.do({|recorder| recorder.stopRecording});
         "STOPPED RECORDING".postln;
 	});
 
@@ -102,15 +104,15 @@ e.put("main_02_23_25", Routine({
 	dateTag = "_" ++ date.year ++ "_" ++ date.month ++ "_" ++ date.day ++ "_" ++ date.hour ++ "_" ++ date.minute ++ "_" ++ date.second;
 
 	// record the outputs
-	r[0].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_mic.wav").fullPath, ~recordbus_mono[0], 1);
-	r[1].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch1.wav").fullPath, ~recordbus_mono[1], 1);
-	r[2].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch2.wav").fullPath, ~recordbus_mono[2], 1);
-	r[3].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch3.wav").fullPath, ~recordbus_mono[3], 1);
-	r[4].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch4.wav").fullPath, ~recordbus_mono[4], 1);
-	r[5].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch5.wav").fullPath, ~recordbus_mono[5], 1);
-	r[6].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch6.wav").fullPath, ~recordbus_mono[6], 1);
-	r[7].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch7.wav").fullPath, ~recordbus_mono[7], 1);
-	r[8].record(PathName(~root_sample_dir ++ "samples/recording" ++ dateTag ++ "_electronics_ch8.wav").fullPath, ~recordbus_mono[8], 1);
+	r[0].record(PathName(~root_sample_dir ++ "samples/output_recordings/recording" ++ dateTag ++ "_mic.wav").fullPath, ~recordbus_mono[0], 1);
+	r[1].record(PathName(~root_sample_dir ++ "samples/output_recordings/recording" ++ dateTag ++ "_electronics_ch1.wav").fullPath, ~recordbus_mono[1], 1);
+	r[2].record(PathName(~root_sample_dir ++ "samples/output_recordings/recording" ++ dateTag ++ "_electronics_ch2.wav").fullPath, ~recordbus_mono[2], 1);
+	r[3].record(PathName(~root_sample_dir ++ "samples/output_recordings/recording" ++ dateTag ++ "_electronics_ch3.wav").fullPath, ~recordbus_mono[3], 1);
+	r[4].record(PathName(~root_sample_dir ++ "samples/output_recordings/recording" ++ dateTag ++ "_electronics_ch4.wav").fullPath, ~recordbus_mono[4], 1);
+	r[5].record(PathName(~root_sample_dir ++ "samples/output_recordings/recording" ++ dateTag ++ "_electronics_ch5.wav").fullPath, ~recordbus_mono[5], 1);
+	r[6].record(PathName(~root_sample_dir ++ "samples/output_recordings/recording" ++ dateTag ++ "_electronics_ch6.wav").fullPath, ~recordbus_mono[6], 1);
+	r[7].record(PathName(~root_sample_dir ++ "samples/output_recordings/recording" ++ dateTag ++ "_electronics_ch7.wav").fullPath, ~recordbus_mono[7], 1);
+	r[8].record(PathName(~root_sample_dir ++ "samples/output_recordings/recording" ++ dateTag ++ "_electronics_ch8.wav").fullPath, ~recordbus_mono[8], 1);
 
     // the pan mapping (stereo or 8-channel)
     synths.add(Synth(\from8to2, [\in, ~postprocessingbus[0], \out, 0], ~grp[~grp.size-1], \addToTail));
@@ -125,7 +127,7 @@ e.put("main_02_23_25", Routine({
         synths.do({|item| item.free});
         synth_mic.free;
         synth_reverb.do({|item| item.free});
-		r.do(|recorder| {recorder.stopRecording});
+		r.do({|recorder| recorder.stopRecording});
 		"Recording stopped.".postln;
         "0 UPDATE 0.2: Main event (2-23-25) kill stage 2 complete. Event finished.".postln;
     }).play;

@@ -81,7 +81,7 @@ MIDIdef.noteOn("on", {
         });
         ~event_counter = ~event_counter + 1;
     }, {
-        e["main"].next;
+        e[~main_event].next;
     });
     //("note number " ++ noteNumber ++ " was pressed").postln;
 }, 36, srcID: ~midi_sources["quneo"].uid).permanent = true;
